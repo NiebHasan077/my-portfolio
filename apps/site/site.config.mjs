@@ -9,7 +9,7 @@
  * path and no trailing slash. Set it to the Cloudflare Pages hostname once the
  * project exists. The static-site validator rejects any other shape.
  */
-export const siteOrigin = "https://portfolio.pages.dev";
+export const siteOrigin = "https://niebhasanneom.pages.dev";
 
 /**
  * Every public page, in sitemap order. The static-site validator fails the

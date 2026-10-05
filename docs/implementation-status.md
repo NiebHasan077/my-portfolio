@@ -11,13 +11,16 @@
 - CI for formatting, type/content checks, tests, build validation, browser checks, Lighthouse, dependency review, and weekly report-only audits.
 - Pages-only Cloudflare deployment and rollback documentation plus sanitized Slack notification support.
 
+## Deployment
+
+- Source: `github.com/NiebHasan077/my-portfolio`, `main` unprotected by design, secret scanning and push protection enabled.
+- Hosting: Cloudflare Pages project `niebhasanneom`, live at `https://niebhasanneom.pages.dev` since 2026-10-05. `siteOrigin` in `apps/site/site.config.mjs` matches it.
+
 ## Owner-gated setup remaining
 
-- Connect GitHub. Leave `main` unprotected by design; enable secret scanning, push protection, and Dependabot.
-- Create the Cloudflare Pages project and preview deployment integration.
+- Enable Dependabot alerts and private vulnerability reporting on the repository; both are off.
 - Configure the private Slack webhook and local Codex notifier if desired.
 - Review two report-only weekly audits before enabling low-risk draft-fix proposals.
-- Approve and perform the first production deployment.
 
 ## Held claims and their release trigger
 
