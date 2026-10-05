@@ -1,0 +1,19 @@
+{
+  "publish": true,
+  "displayName": "Nieb Hasan Neom",
+  "headline": "Computer Science PhD Student | AI Systems for Distributed Systems & Networking | Backend Engineering",
+  "summary": "I’m Nieb Hasan Neom, a Computer Science PhD student and Kummer Doctoral Fellow building AI systems for distributed systems and networking. My work combines guarded LLM orchestration and agent-driven data movement with three years of backend engineering.",
+  "about": "I build AI systems for distributed infrastructure: guarded LLM workflows, telemetry-driven data movement, and reproducible systems evaluation. My approach comes from both research and production backend engineering, so I treat constraints, failure modes, and operational evidence as part of the design—not as cleanup after a model works.",
+  "broadLocation": "Rolla, Missouri, United States",
+  "claimIds": [
+    "focus-ai-systems",
+    "identity-display-name",
+    "identity-headline",
+    "identity-location",
+    "education-mst-phd",
+    "education-mst-fellowship-graduation",
+    "experience-kona-se2",
+    "research-guarded-orchestration",
+    "research-data-movement-optimizer"
+  ]
+}

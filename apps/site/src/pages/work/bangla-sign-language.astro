@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Bangla Sign Language Recognition · Research Case Study" description="Undergraduate thesis research contributing to a published hybrid Bangla Sign Language recognition system." active="Work">
+  <header class="case-header page-shell">
+    <a class="back-link" href="/work">← Work & Research</a>
+    <div class="case-kicker"><span class="eyebrow">COMPLETED RESEARCH CASE STUDY</span><span class="schema-chip">MULTI-AUTHOR WORK</span></div>
+    <h1>Bangla Sign Language Recognition</h1>
+    <p>Undergraduate thesis research that contributed to a published hybrid recognition system combining background elimination, transfer learning, and a random-forest classifier.</p>
+  </header>
+
+  <section class="case-facts page-shell" aria-label="Published paper results">
+    <span><small>CHARACTER ACCURACY</small><strong>91.67%</strong></span>
+    <span><small>DIGIT ACCURACY</small><strong>97.33%</strong></span>
+    <span><small>PUBLICATION</small><strong>ESWA 213 · 2023</strong></span>
+    <span><small>STATUS</small><strong>Peer-reviewed article</strong></span>
+  </section>
+
+  <section class="case-section case-split page-shell">
+    <div><span class="eyebrow">MY CONTRIBUTION</span><h2>Preprocessing design and pipeline integration.</h2></div>
+    <div class="case-notes"><article><p>I designed and evaluated the background-elimination preprocessing method, then helped integrate it with the transfer-learning and random-forest recognition pipeline.</p></article><article><p>The full system and reported metrics belong to the multi-author publication; this case study does not present the research as solo work.</p></article></div>
+  </section>
+
+  <section class="case-section page-shell">
+    <div class="case-section-intro"><span class="eyebrow">SYSTEM METHOD</span><h2>A hybrid path from sign image to classification.</h2><p>The published method separates background removal, learned feature extraction, and final classification.</p></div>
+    <div class="method-flow" aria-label="Published recognition method">
+      <article><span>01</span><h3>Sign image</h3><p>Open Bangla Sign Language datasets provide character and digit inputs.</p></article>
+      <i aria-hidden="true">→</i>
+      <article><span>02</span><h3>Background elimination</h3><p>Preprocessing removes unwanted visual features.</p></article>
+      <i aria-hidden="true">→</i>
+      <article><span>03</span><h3>Transfer learning</h3><p>Pre-trained backbone networks extract useful representations.</p></article>
+      <i aria-hidden="true">→</i>
+      <article><span>04</span><h3>Random forest</h3><p>The classifier produces the recognition result.</p></article>
+    </div>
+  </section>
+
+  <section class="evidence-boundary-panel page-shell">
+    <span class="eyebrow">PUBLIC EVIDENCE</span>
+    <h2>Read the published method and results.</h2>
+    <p>The two accuracy figures above are paper-level results from the multi-author system on Ishara-Lipi and Ishara-Bochon.</p>
+    <a class="button primary" href="https://doi.org/10.1016/j.eswa.2022.118914" target="_blank" rel="noreferrer">Open the paper <span aria-hidden="true">↗</span></a>
+  </section>
+</BaseLayout>

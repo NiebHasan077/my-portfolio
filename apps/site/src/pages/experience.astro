@@ -1,0 +1,25 @@
+---
+import { education, experience } from "../content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Experience · Nieb Hasan Neom" description="Verified professional experience and education spanning backend engineering and computer-science research." active="Experience">
+  <header class="page-header page-shell">
+    <span class="eyebrow">EXPERIENCE</span>
+    <h1>Research systems.<br /><em>Backend practice.</em></h1>
+    <p>Roles, dates, and contributions are sourced through the portfolio claims ledger. Details without public-safe evidence remain intentionally absent.</p>
+  </header>
+  <section class="timeline page-shell" aria-label="Professional experience">
+    {experience.filter((item) => item.publish).map((item) => (
+      <article><span>{item.period}</span><div><h2>{item.role}</h2><h3>{item.organization}</h3><p>{item.summary}</p></div></article>
+    ))}
+  </section>
+  <section class="education-section page-shell">
+    <div class="section-intro"><span class="eyebrow">EDUCATION</span><h2>Computer science, from foundations to systems research.</h2></div>
+    <div class="education-grid">
+      {education.filter((item) => item.publish).map((item) => (
+        <article><span>{item.period}</span><h3>{item.degree}</h3><p>{item.institution}</p>{item.details?.map((detail) => <p>{detail}</p>)}</article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

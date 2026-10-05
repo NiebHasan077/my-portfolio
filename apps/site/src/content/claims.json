@@ -1,0 +1,286 @@
+[
+  {
+    "id": "focus-ai-systems",
+    "statement": "The portfolio targets backend and high-performance networking research using agentic LLM systems.",
+    "evidence": "owner-approved portfolio brief, 2026-07-18",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-18"
+  },
+  {
+    "id": "identity-display-name",
+    "statement": "The portfolio owner's public display name is Nieb Hasan Neom.",
+    "evidence": "owner-provided resume and LinkedIn export; owner source-intake approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "identity-headline",
+    "statement": "The approved public headline is: Computer Science PhD Student | AI Systems for Distributed Systems & Networking | Backend Engineering.",
+    "evidence": "owner-provided 2026 research and role-targeted CVs; owner implementation approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "id": "identity-location",
+    "statement": "The approved broad public location is Rolla, Missouri, United States.",
+    "evidence": "owner-provided resume; owner source-intake approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "contact-email",
+    "statement": "The approved public professional email is niebhasanneom0@gmail.com.",
+    "evidence": "owner-provided resume and LinkedIn export; owner source-intake approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "contact-profiles",
+    "statement": "The approved public profiles are LinkedIn at /in/nieb-hasan-neom-72b604201/ and GitHub user NiebHasan077.",
+    "evidence": "owner-provided resume and LinkedIn export; owner source-intake approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "experience-mst-gra",
+    "statement": "Nieb Hasan Neom has been a Graduate Research Assistant at Missouri University of Science and Technology since August 2025.",
+    "evidence": "owner-provided LinkedIn export; owner source-intake approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "education-mst-phd",
+    "statement": "Nieb Hasan Neom has pursued a PhD in Computer Science at Missouri University of Science and Technology since August 2025.",
+    "evidence": "owner-provided resume and LinkedIn export; owner source-intake approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "education-kuet-bs",
+    "statement": "Nieb Hasan Neom pursued a Bachelor of Science in Computer Science and Engineering at Khulna University of Engineering and Technology from February 2017 through April 2022.",
+    "evidence": "owner-provided resume; owner clarification of conflicting LinkedIn dates",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "experience-kona-se2",
+    "statement": "Nieb Hasan Neom worked at Kona Software Lab Ltd. from April 2022 through June 2025 and held the official final title Software Engineer II.",
+    "evidence": "owner-provided resume and LinkedIn export; owner title confirmation",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "project-kona-contributions",
+    "statement": "As a backend engineer on a blockchain-based token-trading platform, Nieb Hasan Neom worked on trade, user, wallet, and fee-management services; introduced message queues for reliable inter-service communication; added caching to reduce response latency; and implemented two-factor authentication for sensitive trading operations.",
+    "evidence": "owner-provided resume; owner public-safety and wording approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "research-bsl-publication",
+    "statement": "The multi-author paper A hybrid approach for Bangla sign language recognition using deep transfer learning model with random forest classifier was published in Expert Systems with Applications, volume 213, in 2023 as article 118914.",
+    "evidence": "https://doi.org/10.1016/j.eswa.2022.118914",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "research-bsl-thesis-relationship",
+    "statement": "Nieb Hasan Neom's undergraduate thesis research contributed to the published hybrid Bangla Sign Language recognition system.",
+    "evidence": "owner-provided resume; owner relationship confirmation",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "research-bsl-contribution",
+    "statement": "Nieb Hasan Neom designed and evaluated the background-elimination preprocessing method and helped integrate it with the transfer-learning and random-forest recognition pipeline.",
+    "evidence": "owner-provided resume; owner individual-contribution confirmation",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "research-bsl-results",
+    "statement": "The published system reported character-recognition accuracy of 91.67% and digit-recognition accuracy of 97.33% on the Ishara-Lipi and Ishara-Bochon datasets.",
+    "evidence": "https://doi.org/10.1016/j.eswa.2022.118914",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "publication-fall-detection-review",
+    "statement": "Nieb Hasan Neom co-authored A Review on Fall Detection Systems Using Data from Smartphone Sensors, published in Ingénierie des Systèmes d'Information 24(6) in 2019, pages 569-576.",
+    "evidence": "https://doi.org/10.18280/isi.240602",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "publication-credsec-preprint",
+    "statement": "Nieb Hasan Neom co-authored the 2024 arXiv preprint CredSec: A Blockchain-based Secure Credential Management System for University Adoption.",
+    "evidence": "https://arxiv.org/abs/2406.05151",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "achievement-codeforces",
+    "statement": "Nieb Hasan Neom reached Codeforces Expert with a peak rating of 1629.",
+    "evidence": "owner-provided resume and linked profile; owner wording approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "achievement-leetcode",
+    "statement": "Nieb Hasan Neom reached LeetCode Knight with a peak contest rating of 1895.",
+    "evidence": "owner-provided resume and linked profile; owner wording approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "achievement-konasl-contest",
+    "statement": "Nieb Hasan Neom placed first runner-up in the 2023 KonaSL Coding Combat with a 20-team field.",
+    "evidence": "owner-provided resume and linked leaderboard; owner wording approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "leadership-programming-workshop",
+    "statement": "Nieb Hasan Neom led an introductory competitive-programming workshop for more than 60 KUET students and helped organize programming contests.",
+    "evidence": "owner-provided resume; owner wording approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "leadership-math-club",
+    "statement": "Nieb Hasan Neom served as Assistant Organizing Secretary of the KUET Math Club and helped run math events and Olympiad training.",
+    "evidence": "owner-provided resume; owner wording approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "leadership-sports",
+    "statement": "Nieb Hasan Neom organized university sports activities and captained the CSE cricket team.",
+    "evidence": "owner-provided resume; owner wording approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-07-22"
+  },
+  {
+    "id": "education-mst-fellowship-graduation",
+    "statement": "Nieb Hasan Neom is a Kummer Innovation and Entrepreneurship Doctoral Fellow at Missouri University of Science and Technology with an anticipated graduation date of May 2030.",
+    "evidence": "owner-provided 2026 research and role-targeted CVs; owner implementation approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "id": "experience-mst-research-lab",
+    "statement": "Nieb Hasan Neom is a Graduate Research Assistant in the Computer Systems & Networking Lab at Missouri University of Science and Technology, advised by Dr. Md Arifuzzaman, working on machine learning for distributed systems and networking.",
+    "evidence": "owner-provided 2026 research CV; owner implementation approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "id": "research-guarded-orchestration",
+    "statement": "Nieb Hasan Neom designed a guarded, state-aware orchestration layer that extends LLM function calling with multi-turn input accumulation, typed-schema argument constraints, blocked execution on incomplete state, and correction, what-if, and reset steering for scientific model execution.",
+    "evidence": "owner-provided 2026 research CV; owner implementation approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "id": "research-guarded-orchestration-domain",
+    "statement": "The guarded orchestration workflow was instantiated for protein-corona prediction over a backend of trained prediction models.",
+    "evidence": "accepted WORKS26 paper at SC26, to appear November 2026; owner-provided 2026 research CV; owner implementation approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-09-20",
+    "notes": "Qualitative scope only. It names the application domain and carries no measured result; the figures stay in the two held entries."
+  },
+  {
+    "id": "research-data-movement-optimizer",
+    "statement": "Nieb Hasan Neom is building an LLM-driven data-movement optimizer that adjusts network-transfer concurrency from live TCP telemetry through a bounded Diagnostic and Decision agent loop with zero-copy workers and oscillation controls.",
+    "evidence": "owner-provided 2026 research and role-targeted CVs; owner implementation approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "id": "publication-works26-accepted",
+    "statement": "Nieb Hasan Neom is first author of Guarded, State-Aware Orchestration for Schema-Constrained Scientific Model Execution, accepted to WORKS26 at SC26 and scheduled to appear in November 2026.",
+    "evidence": "owner-provided 2026 research CV; owner implementation approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "id": "publication-escience-accepted",
+    "statement": "Nieb Hasan Neom co-authored Self-Tuning Segmented Retrieval of Large-Scale Genomic Data, accepted as a short paper to the 22nd IEEE International Conference on e-Science (eScience 2026).",
+    "evidence": "https://www.escience-conference.org/2026/papers, listed under Accepted papers, Short Papers, with authors Rasman Mubtasim Swargo, Nieb Hasan Neom and Md Arifuzzaman; owner-provided 2026 research CV",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "contact-scholar",
+    "statement": "The approved public Google Scholar profile for Nieb Hasan Neom uses Scholar user ID DzIu5CsAAAAJ.",
+    "evidence": "Google Scholar hyperlink embedded in all owner-provided 2026 CVs; owner implementation approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "id": "technical-skills",
+    "statement": "Nieb Hasan Neom's public technical skills span agentic AI, distributed backend systems, systems and networking, data stores, cloud services, and engineering tooling as listed in the portfolio skills groups.",
+    "evidence": "owner-provided 2026 research and role-targeted CVs; owner implementation approval",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "id": "project-kona-cache-exclusion",
+    "statement": "Kona Token Trade performance metrics are not published; the case study presents qualitative backend contributions only.",
+    "evidence": "owner decision recorded in docs/decision-log.md",
+    "publicSafe": false,
+    "approved": false,
+    "lastVerified": "2026-10-05",
+    "notes": "Exclusion record. Never reference it from a published record, and do not add a Kona performance figure to any file in this repository."
+  },
+  {
+    "id": "research-guarded-orchestration-backend",
+    "statement": "The guarded orchestration workflow was instantiated for protein-corona prediction over a backend of 178 per-protein classifiers reporting 87.13% AUC-ROC, in collaboration with Louisiana State University.",
+    "evidence": "owner-provided 2026 research CV and the accepted WORKS26 paper; awaiting a public proceedings link and owner approval",
+    "publicSafe": false,
+    "approved": false,
+    "lastVerified": null,
+    "notes": "Collaborator-side model figures rather than a result of the orchestration layer; preserve that boundary in any published wording. Held unapproved on 2026-09-20. The figure has no source a reader can verify until the WORKS26 proceedings page is public in November 2026. Revisit then, approve with a citable link, and update the evidence-boundary wording on /work/guarded-orchestration in the same change."
+  },
+  {
+    "id": "research-guarded-orchestration-measurements",
+    "statement": "The guarded orchestration layer measured 98.5% feature-extraction accuracy across 300 cases and passed 300 of 300 reliability scenarios spanning 50 nanoparticle configurations.",
+    "evidence": "owner-provided 2026 research CV and the accepted WORKS26 paper; awaiting a public proceedings link and owner approval",
+    "publicSafe": false,
+    "approved": false,
+    "lastVerified": null,
+    "notes": "The orchestration layer's own measured result and the strongest available evidence for the WORKS26 case study. Held unapproved on 2026-09-20. The figure has no source a reader can verify until the WORKS26 proceedings page is public in November 2026. Revisit then, approve with a citable link, and update the evidence-boundary wording on /work/guarded-orchestration in the same change."
+  }
+]

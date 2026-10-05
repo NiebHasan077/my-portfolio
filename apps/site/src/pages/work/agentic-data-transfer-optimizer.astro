@@ -1,0 +1,65 @@
+---
+import { research } from "../../content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const project = research.find((item) => item.id === "agentic-data-transfer-optimizer");
+if (!project) throw new Error("Agentic Data Transfer Optimizer content is missing");
+---
+
+<BaseLayout title="Agentic Data Transfer Optimizer · Research in Progress" description="A bounded agentic system for adapting network-transfer concurrency from live TCP telemetry." active="Work">
+  <header class="case-header page-shell">
+    <a class="back-link" href="/work">← Work & Research</a>
+    <div class="case-kicker"><span class="eyebrow">RESEARCH IN PROGRESS</span><span class="schema-chip">NO EFFECTIVENESS CLAIMS</span></div>
+    <h1>{project.title}</h1>
+    <p>{project.summary}</p>
+  </header>
+
+  <section class="case-facts page-shell" aria-label="Research system facts">
+    <span><small>SYSTEM</small><strong>Adaptive file transfer</strong></span>
+    <span><small>CONTROL</small><strong>Two-agent pipeline</strong></span>
+    <span><small>INPUT</small><strong>Live TCP telemetry</strong></span>
+    <span><small>STATUS</small><strong>Prototype + evaluation</strong></span>
+  </section>
+
+  <section class="research-progress page-shell">
+    {project.workstreams.map((workstream, index) => (
+      <article>
+        <div><span>WORKSTREAM 0{index + 1}</span><strong>{workstream.status}</strong></div>
+        <h2>{workstream.title}</h2>
+        <p>{workstream.summary}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="case-section page-shell">
+    <div class="case-section-intro"><span class="eyebrow">RESEARCH QUESTIONS</span><h2>Can an agent change a live transfer without losing control of the system?</h2><p>The evaluation separates architectural completeness from any claim that adaptation improves performance.</p></div>
+    <div class="question-grid">
+      <article><span>RQ / STABILITY</span><h3>Can agent decisions remain bounded under changing telemetry?</h3><p>Observe congestion window, retransmissions, RTT variance, and system load while limiting how far concurrency may change at each decision.</p></article>
+      <article><span>RQ / EFFECT</span><h3>When does adaptive concurrency outperform a static setting?</h3><p>Compare controlled runs only after workload, network path, model, action budget, and measurement provenance are fixed.</p></article>
+    </div>
+  </section>
+
+  <section class="case-section page-shell">
+    <div class="case-section-intro"><span class="eyebrow">SYSTEM PATH</span><h2>Telemetry enters; bounded concurrency decisions leave.</h2><p>The architecture exposes where measurement, reasoning, and execution meet.</p></div>
+    <div class="contribution-map" aria-label="Optimizer architecture">
+      <article><span>01</span><h3>Transfer runtime</h3><p>TCP sender and receiver processes move data through a multiprocessing worker pool.</p></article>
+      <article><span>02</span><h3>Telemetry</h3><p>Socket and host observations are captured at each probing interval.</p></article>
+      <article><span>03</span><h3>Diagnosis</h3><p>A diagnostic agent turns current observations and recent state into a structured assessment.</p></article>
+      <article><span>04</span><h3>Decision</h3><p>A decision agent recommends a bounded concurrency change or holds the current setting.</p></article>
+    </div>
+  </section>
+
+  <section class="case-section case-split page-shell">
+    <div><span class="eyebrow">EXECUTION SAFETY</span><h2>The model recommends. The system enforces.</h2></div>
+    <div class="case-notes">
+      <article><h3>Hard limits</h3><p>Concurrency remains inside an explicit permitted range.</p></article>
+      <article><h3>Bounded changes</h3><p>Per-decision deltas and graduated ramping limit abrupt action.</p></article>
+      <article><h3>Oscillation control</h3><p>Repeated reversals are detected and damped before the next action.</p></article>
+    </div>
+  </section>
+
+  <section class="evidence-boundary-panel page-shell">
+    <span class="eyebrow">NEXT EVIDENCE</span>
+    <h2>What will turn progress into a case study.</h2>
+    <p>Controlled-run provenance, baseline comparisons, repeatable workloads, and public-safe result records must be reviewed before this page makes a performance or optimizer-effectiveness claim.</p>
+  </section>
+</BaseLayout>

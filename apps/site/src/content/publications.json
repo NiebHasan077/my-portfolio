@@ -1,0 +1,51 @@
+[
+  {
+    "id": "guarded-orchestration-works26",
+    "publish": true,
+    "title": "Guarded, State-Aware Orchestration for Schema-Constrained Scientific Model Execution",
+    "venue": "21st Workshop on Workflows in Support of Large-Scale Science (WORKS26 at SC26)",
+    "status": "accepted",
+    "year": 2026,
+    "claimIds": ["publication-works26-accepted"]
+  },
+  {
+    "id": "segmented-retrieval-escience",
+    "publish": true,
+    "title": "Self-Tuning Segmented Retrieval of Large-Scale Genomic Data",
+    "venue": "22nd IEEE International Conference on e-Science (eScience 2026) · Short paper",
+    "status": "accepted",
+    "year": 2026,
+    "href": "https://www.escience-conference.org/2026/papers",
+    "claimIds": ["publication-escience-accepted"]
+  },
+  {
+    "id": "bangla-sign-language-paper",
+    "publish": true,
+    "title": "A hybrid approach for Bangla sign language recognition using deep transfer learning model with random forest classifier",
+    "venue": "Expert Systems with Applications 213, article 118914",
+    "status": "published",
+    "year": 2023,
+    "href": "https://doi.org/10.1016/j.eswa.2022.118914",
+    "claimIds": ["research-bsl-publication"]
+  },
+  {
+    "id": "fall-detection-review",
+    "publish": true,
+    "title": "A Review on Fall Detection Systems Using Data from Smartphone Sensors",
+    "venue": "Ingénierie des Systèmes d'Information 24(6), 569-576",
+    "status": "published",
+    "year": 2019,
+    "href": "https://doi.org/10.18280/isi.240602",
+    "claimIds": ["publication-fall-detection-review"]
+  },
+  {
+    "id": "credsec-preprint",
+    "publish": true,
+    "title": "CredSec: A Blockchain-based Secure Credential Management System for University Adoption",
+    "venue": "arXiv:2406.05151 · Preprint",
+    "status": "preprint",
+    "year": 2024,
+    "href": "https://arxiv.org/abs/2406.05151",
+    "claimIds": ["publication-credsec-preprint"]
+  }
+]
