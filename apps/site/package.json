@@ -1,0 +1,22 @@
+{
+  "name": "@portfolio/site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "resume:pdf": "RESUME_PDF_OUTPUT=public/resume.pdf playwright test --project=chromium --grep 'résumé is printable' && cp public/resume.pdf ../../output/pdf/Nieb_Hasan_Neom_Resume.pdf",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "astro": "7.1.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.9",
+    "@playwright/test": "1.61.1",
+    "typescript": "5.9.3"
+  }
+}

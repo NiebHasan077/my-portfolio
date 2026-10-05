@@ -1,0 +1,41 @@
+---
+import {
+  availableLinks,
+  education,
+  experience,
+  profile,
+  publications,
+  publishedHighlights,
+  publishedProjects,
+  research,
+  skillGroups,
+} from "../content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+const resume = availableLinks.find((link) => link.kind === "resume");
+const contactLinks = availableLinks.filter((link) => link.kind !== "resume");
+const selectedWork = publishedProjects;
+const contactText = (href: string) => href.replace(/^mailto:|^https?:\/\/(www\.)?|\/$/g, "");
+---
+
+<BaseLayout title="Résumé · Nieb Hasan Neom" description="Public-safe résumé for Nieb Hasan Neom, including experience, education, selected systems work, publications, and leadership." active="Résumé">
+  <header class="page-header resume-header page-shell">
+    <div><span class="eyebrow">PUBLIC-SAFE RÉSUMÉ</span><h1>{profile.displayName}</h1><p>{profile.headline}</p></div>
+    {resume && <a class="button primary" href={resume.href} download>Download PDF <span aria-hidden="true">↓</span></a>}
+  </header>
+  <section class="resume-sheet page-shell">
+    <div class="resume-sidebar">
+      <div><h2>Contact</h2><p>{profile.broadLocation}</p>{contactLinks.map((link) => <a href={link.href} target={link.kind === "email" ? undefined : "_blank"} rel={link.kind === "email" ? undefined : "noreferrer"}>{contactText(link.href)}</a>)}</div>
+      <div><h2>Focus</h2><p>AI systems<br />High-performance networking<br />Backend systems<br />Reproducible evaluation</p></div>
+      <div><h2>Problem solving</h2>{publishedHighlights.filter((item) => item.category === "problem-solving").map((item) => <p><strong>{item.title}</strong><br />{item.detail}</p>)}</div>
+    </div>
+    <div class="resume-main">
+      <div class="resume-summary"><h2>Summary</h2><p>{profile.summary}</p></div>
+      <div class="resume-section resume-skills"><h2>Technical skills</h2><div>{skillGroups.map((group) => <p><strong>{group.title}:</strong> {group.items.join(" · ")}</p>)}</div></div>
+      <div class="resume-section"><h2>Experience</h2>{experience.filter((item) => item.publish).map((item) => <article><h3>{item.role} · {item.organization}</h3><span>{item.period}</span><p>{item.summary}</p></article>)}</div>
+      <div class="resume-section"><h2>Education</h2>{education.filter((item) => item.publish).map((item) => <article><h3>{item.degree}</h3><span>{item.period}</span><p>{item.institution}</p></article>)}</div>
+      <div class="resume-section"><h2>Selected work</h2>{selectedWork.map((item) => <article><h3>{item.title}</h3><p>{item.summary}</p></article>)}{research.filter((item) => item.publish).map((item) => <article><h3>{item.title} · Research in Progress</h3><p>{item.summary}</p></article>)}</div>
+      <div class="resume-section"><h2>Publications</h2>{publications.filter((item) => item.publish).map((item) => <article><h3>{item.href ? <a href={item.href}>{item.title}</a> : item.title}</h3><span>{item.year} · {item.status} · {item.venue}</span></article>)}</div>
+      <div class="resume-section resume-extras"><h2>Leadership & Community</h2>{publishedHighlights.filter((item) => item.category === "leadership").map((item) => <article><h3>{item.title}</h3><p>{item.detail}</p></article>)}</div>
+    </div>
+  </section>
+</BaseLayout>

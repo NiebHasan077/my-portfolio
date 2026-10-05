@@ -1,0 +1,14 @@
+---
+const items = [
+  ["CURRENT", "PHD RESEARCH"],
+  ["RESEARCH", "AGENTIC WORKFLOWS"],
+  ["SYSTEMS", "NETWORKING"],
+  ["EXPERIENCE", "BACKEND ENGINEERING"]
+];
+---
+
+<div class="status-strip" aria-label="Portfolio focus">
+  {items.map(([label, value]) => (
+    <span><small>{label}</small><strong>{value}</strong></span>
+  ))}
+</div>

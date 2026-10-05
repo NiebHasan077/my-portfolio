@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Guarded Scientific Model Orchestration · Research Case Study" description="A state-aware LLM orchestration layer for constrained scientific model execution, accepted to WORKS26 at SC26." active="Work">
+  <header class="case-header page-shell">
+    <a class="back-link" href="/work">← Work & Research</a>
+    <div class="case-kicker"><span class="eyebrow">ACCEPTED RESEARCH CASE STUDY</span><span class="schema-chip">WORKS26 @ SC26</span></div>
+    <h1>Guarded Scientific Model Orchestration</h1>
+    <p>A state-aware layer that extends LLM function calling with explicit workflow semantics so domain scientists can invoke trained prediction models through constrained natural language.</p>
+  </header>
+
+  <section class="case-facts page-shell" aria-label="Research case study facts">
+    <span><small>ROLE</small><strong>First author</strong></span>
+    <span><small>STATUS</small><strong>Accepted / to appear</strong></span>
+    <span><small>VENUE</small><strong>WORKS26 at SC26</strong></span>
+    <span><small>SCOPE</small><strong>Scientific model execution</strong></span>
+  </section>
+
+  <section class="case-section case-split page-shell">
+    <div><span class="eyebrow">SYSTEM PROBLEM</span><h2>Function calling is not a workflow engine.</h2></div>
+    <div class="case-notes">
+      <article><h3>Inputs arrive over time</h3><p>A scientific task may require several values that a user supplies across multiple turns.</p></article>
+      <article><h3>Missing state must block execution</h3><p>The system should identify incomplete requirements instead of inventing arguments or invoking a model prematurely.</p></article>
+      <article><h3>Exploration changes state</h3><p>Corrections, what-if questions, and resets need explicit semantics so prior values do not leak into the wrong run.</p></article>
+    </div>
+  </section>
+
+  <section class="case-section page-shell">
+    <div class="case-section-intro"><span class="eyebrow">ORCHESTRATION PATH</span><h2>Accumulate, validate, execute, and steer.</h2><p>The orchestration layer keeps the workflow state visible between natural-language input and scientific model execution.</p></div>
+    <div class="contribution-map" aria-label="Orchestration workflow">
+      <article><span>01</span><h3>Accumulate</h3><p>Collect required inputs across multiple conversational turns.</p></article>
+      <article><span>02</span><h3>Validate</h3><p>Constrain tool arguments with typed schemas and domain requirements.</p></article>
+      <article><span>03</span><h3>Gate</h3><p>Block execution while required workflow state is incomplete.</p></article>
+      <article><span>04</span><h3>Steer</h3><p>Handle correction, what-if, and reset requests as explicit state transitions.</p></article>
+    </div>
+  </section>
+
+  <section class="case-section case-split page-shell">
+    <div><span class="eyebrow">MY CONTRIBUTION</span><h2>Workflow semantics around the model boundary.</h2></div>
+    <div class="case-notes">
+      <article><h3>Guarded execution</h3><p>I designed the state-aware orchestration behavior and the conditions that prevent incomplete execution.</p></article>
+      <article><h3>Scientific integration</h3><p>The workflow was instantiated for protein-corona prediction over a backend of trained prediction models.</p></article>
+      <article><h3>Evidence boundary</h3><p>Measured accuracy and reliability results remain omitted from this preview until their primary evaluation artifact is approved for publication.</p></article>
+    </div>
+  </section>
+
+  <section class="evidence-boundary-panel page-shell">
+    <span class="eyebrow">PUBLICATION STATUS</span>
+    <h2>Accepted to WORKS26 at SC26.</h2>
+    <p>The paper is scheduled to appear in November 2026. A public paper link will be added after an authoritative publication page is available and verified.</p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,45 @@
+[
+  {
+    "kind": "email",
+    "label": "Email",
+    "href": "mailto:niebhasanneom0@gmail.com",
+    "available": true,
+    "claimIds": ["contact-email"]
+  },
+  {
+    "kind": "github",
+    "label": "GitHub",
+    "href": "https://github.com/NiebHasan077",
+    "available": true,
+    "claimIds": ["contact-profiles"]
+  },
+  {
+    "kind": "linkedin",
+    "label": "LinkedIn",
+    "href": "https://www.linkedin.com/in/nieb-hasan-neom-72b604201/",
+    "available": true,
+    "claimIds": ["contact-profiles"]
+  },
+  {
+    "kind": "scholar",
+    "label": "Google Scholar",
+    "href": "https://scholar.google.com/citations?user=DzIu5CsAAAAJ",
+    "available": true,
+    "claimIds": ["contact-scholar"]
+  },
+  {
+    "kind": "resume",
+    "label": "Résumé PDF",
+    "href": "/resume.pdf",
+    "available": true,
+    "claimIds": [
+      "identity-display-name",
+      "identity-headline",
+      "contact-email",
+      "experience-mst-gra",
+      "experience-kona-se2",
+      "education-mst-phd",
+      "education-kuet-bs"
+    ]
+  }
+]

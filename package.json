@@ -1,0 +1,29 @@
+{
+  "name": "ai-systems-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build": "pnpm --dir apps/site build && pnpm static:validate",
+    "check": "pnpm --dir apps/site check && pnpm content:validate",
+    "content:validate": "node --import tsx scripts/validate-content.ts",
+    "dev": "pnpm --dir apps/site dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "static:validate": "node --import tsx scripts/validate-static-site.ts",
+    "resume:pdf": "PLAYWRIGHT_BROWSERS_PATH=$PWD/.tools/playwright pnpm --dir apps/site resume:pdf",
+    "test:e2e": "PLAYWRIGHT_BROWSERS_PATH=$PWD/.tools/playwright pnpm --dir apps/site exec playwright test",
+    "audit:weekly": "node --import tsx scripts/weekly-audit.ts",
+    "notify:slack": "node --import tsx scripts/notify-slack.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "prettier": "3.9.5",
+    "tsx": "4.23.1",
+    "typescript": "5.9.3"
+  }
+}

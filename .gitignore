@@ -1,0 +1,15 @@
+.DS_Store
+.astro/
+.env
+.env.*
+.pnpm-store/
+.tools/
+artifacts/
+coverage/
+dist/
+node_modules/
+output/
+playwright-report/
+test-results/
+tmp/
+*.log

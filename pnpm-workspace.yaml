@@ -1,0 +1,10 @@
+packages:
+  - apps/*
+allowBuilds:
+  esbuild: true
+  sharp: true
+overrides:
+  fast-uri: 3.1.4
+  sharp: 0.35.3
+minimumReleaseAgeExclude:
+  - "fast-uri@3.1.4"

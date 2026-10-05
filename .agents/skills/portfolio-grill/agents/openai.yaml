@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Grill"
+  short_description: "Turn portfolio evidence into an approved brief"
+  default_prompt: "Use $portfolio-grill to inspect my sources, resolve the portfolio domain language, and produce an approval-ready brief."

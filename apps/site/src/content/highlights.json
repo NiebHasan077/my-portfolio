@@ -1,0 +1,52 @@
+[
+  {
+    "id": "codeforces-expert",
+    "publish": true,
+    "category": "problem-solving",
+    "title": "Codeforces Expert",
+    "detail": "Reached Expert with a peak rating of 1629.",
+    "href": "https://codeforces.com/profile/Nieb_Hasan_077",
+    "claimIds": ["achievement-codeforces"]
+  },
+  {
+    "id": "leetcode-knight",
+    "publish": true,
+    "category": "problem-solving",
+    "title": "LeetCode Knight",
+    "detail": "Reached Knight with a peak contest rating of 1895.",
+    "href": "https://leetcode.com/Nieb_Hasan_077/",
+    "claimIds": ["achievement-leetcode"]
+  },
+  {
+    "id": "konasl-coding-combat",
+    "publish": true,
+    "category": "problem-solving",
+    "title": "KonaSL Coding Combat 2023",
+    "detail": "Placed first runner-up in a 20-team field.",
+    "claimIds": ["achievement-konasl-contest"]
+  },
+  {
+    "id": "programming-workshop",
+    "publish": true,
+    "category": "leadership",
+    "title": "Programming education",
+    "detail": "Led an introductory competitive-programming workshop for more than 60 KUET students and helped organize programming contests.",
+    "claimIds": ["leadership-programming-workshop"]
+  },
+  {
+    "id": "kuet-math-club",
+    "publish": true,
+    "category": "leadership",
+    "title": "KUET Math Club",
+    "detail": "Served as Assistant Organizing Secretary and helped run math events and Olympiad training.",
+    "claimIds": ["leadership-math-club"]
+  },
+  {
+    "id": "sports-leadership",
+    "publish": true,
+    "category": "leadership",
+    "title": "Sports leadership",
+    "detail": "Organized university sports activities and captained the CSE cricket team.",
+    "claimIds": ["leadership-sports"]
+  }
+]

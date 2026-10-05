@@ -1,0 +1,24 @@
+[
+  {
+    "id": "agentic-data-transfer-optimizer",
+    "publish": true,
+    "title": "Agentic Data Transfer Optimizer",
+    "eyebrow": "Research in progress",
+    "status": "Prototype + evaluation",
+    "summary": "A bounded agentic system that adapts network-transfer concurrency from live TCP telemetry while making every recommendation, constraint, and state transition inspectable.",
+    "href": "/work/agentic-data-transfer-optimizer",
+    "workstreams": [
+      {
+        "title": "Data-transfer runtime",
+        "status": "Prototype implemented",
+        "summary": "A sender and receiver architecture uses multiprocessing workers and zero-copy file transfer over TCP."
+      },
+      {
+        "title": "Bounded agentic control",
+        "status": "Evaluation in progress",
+        "summary": "Diagnostic and Decision agents reason over live telemetry within hard concurrency limits and oscillation controls."
+      }
+    ],
+    "claimIds": ["research-data-movement-optimizer"]
+  }
+]

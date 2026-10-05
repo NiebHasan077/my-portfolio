@@ -1,0 +1,5 @@
+* @NiebHasan077
+
+# Single maintainer. This routes review requests and records ownership; it
+# is not an approval gate, because `main` is unprotected by design. See
+# docs/github-setup.md for why.

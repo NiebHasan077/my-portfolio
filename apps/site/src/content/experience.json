@@ -1,0 +1,25 @@
+[
+  {
+    "id": "missouri-st-gra",
+    "publish": true,
+    "organization": "Missouri University of Science and Technology",
+    "role": "Graduate Research Assistant",
+    "period": "August 2025 - Present",
+    "summary": "Researching machine learning for distributed systems and networking in the Computer Systems & Networking Lab with Dr. Md Arifuzzaman. Current work covers guarded scientific-model orchestration and bounded, telemetry-driven data-movement optimization.",
+    "claimIds": [
+      "experience-mst-gra",
+      "experience-mst-research-lab",
+      "research-guarded-orchestration",
+      "research-data-movement-optimizer"
+    ]
+  },
+  {
+    "id": "kona-software-engineer-ii",
+    "publish": true,
+    "organization": "Kona Software Lab Ltd.",
+    "role": "Software Engineer II",
+    "period": "April 2022 - June 2025",
+    "summary": "As a backend engineer on a blockchain-based token-trading platform, I worked on trade, user, wallet, and fee-management services; introduced message queues for reliable inter-service communication; added caching to reduce response latency; and implemented two-factor authentication for sensitive trading operations.",
+    "claimIds": ["experience-kona-se2", "project-kona-contributions"]
+  }
+]
