@@ -16,7 +16,7 @@ The portfolio connects three evidence threads:
 2. Backend engineering with reliable service communication, latency-conscious design, and secure operations.
 3. Distributed-systems and networking research through the active Agentic Data Transfer Optimizer workstreams.
 
-Public role line: PhD student in Computer Science, Missouri S&T. The home page opens with a three-paragraph bio in `apps/site/src/content/profile.json`: what the owner builds, the three research threads and the lab, then the three years at Kona Software Lab. The availability line reads "Seeking Summer 2027 research and research-engineering internships." and should be revisited after that recruiting season.
+Public role line: PhD student in Computer Science, Missouri S&T. The home page opens with a three-paragraph bio in `apps/site/src/content/profile.json`: what the owner builds, the three research threads and the lab, then the three years at Kona Software Lab. The availability line reads "Seeking Summer 2027 research and software engineering internships." and should be revisited after that recruiting season.
 
 ## Site scope
 
