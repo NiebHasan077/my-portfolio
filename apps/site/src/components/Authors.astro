@@ -1,0 +1,16 @@
+---
+import { isSelf } from "../content";
+
+const { authors } = Astro.props as { authors: string[] };
+---
+
+<p class="authors">
+  {
+    authors.map((author, index) => (
+      <>
+        {isSelf(author) ? <strong>{author}</strong> : author}
+        {index < authors.length - 1 && ", "}
+      </>
+    ))
+  }
+</p>

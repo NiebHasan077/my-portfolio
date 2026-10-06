@@ -18,7 +18,9 @@ flowchart LR
 
 ## Public routes
 
-Home presents positioning and strongest evidence. Work & Research includes the Guarded Scientific Model Orchestration, Kona Token Trade, and Bangla Sign Language Recognition case studies plus the Agentic Data Transfer Optimizer research-in-progress page. Experience, About, Résumé, and Contact complete the professional narrative.
+Home carries the overview in the order a reviewer reads it: bio, news, research, publications, experience and education, then skills, honors, and service. Detail pages cover NetBench, guarded orchestration, and the Agentic Data Transfer Optimizer under `/research/`, Kona Token Trade under `/projects/`, and the CV at `/cv/`, whose print stylesheet produces `resume.pdf`. Pages that existed before the October 2026 redesign redirect through `public/_redirects`, and the static-site validator fails the build if a redirect points at a page that does not exist.
+
+The site ships no JavaScript. `public/_headers` sets a content security policy that allows only same-origin styles, fonts, and images, and Astro keeps stylesheets external so the policy needs no inline exception. The home page carries Person structured data as JSON-LD, which browsers do not execute.
 
 ## Trust boundaries
 
@@ -26,4 +28,4 @@ Raw career sources remain outside the repository. Published content is accepted 
 
 ## Failure behavior
 
-Invalid or unapproved records fail content validation. Missing routes, assets, metadata, sitemap entries, or résumé files fail the static-site validator. Cloudflare Pages can restore a prior deployment or deploy a reverted approved commit if a release fails.
+Invalid or unapproved records fail content validation. Missing routes, assets, metadata, sitemap entries, redirect targets, or résumé files fail the static-site validator, as do scripts, a social image over 200 KB, and visible text that describes the site's internal review process. Cloudflare Pages can restore a prior deployment or deploy a reverted approved commit if a release fails.

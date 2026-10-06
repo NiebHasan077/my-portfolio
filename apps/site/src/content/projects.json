@@ -1,75 +1,31 @@
 [
   {
-    "id": "guarded-orchestration",
-    "publish": true,
-    "title": "Guarded Scientific Model Orchestration",
-    "eyebrow": "Accepted research case study",
-    "summary": "A state-aware orchestration layer that extends LLM function calling with explicit workflow semantics so domain scientists can invoke trained prediction models through constrained natural language.",
-    "details": [
-      "Accumulates required inputs across multiple turns and validates arguments against typed schemas.",
-      "Blocks model execution when workflow state is incomplete instead of guessing missing values.",
-      "Supports correction, what-if exploration, and reset steering while keeping execution boundaries visible."
-    ],
-    "technologies": [
-      "LLM function calling",
-      "Schema constraints",
-      "Workflow state",
-      "Scientific ML"
-    ],
-    "href": "/work/guarded-orchestration",
-    "claimIds": [
-      "experience-mst-research-lab",
-      "research-guarded-orchestration",
-      "research-guarded-orchestration-domain",
-      "publication-works26-accepted"
-    ]
-  },
-  {
     "id": "kona-token-trade",
     "publish": true,
     "title": "Kona Token Trade",
-    "eyebrow": "Completed backend case study",
-    "summary": "Backend service work for a blockchain-based token-trading platform, centered on reliable service communication, latency-conscious caching, and stronger controls for sensitive operations.",
-    "details": [
-      "Contributed to trade, user, wallet, and fee-management services without claiming ownership of the full platform.",
-      "Introduced message queues to improve reliability between services and caching to reduce response latency.",
-      "Implemented two-factor authentication for sensitive trading operations; proprietary details and internal metrics remain excluded."
-    ],
-    "technologies": [
-      "Java",
-      "Spring Boot",
-      "Microservices",
-      "Message queues",
-      "Caching",
-      "Two-factor authentication"
-    ],
-    "href": "/work/kona-token-trade",
-    "claimIds": ["experience-kona-se2", "project-kona-contributions"]
+    "summary": "Backend services for a blockchain-based token-trading platform at Kona Software Lab. I owned 6 of its 30 Spring Boot microservices and moved inter-service calls onto Kafka so one unavailable service could no longer fail a trade.",
+    "stack": ["Java", "Spring Boot", "Apache Kafka", "AWS S3, SNS, EC2"],
+    "href": "/projects/kona-token-trade/",
+    "links": [],
+    "claimIds": [
+      "experience-kona-se2",
+      "project-kona-contributions",
+      "experience-kona-services",
+      "experience-kona-kafka",
+      "experience-kona-mentoring",
+      "experience-kona-payments",
+      "experience-kona-card-personalization",
+      "experience-kona-promotion"
+    ]
   },
   {
-    "id": "bangla-sign-language",
+    "id": "loadlens",
     "publish": true,
-    "title": "Bangla Sign Language Recognition",
-    "eyebrow": "Completed research case study",
-    "summary": "Undergraduate thesis research that contributed to a published hybrid recognition system combining image preprocessing, transfer learning, and a random-forest classifier.",
-    "details": [
-      "Designed and evaluated the background-elimination preprocessing method.",
-      "Helped integrate preprocessing with the transfer-learning and random-forest recognition pipeline.",
-      "The multi-author system reported 91.67% character accuracy and 97.33% digit accuracy on open Bangla Sign Language datasets."
-    ],
-    "technologies": [
-      "Image preprocessing",
-      "Transfer learning",
-      "Random forest",
-      "Open datasets",
-      "Experimental evaluation"
-    ],
-    "href": "/work/bangla-sign-language",
-    "claimIds": [
-      "research-bsl-publication",
-      "research-bsl-thesis-relationship",
-      "research-bsl-contribution",
-      "research-bsl-results"
-    ]
+    "title": "LoadLens",
+    "summary": "A student workload planner that checks whether a week of classes, deadlines, and commitments actually fits. Language models propose schedule changes; deterministic code checks every one before it applies.",
+    "stack": ["TypeScript", "Cloudflare"],
+    "href": "https://github.com/NiebHasan077/LoadLens",
+    "links": [],
+    "claimIds": ["project-loadlens"]
   }
 ]

@@ -1,27 +1,11 @@
 [
   {
-    "id": "focus-ai-systems",
-    "statement": "The portfolio targets backend and high-performance networking research using agentic LLM systems.",
-    "evidence": "owner-approved portfolio brief, 2026-07-18",
-    "publicSafe": true,
-    "approved": true,
-    "lastVerified": "2026-07-18"
-  },
-  {
     "id": "identity-display-name",
     "statement": "The portfolio owner's public display name is Nieb Hasan Neom.",
     "evidence": "owner-provided resume and LinkedIn export; owner source-intake approval",
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-07-22"
-  },
-  {
-    "id": "identity-headline",
-    "statement": "The approved public headline is: Computer Science PhD Student | AI Systems for Distributed Systems & Networking | Backend Engineering.",
-    "evidence": "owner-provided 2026 research and role-targeted CVs; owner implementation approval",
-    "publicSafe": true,
-    "approved": true,
-    "lastVerified": "2026-09-20"
   },
   {
     "id": "identity-location",
@@ -272,7 +256,7 @@
     "publicSafe": false,
     "approved": false,
     "lastVerified": null,
-    "notes": "Collaborator-side model figures rather than a result of the orchestration layer; preserve that boundary in any published wording. Held unapproved on 2026-09-20. The figure has no source a reader can verify until the WORKS26 proceedings page is public in November 2026. Revisit then, approve with a citable link, and update the evidence-boundary wording on /work/guarded-orchestration in the same change."
+    "notes": "Collaborator-side model figures rather than a result of the orchestration layer; preserve that boundary in any published wording. Held unapproved on 2026-09-20. The figure has no source a reader can verify until the WORKS26 proceedings page is public in November 2026. Revisit then, approve with a citable link, and update the evidence-boundary wording on /research/guarded-orchestration/ in the same change."
   },
   {
     "id": "research-guarded-orchestration-measurements",
@@ -281,6 +265,187 @@
     "publicSafe": false,
     "approved": false,
     "lastVerified": null,
-    "notes": "The orchestration layer's own measured result and the strongest available evidence for the WORKS26 case study. Held unapproved on 2026-09-20. The figure has no source a reader can verify until the WORKS26 proceedings page is public in November 2026. Revisit then, approve with a citable link, and update the evidence-boundary wording on /work/guarded-orchestration in the same change."
+    "notes": "The orchestration layer's own measured result and the strongest available evidence for the WORKS26 case study. Held unapproved on 2026-09-20. The figure has no source a reader can verify until the WORKS26 proceedings page is public in November 2026. Revisit then, approve with a citable link, and update the evidence-boundary wording on /research/guarded-orchestration/ in the same change."
+  },
+  {
+    "id": "identity-availability-2027",
+    "statement": "Nieb Hasan Neom is seeking Summer 2027 research and research-engineering internships.",
+    "evidence": "owner instruction during the 2026-10-05 site renovation",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05",
+    "notes": "Time-bound. Update or remove after the Summer 2027 recruiting season."
+  },
+  {
+    "id": "project-netbench-release",
+    "statement": "NetBench, a benchmark and experimental framework for measuring how domain adaptation changes what a language model knows about high-performance networking, is public on GitHub and archived on Zenodo under concept DOI 10.5281/zenodo.21892017. Version 1.1.0 was released on 30 September 2026. Its creators are Nieb Hasan Neom, Rasman Mubtasim Swargo, and Md Arifuzzaman. Code is Apache-2.0 and data is CC-BY-4.0.",
+    "evidence": "https://github.com/NiebHasan077/NetBench (README, releases, LICENSE, LICENSE-DATA); https://doi.org/10.5281/zenodo.21892017; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "project-netbench-scope",
+    "statement": "The HPN-QA benchmark in NetBench has 242 open-ended questions, 233 of them scored, generated from 175 open-access publications and graded on correctness, completeness, clarity, and conciseness. The study runs 8 open-weight models from 1B to 27B parameters across up to 8 adaptation variants (instruct baseline, LoRA and full supervised fine-tuning, continued pre-training, and retrieval) plus 3 frontier API baselines, scored by two independent LLM judges, with a two-expert human study validating the primary judge. The design and statistical protocol were fixed before analysis, and `make reproduce` regenerates every reported number from the committed judged outputs on every push.",
+    "evidence": "https://github.com/NiebHasan077/NetBench README, BENCHMARK_CARD.md, docs/STUDY_DESIGN.md, and .github/workflows/reproduce.yml; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05",
+    "notes": "Scale and method only. No NetBench result is published until the paper is public."
+  },
+  {
+    "id": "project-netbench-paper-status",
+    "statement": "A paper describing the NetBench study is in preparation.",
+    "evidence": "https://github.com/NiebHasan077/NetBench README, Citation section",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "publication-works26-authors",
+    "statement": "The authors of the WORKS26 paper Guarded, State-Aware Orchestration for Schema-Constrained Scientific Model Execution are Nieb Hasan Neom, Manas Ranjan Gartia, and Md Arifuzzaman, in that order.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05",
+    "notes": "No public listing yet. Replace the evidence with the proceedings page when it is live."
+  },
+  {
+    "id": "event-works26-sc26",
+    "statement": "WORKS26, the 21st Workshop on Workflows in Support of Large-Scale Science, is held on 15 November 2026 in conjunction with SC26 at the McCormick Place Convention Center in Chicago.",
+    "evidence": "https://works-workshop.org/",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "publication-escience-authors",
+    "statement": "The authors of Self-Tuning Segmented Retrieval of Large-Scale Genomic Data are Rasman Mubtasim Swargo, Nieb Hasan Neom, and Md Arifuzzaman, and IEEE eScience 2026 took place in Naples, Italy, from 28 September to 2 October 2026.",
+    "evidence": "https://www.escience-conference.org/2026/papers; https://www.escience-conference.org/2026/",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "publication-credsec-authors",
+    "statement": "The authors of the arXiv preprint 2406.05151, CredSec, are Md. Ahsan Habib, Md. Mostafijur Rahman, and Nieb Hasan Neom, in that order.",
+    "evidence": "https://arxiv.org/abs/2406.05151",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "publication-bsl-authors",
+    "statement": "The authors of the Expert Systems with Applications article 118914 on Bangla sign language recognition are Sunanda Das, Md Samir Imtiaz, Nieb Hasan Neom, Nazmul Siddique, and Hui Wang, in that order.",
+    "evidence": "https://doi.org/10.1016/j.eswa.2022.118914",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "publication-fall-detection-authors",
+    "statement": "The authors of A Review on Fall Detection Systems Using Data from Smartphone Sensors are Md Milon Islam, Nieb Neom, Md Samir Imtiaz, Sheikh Nooruddin, Md Repon Islam, and Md Rabiul Islam, in that order.",
+    "evidence": "https://doi.org/10.18280/isi.240602",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "service-sc26-volunteer",
+    "statement": "Nieb Hasan Neom was selected as an SC26 student volunteer.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "service-reviewer-jai",
+    "statement": "Nieb Hasan Neom reviews for the Journal of Autonomous Intelligence (Frontier Scientific Publishing).",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "education-kuet-scholarship",
+    "statement": "Nieb Hasan Neom held the KUET Technical Scholarship from 2017 to 2022.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "experience-kona-promotion",
+    "statement": "Nieb Hasan Neom joined Kona Software Lab as a Graduate Engineer and was promoted in 2024, with Software Engineer II as the final title.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "experience-kona-services",
+    "statement": "At Kona Software Lab, Nieb Hasan Neom owned 6 of the 30 Spring Boot microservices behind Kona Token Trade and contributed to 15 of them, covering trade, wallet, user, payment, and fee management.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "experience-kona-kafka",
+    "statement": "Nieb Hasan Neom replaced synchronous inter-service REST calls on Kona Token Trade with Kafka messaging, closing a fault-tolerance gap in which a single unavailable downstream service could fail an in-flight transaction.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05",
+    "notes": "Qualitative only. The exclusion in project-kona-cache-exclusion still applies."
+  },
+  {
+    "id": "experience-kona-payments",
+    "statement": "Nieb Hasan Neom implemented two-factor authentication on asset buy and sell operations and integrated bank-account and Kona card payment gateways on Kona Token Trade.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "experience-kona-card-personalization",
+    "statement": "Nieb Hasan Neom built the Card Personalization System (Java, Apache Struts), completing a smart-card personalization pipeline against GlobalPlatform, Visa, Mastercard, and EMV specifications that is in commercial use, and was selected for a 14-day training program on the project at parent company Kona I in Seoul, South Korea.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "experience-kona-mentoring",
+    "statement": "Nieb Hasan Neom mentored and onboarded two junior engineers at Kona Software Lab and built backend services against AWS S3, SNS, and EC2.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "research-gra-testbeds",
+    "statement": "Nieb Hasan Neom's lab work evaluates transfer systems on the CloudLab, FABRIC, and TACC/ACCESS testbeds.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "research-optimizer-implementation",
+    "statement": "The Agentic Data Transfer Optimizer is implemented in Python with a sender and receiver over TCP, a multiprocessing worker pool, zero-copy sendfile() transfers, structured memory and journal logging, graduated ramping of large changes, and an observe, reason, act, evaluate loop; its model layer is pluggable across local Ollama models, fine-tuned Hugging Face checkpoints, OpenAI, and Google Gemini, with Pydantic and NumPy in the stack.",
+    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05",
+    "notes": "Implementation only. No effectiveness or performance result is published."
+  },
+  {
+    "id": "project-loadlens",
+    "statement": "LoadLens is Nieb Hasan Neom's public TypeScript project: a student workload planner that combines classes, deadlines, and personal commitments into a weekly capacity plan, where language models propose schedule changes and deterministic code validates them before they apply, with state kept in Cloudflare D1.",
+    "evidence": "https://github.com/NiebHasan077/LoadLens README; owner accepted the renovation plan's content additions on 2026-10-05",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-05"
   }
 ]

@@ -3,20 +3,23 @@
     "id": "missouri-st-phd",
     "publish": true,
     "institution": "Missouri University of Science and Technology",
-    "degree": "Doctor of Philosophy in Computer Science",
-    "period": "August 2025 - Present",
+    "degree": "PhD, Computer Science",
+    "start": "2025",
+    "end": "2030",
     "details": [
       "Kummer Innovation and Entrepreneurship Doctoral Fellow",
-      "Anticipated graduation: May 2030"
+      "Expected May 2030"
     ],
     "claimIds": ["education-mst-phd", "education-mst-fellowship-graduation"]
   },
   {
     "id": "kuet-bs",
     "publish": true,
-    "institution": "Khulna University of Engineering and Technology",
-    "degree": "Bachelor of Science in Computer Science and Engineering",
-    "period": "February 2017 - April 2022",
-    "claimIds": ["education-kuet-bs"]
+    "institution": "Khulna University of Engineering & Technology",
+    "degree": "BSc, Computer Science and Engineering",
+    "start": "2017",
+    "end": "2022",
+    "details": ["KUET Technical Scholarship, 2017–2022"],
+    "claimIds": ["education-kuet-bs", "education-kuet-scholarship"]
   }
 ]

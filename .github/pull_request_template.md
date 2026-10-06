@@ -5,7 +5,7 @@
 ## Evidence
 
 - [ ] Relevant TypeScript and content checks pass
-- [ ] Keyboard, mobile, theme, and failure states were reviewed
+- [ ] Keyboard, mobile, and failure states were reviewed
 - [ ] Preview/staging link is attached when behavior is visible
 - [ ] No public Claim changed, or every changed Claim has owner approval
 

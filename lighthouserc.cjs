@@ -4,9 +4,9 @@ module.exports = {
       staticDistDir: "./apps/site/dist",
       url: [
         "http://localhost/",
-        "http://localhost/work/",
-        "http://localhost/about/",
-        "http://localhost/resume/",
+        "http://localhost/research/netbench/",
+        "http://localhost/projects/kona-token-trade/",
+        "http://localhost/cv/",
       ],
     },
     assert: {

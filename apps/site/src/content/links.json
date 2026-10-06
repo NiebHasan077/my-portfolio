@@ -29,12 +29,11 @@
   },
   {
     "kind": "resume",
-    "label": "Résumé PDF",
+    "label": "CV (PDF)",
     "href": "/resume.pdf",
     "available": true,
     "claimIds": [
       "identity-display-name",
-      "identity-headline",
       "contact-email",
       "experience-mst-gra",
       "experience-kona-se2",

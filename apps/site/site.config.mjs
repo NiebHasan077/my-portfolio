@@ -17,12 +17,9 @@ export const siteOrigin = "https://niebhasanneom.pages.dev";
  */
 export const publicRoutes = [
   "/",
-  "/work",
-  "/work/guarded-orchestration",
-  "/work/kona-token-trade",
-  "/work/bangla-sign-language",
-  "/work/agentic-data-transfer-optimizer",
-  "/experience",
-  "/about",
-  "/resume",
+  "/research/netbench",
+  "/research/guarded-orchestration",
+  "/research/agentic-data-transfer-optimizer",
+  "/projects/kona-token-trade",
+  "/cv",
 ];

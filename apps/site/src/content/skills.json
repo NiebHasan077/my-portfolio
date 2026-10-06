@@ -1,54 +1,55 @@
 [
   {
+    "id": "languages",
+    "publish": true,
+    "title": "Languages",
+    "items": ["Python", "Java", "C", "C++", "SQL", "Bash"],
+    "claimIds": ["technical-skills"]
+  },
+  {
     "id": "ai-agentic-systems",
     "publish": true,
-    "title": "AI & Agentic Systems",
+    "title": "AI systems",
     "items": [
       "LLM function calling and tool use",
       "Schema-constrained generation",
       "Agentic workflow orchestration",
       "Ollama and Hugging Face models",
-      "PyTorch, Pydantic, and NumPy"
-    ],
-    "claimIds": ["technical-skills"]
-  },
-  {
-    "id": "distributed-backend",
-    "publish": true,
-    "title": "Distributed Systems & Backend",
-    "items": [
-      "Java and Spring Boot",
-      "Apache Kafka and message queues",
-      "Microservice and REST API design",
-      "AWS S3, SNS, and EC2",
-      "PostgreSQL, MongoDB, Redis, and MySQL"
+      "PyTorch, Pydantic, NumPy"
     ],
     "claimIds": ["technical-skills"]
   },
   {
     "id": "hpc-networking",
     "publish": true,
-    "title": "Systems & Networking",
+    "title": "Systems and networking",
     "items": [
-      "Python, C, C++, SQL, and Bash",
       "TCP performance analysis",
       "Concurrency tuning and multiprocessing",
-      "Zero-copy sendfile() and Linux systems programming",
-      "CloudLab, FABRIC, and TACC/ACCESS"
+      "Zero-copy sendfile()",
+      "Linux systems programming",
+      "CloudLab, FABRIC, TACC/ACCESS"
+    ],
+    "claimIds": ["technical-skills"]
+  },
+  {
+    "id": "distributed-backend",
+    "publish": true,
+    "title": "Backend",
+    "items": [
+      "Spring Boot",
+      "Apache Kafka",
+      "Microservices and REST APIs",
+      "AWS S3, SNS, EC2",
+      "PostgreSQL, MongoDB, Redis, MySQL"
     ],
     "claimIds": ["technical-skills"]
   },
   {
     "id": "engineering-tooling",
     "publish": true,
-    "title": "Engineering Tooling",
-    "items": [
-      "Git and Gradle",
-      "Jenkins and Jira",
-      "IntelliJ IDEA, DataGrip, and VS Code",
-      "LaTeX",
-      "OpenAI and Google Gemini APIs"
-    ],
+    "title": "Tools",
+    "items": ["Git", "Gradle", "Jenkins", "Jira", "LaTeX"],
     "claimIds": ["technical-skills"]
   }
 ]

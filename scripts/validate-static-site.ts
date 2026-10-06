@@ -1,4 +1,4 @@
-import { access, readFile, readdir } from "node:fs/promises";
+import { access, readFile, readdir, stat } from "node:fs/promises";
 import { relative, resolve, sep } from "node:path";
 import { publicRoutes, siteOrigin } from "../apps/site/site.config.mjs";
 
@@ -84,10 +84,72 @@ if (!resume?.available && publicFiles.includes("resume.pdf"))
     "Unapproved resume.pdf is present while the résumé link is gated",
   );
 
+// Old addresses redirect through public/_redirects. Each target must be a
+// built page, and no source may shadow a page that still exists.
+const redirects = (await readFile(resolve(dist, "_redirects"), "utf8"))
+  .split("\n")
+  .map((line) => line.trim())
+  .filter((line) => line && !line.startsWith("#"))
+  .map((line) => line.split(/\s+/));
+for (const [source, target, status] of redirects) {
+  if (!source || !target || !["301", "302", "308"].includes(status ?? ""))
+    errors.push(`Malformed redirect: ${source} ${target} ${status}`);
+  const path = (target ?? "").split("#")[0]!.replace(/(.)\/$/, "$1");
+  if (!routes.includes(path))
+    errors.push(
+      `Redirect ${source} points at ${target}, which is not a public page`,
+    );
+  const shadowed = source?.replace(/(.)\/$/, "$1");
+  if (shadowed && builtPages.includes(shadowed))
+    errors.push(`Redirect source ${source} shadows a built page`);
+}
+
+// Visitors should read about the work, not about how the site vets its claims.
+// The vocabulary below belongs in the repository, never in rendered text.
+const internalTerms = [
+  /public[- ]safe/i,
+  /claims? ledger/i,
+  /approved claims?/i,
+  /evidence[- ]boundary/i,
+  /evidence[- ]first/i,
+  /intentionally absent/i,
+  /effectiveness claims?/i,
+  /approval state/i,
+  /built as evidence/i,
+  /owner approval/i,
+];
+const htmlFiles = (await readdir(dist, { recursive: true })).filter((file) =>
+  file.endsWith(".html"),
+);
+for (const file of htmlFiles) {
+  const html = await readFile(resolve(dist, file), "utf8");
+  const description =
+    html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "";
+  const text = html
+    .replace(/<script[\s\S]*?<\/script>/g, " ")
+    .replace(/<style[\s\S]*?<\/style>/g, " ")
+    .replace(/<[^>]+>/g, " ");
+  for (const term of internalTerms)
+    if (term.test(text) || term.test(description))
+      errors.push(`${file} shows internal wording matching ${term}`);
+  for (const script of html.matchAll(/<script\b([^>]*)>/g))
+    if (!/type="application\/ld\+json"/.test(script[1]!))
+      errors.push(`${file} ships a script; the site runs no JavaScript`);
+}
+const jsFiles = (await readdir(dist, { recursive: true })).filter((file) =>
+  /\.m?js$/.test(file),
+);
+if (jsFiles.length)
+  errors.push(`dist contains JavaScript: ${jsFiles.join(", ")}`);
+
+const ogBytes = (await stat(resolve(dist, "og.jpg"))).size;
+if (ogBytes > 200_000)
+  errors.push(`og.jpg is ${ogBytes} bytes; keep the social image under 200 KB`);
+
 if (errors.length)
   throw new Error(
     `Static validation failed:\n${[...new Set(errors)].join("\n")}`,
   );
 console.log(
-  `Validated ${routes.length} routes, internal links, metadata, robots, sitemap, and résumé gate.`,
+  `Validated ${routes.length} routes, ${redirects.length} redirects, internal links, metadata, robots, sitemap, wording, scripts, and résumé gate.`,
 );

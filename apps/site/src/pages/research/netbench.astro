@@ -1,0 +1,79 @@
+---
+import Authors from "../../components/Authors.astro";
+import Flow from "../../components/Flow.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { research } from "../../content";
+
+const item = research.find((entry) => entry.id === "netbench");
+if (!item) throw new Error("NetBench content is missing");
+const repo = "https://github.com/NiebHasan077/NetBench";
+const doi = "https://doi.org/10.5281/zenodo.21892017";
+---
+
+<BaseLayout title="NetBench: domain adaptation for networking LLMs · Nieb Hasan Neom" description={item.tagline} current="Research" compact>
+  <article class="doc">
+    <p class="crumb"><a href="/#research">← Research</a></p>
+    <header class="doc-head">
+      <h1>{item.title}</h1>
+      <p class="lede">{item.tagline}</p>
+      <dl class="facts">
+        <div><dt>Status</dt><dd class:list={["status", `tone-${item.tone}`]}>{item.status}</dd></div>
+        <div><dt>Authors</dt><dd><Authors authors={["N. H. Neom", "R. M. Swargo", "M. Arifuzzaman"]} /></dd></div>
+        <div><dt>Licence</dt><dd>Code Apache-2.0 · data CC-BY-4.0</dd></div>
+        <div>
+          <dt>Links</dt>
+          <dd class="links"><a href={repo}>Code ↗</a><a href={doi}>Zenodo archive ↗</a><a href={`${repo}/blob/main/BENCHMARK_CARD.md`}>Benchmark card ↗</a></dd>
+        </div>
+      </dl>
+    </header>
+
+    <section>
+      <h2>The question</h2>
+      <p>
+        Teams adapt general language models to specialist fields by fine-tuning them, continuing their pre-training on domain text, or giving them retrieval over a document store. NetBench asks what each of those methods actually changes about what a model knows of high-performance networking: bulk data transfer, congestion control, bottleneck diagnosis, and the parameters that govern them.
+      </p>
+    </section>
+
+    <section>
+      <h2>The benchmark</h2>
+      <p>
+        HPN-QA has 242 open-ended questions, 233 of them scored, generated from 175 open-access publications. Each answer is graded against a reference on correctness, completeness, clarity, and conciseness. Every item carries its source evidence with DOI and licence, and a three-model calibration ladder assigns its difficulty.
+      </p>
+    </section>
+
+    <section>
+      <h2>The study</h2>
+      <p>
+        Eight open-weight models from 1B to 27B parameters answer the same items under up to eight adaptation variants: the instruct baseline, LoRA and full supervised fine-tuning, continued pre-training, and retrieval. Three frontier API models answer them too, as baselines. Two independent LLM judges score every answer, and a two-expert human study validates the primary judge. The design and statistical protocol were fixed before any results were analysed.
+      </p>
+      <Flow
+        label="NetBench pipeline"
+        steps={[
+          { title: "Collect papers", text: "Acquire open-access PDFs and remove duplicates." },
+          { title: "Build the corpus", text: "Convert PDFs to cleaned text." },
+          { title: "Generate data", text: "Produce the HPN-QA benchmark and instruction-tuning data." },
+          { title: "Adapt and answer", text: "Fine-tune, pre-train, or add retrieval, then generate answers." },
+          { title: "Judge and analyse", text: "Two LLM judges score; analysis code builds every table and figure." },
+        ]}
+        caption="One data pipeline feeds six self-contained modules. The direct and retrieval variants share judge prompts, rubric, and output schema, so their results compare directly."
+      />
+    </section>
+
+    <section>
+      <h2>Reproducibility</h2>
+      <p>
+        <code>make reproduce</code> regenerates every CSV, table, and figure behind the paper from the committed judged outputs, and fails if anything comes back different. It runs on every push. Source PDFs, the text corpus, and model weights are not redistributed; the repository records their checksums and explains which steps can be re-run and which cannot.
+      </p>
+    </section>
+
+    <section>
+      <h2>Status</h2>
+      <p>
+        Version 1.1.0 was released on 30 September 2026. The paper describing the study is in preparation, and its results will be linked here once it is public.
+      </p>
+      <p class="cite">
+        Cite as: N. H. Neom, R. M. Swargo, M. Arifuzzaman. <em>NetBench</em>, v1.1.0. Zenodo, 2026. <a href={doi}>doi:10.5281/zenodo.21892017</a>
+      </p>
+    </section>
+  </article>
+</BaseLayout>

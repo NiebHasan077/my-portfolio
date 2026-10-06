@@ -1,24 +1,82 @@
 [
   {
+    "id": "netbench",
+    "publish": true,
+    "title": "NetBench: domain adaptation for networking LLMs",
+    "tagline": "What does domain adaptation teach a language model about high-performance networking?",
+    "status": "Released v1.1.0 · paper in preparation",
+    "tone": "released",
+    "summary": "A 242-question benchmark built from 175 open-access papers, and a controlled study of 8 open-weight models (1B–27B) under fine-tuning, continued pre-training, and retrieval. Two LLM judges score every answer, a two-expert human study validates the primary judge, and one command regenerates every reported number.",
+    "short": "Benchmark and controlled study of LLM domain adaptation for high-performance networking: 242 questions from 175 papers, 8 open-weight models (1B–27B) under fine-tuning, continued pre-training, and retrieval, two LLM judges validated by a human study, and one-command reproduction of every number.",
+    "stack": [
+      "Python",
+      "LoRA and full fine-tuning",
+      "Continued pre-training",
+      "RAG",
+      "LLM-as-judge"
+    ],
+    "href": "/research/netbench/",
+    "links": [
+      {
+        "label": "Code",
+        "href": "https://github.com/NiebHasan077/NetBench"
+      },
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.5281/zenodo.21892017"
+      }
+    ],
+    "claimIds": [
+      "project-netbench-release",
+      "project-netbench-scope",
+      "project-netbench-paper-status"
+    ]
+  },
+  {
+    "id": "guarded-orchestration",
+    "publish": true,
+    "title": "Guarded orchestration for scientific models",
+    "tagline": "Letting scientists run trained prediction models through natural language without the model guessing missing inputs.",
+    "status": "Accepted · WORKS26 at SC26",
+    "tone": "accepted",
+    "summary": "Extends LLM function calling with explicit workflow state. Inputs accumulate across turns, arguments are checked against typed schemas, and nothing runs until the required state is complete. Corrections, what-if questions, and resets are explicit state transitions.",
+    "short": "State-aware layer over LLM function calling that accumulates inputs across turns, checks arguments against typed schemas, and blocks execution until the required state is complete; instantiated for protein-corona prediction.",
+    "stack": [
+      "LLM function calling",
+      "Typed schemas",
+      "Workflow state",
+      "Scientific ML"
+    ],
+    "href": "/research/guarded-orchestration/",
+    "links": [],
+    "claimIds": [
+      "research-guarded-orchestration",
+      "research-guarded-orchestration-domain",
+      "publication-works26-accepted"
+    ]
+  },
+  {
     "id": "agentic-data-transfer-optimizer",
     "publish": true,
     "title": "Agentic Data Transfer Optimizer",
-    "eyebrow": "Research in progress",
-    "status": "Prototype + evaluation",
-    "summary": "A bounded agentic system that adapts network-transfer concurrency from live TCP telemetry while making every recommendation, constraint, and state transition inspectable.",
-    "href": "/work/agentic-data-transfer-optimizer",
-    "workstreams": [
-      {
-        "title": "Data-transfer runtime",
-        "status": "Prototype implemented",
-        "summary": "A sender and receiver architecture uses multiprocessing workers and zero-copy file transfer over TCP."
-      },
-      {
-        "title": "Bounded agentic control",
-        "status": "Evaluation in progress",
-        "summary": "Diagnostic and Decision agents reason over live telemetry within hard concurrency limits and oscillation controls."
-      }
+    "tagline": "Tuning bulk data transfers from live TCP telemetry, with the agent's actions kept inside hard limits.",
+    "status": "In progress · prototype built, evaluation under way",
+    "tone": "progress",
+    "summary": "A Diagnostic agent and a Decision agent read live TCP telemetry, including congestion window, retransmissions, and RTT variance, and adjust transfer concurrency each interval. The system enforces hard limits, bounded changes, and oscillation damping around every recommendation.",
+    "short": "Diagnostic and Decision agents tune transfer concurrency from live TCP telemetry over zero-copy sendfile() workers, inside hard limits with bounded changes and oscillation damping.",
+    "stack": [
+      "Python",
+      "Zero-copy sendfile()",
+      "Multiprocessing",
+      "Ollama",
+      "Hugging Face",
+      "Pydantic"
     ],
-    "claimIds": ["research-data-movement-optimizer"]
+    "href": "/research/agentic-data-transfer-optimizer/",
+    "links": [],
+    "claimIds": [
+      "research-data-movement-optimizer",
+      "research-optimizer-implementation"
+    ]
   }
 ]

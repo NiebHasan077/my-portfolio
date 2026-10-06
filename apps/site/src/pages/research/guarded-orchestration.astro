@@ -1,0 +1,60 @@
+---
+import Authors from "../../components/Authors.astro";
+import Flow from "../../components/Flow.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { publications, research } from "../../content";
+
+const item = research.find((entry) => entry.id === "guarded-orchestration");
+const paper = publications.find((entry) => entry.id === "guarded-orchestration-works26");
+if (!item || !paper) throw new Error("Guarded orchestration content is missing");
+---
+
+<BaseLayout title="Guarded orchestration for scientific models · Nieb Hasan Neom" description={item.tagline} current="Research" compact>
+  <article class="doc">
+    <p class="crumb"><a href="/#research">← Research</a></p>
+    <header class="doc-head">
+      <h1>{item.title}</h1>
+      <p class="lede">{item.tagline}</p>
+      <dl class="facts">
+        <div><dt>Status</dt><dd class:list={["status", `tone-${item.tone}`]}>{item.status}</dd></div>
+        <div><dt>Paper</dt><dd>{paper.title}</dd></div>
+        <div><dt>Authors</dt><dd><Authors authors={paper.authors} /></dd></div>
+        <div><dt>Venue</dt><dd>WORKS26, held with SC26 in Chicago on 15 November 2026</dd></div>
+      </dl>
+    </header>
+
+    <section>
+      <h2>The problem</h2>
+      <p>
+        LLM function calling maps a request onto a tool call. A scientific prediction model needs more than that: its inputs often arrive over several turns of conversation, and a missing value has to stop the run rather than be guessed. When a scientist corrects an input, asks a what-if question, or starts over, earlier values must not leak into the new run.
+      </p>
+    </section>
+
+    <section>
+      <h2>The approach</h2>
+      <p>
+        I designed a state-aware layer between the conversation and the model backend. It keeps the workflow state explicit, so the language model can interpret requests but cannot run a model on incomplete or invalid inputs.
+      </p>
+      <Flow
+        label="Guarded orchestration workflow"
+        steps={[
+          { title: "Accumulate", text: "Collect required inputs across conversational turns." },
+          { title: "Validate", text: "Check every argument against a typed schema." },
+          { title: "Gate", text: "Block execution while required state is incomplete." },
+          { title: "Execute", text: "Run the trained prediction model on complete inputs." },
+        ]}
+        loop="Correction, what-if, and reset requests are explicit state transitions back into the workflow."
+      />
+    </section>
+
+    <section>
+      <h2>Where it runs</h2>
+      <p>The workflow was instantiated for protein-corona prediction over a backend of trained prediction models.</p>
+    </section>
+
+    <section>
+      <h2>Results</h2>
+      <p>The results are in the WORKS26 paper. A link will be added here when the proceedings are online.</p>
+    </section>
+  </article>
+</BaseLayout>

@@ -1,68 +1,242 @@
 ---
-import { profile, publishedProjects, research } from "../content";
+import Authors from "../components/Authors.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import StatusStrip from "../components/StatusStrip.astro";
+import {
+  education,
+  experience,
+  highlights,
+  linkOf,
+  monthYear,
+  news,
+  profile,
+  projects,
+  publications,
+  research,
+  skillGroups,
+} from "../content";
 
-const featured = publishedProjects[0];
-const optimizer = research.find((item) => item.publish && item.id === "agentic-data-transfer-optimizer");
+const site = Astro.site!;
+const external = (href: string) => href.startsWith("https://");
+const sideProjects = projects.filter((project) => project.id !== "kona-token-trade");
+const honors = highlights.filter((item) => item.category === "honor");
+const service = highlights.filter((item) => item.category === "service");
+const statusLabel = { accepted: "Accepted", published: "Published", preprint: "Preprint" };
+const sameAs = (["github", "linkedin", "scholar"] as const).flatMap((kind) => linkOf(kind)?.href ?? []);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  dateModified: "2026-10-05",
+  mainEntity: {
+    "@type": "Person",
+    name: profile.displayName,
+    url: new URL("/", site).href,
+    image: profile.photo ? new URL(profile.photo, site).href : undefined,
+    jobTitle: profile.role,
+    affiliation: { "@type": "CollegeOrUniversity", name: profile.affiliation },
+    alumniOf: { "@type": "CollegeOrUniversity", name: "Khulna University of Engineering & Technology" },
+    email: linkOf("email")?.href,
+    sameAs,
+    knowsAbout: ["High-performance networking", "Distributed systems", "Agentic AI systems", "Large language models"],
+  },
+};
 ---
 
-<BaseLayout title="Nieb Hasan Neom · AI Systems Portfolio" description="Nieb Hasan Neom builds guarded AI systems for distributed infrastructure and networking, backed by research and production backend experience.">
-  <section class="hero page-shell">
-    <div class="hero-copy">
-      <span class="eyebrow">NIEB HASAN NEOM / AI SYSTEMS</span>
-      <h1>AI systems for <em>networks and distributed infrastructure.</em></h1>
-      <p class="hero-role">{profile.headline}</p>
-      <p class="hero-lede">{profile.summary}</p>
-      <div class="hero-actions">
-        <a class="button primary" href="/work">Explore selected work <span aria-hidden="true">→</span></a>
-        <a class="button" href="/work/agentic-data-transfer-optimizer">View active research</a>
-        <a class="button" href="/resume">View résumé</a>
-      </div>
-    </div>
-    <div class="hero-instrument" aria-label="Portfolio evidence map">
-      <div class="instrument-header"><span>PORTFOLIO / EVIDENCE-MAP</span><span class="live-dot">PUBLIC-SAFE</span></div>
-      <div class="loop-diagram">
-        <div class="loop-node active"><small>01</small><strong>Research</strong><span>clear questions</span></div>
-        <div class="loop-link"><span>evaluate</span></div>
-        <div class="loop-node"><small>02</small><strong>Systems</strong><span>backend practice</span></div>
-        <div class="loop-link"><span>validate</span></div>
-        <div class="loop-node accent"><small>03</small><strong>Evidence</strong><span>approved claims</span></div>
-      </div>
-      <div class="instrument-metrics">
-        <span><small>FOCUS</small><strong>AI + NETWORKS</strong></span>
-        <span><small>METHOD</small><strong>MEASURED</strong></span>
-        <span><small>STATUS</small><strong>ACTIVE</strong></span>
-      </div>
+<BaseLayout title={`${profile.displayName} · ${profile.role}, ${profile.affiliationShort}`} description={profile.description} home jsonLd={jsonLd}>
+  <section class="bio" aria-label="About">
+    {profile.bio.map((paragraph) => <p>{paragraph}</p>)}
+  </section>
+
+  <section class="section" id="news" aria-labelledby="news-heading">
+    <h2 id="news-heading">News</h2>
+    <ul class="news">
+      {
+        news.map((item) => (
+          <li>
+            <time class="date" datetime={item.date}>
+              {monthYear(item.date)}
+            </time>
+            <p>
+              {item.text}
+              {item.href && (
+                <>
+                  {" "}
+                  <a href={item.href}>{item.linkLabel}</a>
+                </>
+              )}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="section" id="research" aria-labelledby="research-heading">
+    <h2 id="research-heading">Research</h2>
+    <div class="entries">
+      {
+        research.map((item) => (
+          <article class="entry">
+            <h3>
+              <a href={item.href}>{item.title}</a>
+            </h3>
+            <p class:list={["status", `tone-${item.tone}`]}>{item.status}</p>
+            <p>{item.summary}</p>
+            <ul class="stack" aria-label="Built with">
+              {item.stack.map((tool) => (
+                <li>{tool}</li>
+              ))}
+            </ul>
+            <p class="links">
+              <a href={item.href} aria-label={`Details: ${item.title}`}>
+                Details
+              </a>
+              {item.links.map((link) => (
+                <a href={link.href} aria-label={`${link.label}: ${item.title}`}>
+                  {link.label} ↗
+                </a>
+              ))}
+            </p>
+          </article>
+        ))
+      }
     </div>
   </section>
 
-  <div class="page-shell"><StatusStrip /></div>
-
-  <section class="proof-section page-shell">
-    <div class="section-intro">
-      <span class="eyebrow">THE ENGINEERING THESIS</span>
-      <h2>Make AI behavior inspectable at the system boundary.</h2>
-      <p>My work connects guarded model execution, adaptive data movement, and backend reliability. The evidence matters as much as the output.</p>
-    </div>
-    <div class="proof-grid">
-      <article><span class="proof-number">01</span><h3>Define the question</h3><p>Explicit scope, evaluation criteria, and limitations before results.</p></article>
-      <article><span class="proof-number">02</span><h3>Measure the system</h3><p>Controlled evaluations, reproducible methods, and results separated from unsupported claims.</p></article>
-      <article><span class="proof-number">03</span><h3>Ground the claim</h3><p>Every public fact maps to reviewed evidence and an explicit approval state.</p></article>
-    </div>
+  <section class="section" id="publications" aria-labelledby="publications-heading">
+    <h2 id="publications-heading">Publications</h2>
+    <ol class="pubs">
+      {
+        publications.map((item) => (
+          <li>
+            <p class="pub-title">{item.title}</p>
+            <Authors authors={item.authors} />
+            <p class="venue">
+              {item.venue}, {item.year} · {statusLabel[item.status]}
+            </p>
+            {item.note && <p class="pub-note">{item.note}</p>}
+            {item.links.length > 0 && (
+              <p class="links">
+                {item.links.map((link) => (
+                  <a href={link.href} aria-label={`${link.label}: ${item.title}`}>
+                    {link.label}
+                    {external(link.href) && " ↗"}
+                  </a>
+                ))}
+              </p>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+    <p class="software">
+      <strong>Software.</strong> N. H. Neom, R. M. Swargo, M. Arifuzzaman. <em>NetBench</em>, v1.1.0. Zenodo, 2026.{" "}
+      <a href="https://doi.org/10.5281/zenodo.21892017">doi:10.5281/zenodo.21892017</a>
+    </p>
   </section>
 
-  {featured && <section class="featured-work page-shell"><div class="section-label"><span>FEATURED RESEARCH CASE STUDY</span><span>ACCEPTED / 2026</span></div><ProjectCard project={featured} /></section>}
+  <section class="section" id="experience" aria-labelledby="experience-heading">
+    <h2 id="experience-heading">Experience</h2>
+    <ol class="timeline">
+      {
+        experience.map((item) => (
+          <li>
+            <p class="date">
+              {item.start} – {item.end}
+            </p>
+            <div>
+              <h3>{item.role}</h3>
+              <p class="org">
+                {item.organization} · {item.location}
+              </p>
+              <p class="summary">{item.summary}</p>
+              {item.bullets.length > 0 && (
+                <ul class="bullets">
+                  {item.bullets.map((bullet) => (
+                    <li>{bullet}</li>
+                  ))}
+                </ul>
+              )}
+              {item.href && (
+                <p class="links">
+                  <a href={item.href}>{item.hrefLabel}</a>
+                </p>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
 
-  {optimizer && <section class="research-band">
-    <div class="page-shell research-band-inner">
-      <div><span class="eyebrow">{optimizer.eyebrow}</span><h2>{optimizer.title}</h2></div>
+    <h3 class="subhead">Education</h3>
+    <ol class="timeline">
+      {
+        education.map((item) => (
+          <li>
+            <p class="date">
+              {item.start} – {item.end}
+            </p>
+            <div>
+              <h3>{item.degree}</h3>
+              <p class="org">{item.institution}</p>
+              {item.details.length > 0 && <p class="summary">{item.details.join(" · ")}</p>}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="section" id="more" aria-labelledby="more-heading">
+    <h2 id="more-heading">More</h2>
+    <div class="more">
       <div>
-        <p>{optimizer.summary}</p>
-        <p class="research-status"><span>{optimizer.workstreams[0].status}</span><span>{optimizer.workstreams[1].status}</span></p>
+        <h3>Skills</h3>
+        <dl class="skills">
+          {
+            skillGroups.map((group) => (
+              <div>
+                <dt>{group.title}</dt>
+                <dd>{group.items.join(", ")}</dd>
+              </div>
+            ))
+          }
+        </dl>
       </div>
-      <a class="text-link" href={optimizer.href}>Inspect the active workstreams <span aria-hidden="true">↗</span></a>
+      <div>
+        <h3>Side project</h3>
+        <ul class="plain-list">
+          {
+            sideProjects.map((project) => (
+              <li>
+                <a href={project.href}>{project.title}</a>. {project.summary}
+              </li>
+            ))
+          }
+        </ul>
+        <h3 class="more-gap">Honors</h3>
+        <ul class="plain-list">
+          {
+            honors.map((item) => (
+              <li>
+                {item.href ? <a href={item.href}>{item.title}</a> : item.title}
+                {item.detail && <span class="detail">, {item.detail}</span>}
+              </li>
+            ))
+          }
+        </ul>
+        <h3 class="more-gap">Service</h3>
+        <ul class="plain-list">
+          {
+            service.map((item) => (
+              <li>
+                {item.title}
+                {item.detail && <span class="detail">, {item.detail}</span>}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
-  </section>}
+  </section>
 </BaseLayout>

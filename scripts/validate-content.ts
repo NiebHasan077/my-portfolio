@@ -19,6 +19,7 @@ const records = [
   await load<RecordWithClaims>("profile.json"),
   ...(await load<RecordWithClaims[]>("education.json")),
   ...(await load<RecordWithClaims[]>("experience.json")),
+  ...(await load<RecordWithClaims[]>("news.json")),
   ...(await load<RecordWithClaims[]>("projects.json")),
   ...(await load<RecordWithClaims[]>("research.json")),
   ...(await load<RecordWithClaims[]>("publications.json")),

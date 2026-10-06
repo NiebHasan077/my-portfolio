@@ -1,0 +1,80 @@
+---
+import Flow from "../../components/Flow.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { projects } from "../../content";
+
+const item = projects.find((entry) => entry.id === "kona-token-trade");
+if (!item) throw new Error("Kona Token Trade content is missing");
+---
+
+<BaseLayout title="Kona Token Trade · Nieb Hasan Neom" description={item.summary} current="Experience" compact>
+  <article class="doc">
+    <p class="crumb"><a href="/#experience">← Experience</a></p>
+    <header class="doc-head">
+      <h1>{item.title}</h1>
+      <p class="lede">Backend services for a blockchain-based token-trading platform, built at Kona Software Lab.</p>
+      <dl class="facts">
+        <div><dt>Role</dt><dd>Software Engineer II, backend</dd></div>
+        <div><dt>When</dt><dd>2022 – 2025</dd></div>
+        <div><dt>Built with</dt><dd>{item.stack.join(", ")}</dd></div>
+      </dl>
+    </header>
+
+    <section>
+      <h2>What I owned</h2>
+      <p>
+        The platform ran on 30 Spring Boot microservices. I owned 6 of them and contributed to 15, across trade, wallet, user, payment, and fee management.
+      </p>
+    </section>
+
+    <section>
+      <h2>From synchronous calls to Kafka</h2>
+      <p>
+        Services called each other over synchronous REST. If one downstream service was unavailable, a transaction already in progress could fail with it. I replaced those calls with Kafka messaging, so a service that is briefly down catches up when it returns instead of failing the trade.
+      </p>
+      <div class="compare">
+        <div>
+          <h3>Before</h3>
+          <Flow
+            label="Before: synchronous REST"
+            steps={[
+              { title: "Trade request", text: "A user starts a transaction." },
+              { title: "Synchronous REST call", text: "The service waits on a downstream service." },
+              { title: "Downstream unavailable", text: "The in-flight transaction fails." },
+            ]}
+          />
+        </div>
+        <div>
+          <h3>After</h3>
+          <Flow
+            label="After: Kafka messaging"
+            steps={[
+              { title: "Trade request", text: "A user starts a transaction." },
+              { title: "Event on Kafka", text: "The service publishes and moves on." },
+              { title: "Downstream consumes", text: "The service processes the event when it is available." },
+            ]}
+          />
+        </div>
+      </div>
+      <p class="cite">A simplified illustration of the change, not the production topology.</p>
+    </section>
+
+    <section>
+      <h2>Security and payments</h2>
+      <p>
+        I added two-factor authentication to asset buy and sell operations and integrated bank-account and Kona card payment gateways. I also added caching to reduce response latency, and built backend services against AWS S3, SNS, and EC2.
+      </p>
+    </section>
+
+    <section>
+      <h2>Also at Kona</h2>
+      <ul class="bullets">
+        <li>
+          Built the Card Personalization System in Java and Apache Struts against GlobalPlatform, Visa, Mastercard, and EMV specifications. It is in commercial use, and I was chosen for a 14-day training program on it at parent company Kona I in Seoul.
+        </li>
+        <li>Mentored and onboarded two junior engineers.</li>
+        <li>Joined as a Graduate Engineer and was promoted in 2024.</li>
+      </ul>
+    </section>
+  </article>
+</BaseLayout>

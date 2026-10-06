@@ -2,24 +2,45 @@
   {
     "id": "missouri-st-gra",
     "publish": true,
-    "organization": "Missouri University of Science and Technology",
     "role": "Graduate Research Assistant",
-    "period": "August 2025 - Present",
-    "summary": "Researching machine learning for distributed systems and networking in the Computer Systems & Networking Lab with Dr. Md Arifuzzaman. Current work covers guarded scientific-model orchestration and bounded, telemetry-driven data-movement optimization.",
+    "organization": "Computer Systems & Networking Lab, Missouri S&T",
+    "location": "Rolla, Missouri",
+    "start": "2025",
+    "end": "now",
+    "summary": "AI systems for data movement and scientific workflows, advised by Dr. Md Arifuzzaman. Transfer systems are evaluated on the CloudLab, FABRIC, and TACC/ACCESS testbeds.",
+    "bullets": [],
     "claimIds": [
       "experience-mst-gra",
       "experience-mst-research-lab",
-      "research-guarded-orchestration",
-      "research-data-movement-optimizer"
+      "research-gra-testbeds"
     ]
   },
   {
     "id": "kona-software-engineer-ii",
     "publish": true,
-    "organization": "Kona Software Lab Ltd.",
     "role": "Software Engineer II",
-    "period": "April 2022 - June 2025",
-    "summary": "As a backend engineer on a blockchain-based token-trading platform, I worked on trade, user, wallet, and fee-management services; introduced message queues for reliable inter-service communication; added caching to reduce response latency; and implemented two-factor authentication for sensitive trading operations.",
-    "claimIds": ["experience-kona-se2", "project-kona-contributions"]
+    "organization": "Kona Software Lab",
+    "location": "Dhaka, Bangladesh",
+    "start": "2022",
+    "end": "2025",
+    "summary": "Joined as a Graduate Engineer and was promoted in 2024.",
+    "bullets": [
+      "Owned 6 of the 30 Spring Boot microservices behind Kona Token Trade and contributed to 15, across trade, wallet, user, payment, and fee management.",
+      "Replaced synchronous REST calls between services with Kafka messaging, so one unavailable downstream service could no longer fail an in-flight transaction.",
+      "Added two-factor authentication to buy and sell operations and integrated bank-account and Kona card payment gateways.",
+      "Built the Card Personalization System against GlobalPlatform, Visa, Mastercard, and EMV specifications. It is in commercial use, and I was chosen for a 14-day training program on it at parent company Kona I in Seoul.",
+      "Mentored and onboarded two junior engineers."
+    ],
+    "href": "/projects/kona-token-trade/",
+    "hrefLabel": "Kona Token Trade in detail",
+    "claimIds": [
+      "experience-kona-se2",
+      "experience-kona-promotion",
+      "experience-kona-services",
+      "experience-kona-kafka",
+      "experience-kona-payments",
+      "experience-kona-card-personalization",
+      "experience-kona-mentoring"
+    ]
   }
 ]

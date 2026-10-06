@@ -8,10 +8,12 @@
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
-    "resume:pdf": "RESUME_PDF_OUTPUT=public/resume.pdf playwright test --project=chromium --grep 'résumé is printable' && cp public/resume.pdf ../../output/pdf/Nieb_Hasan_Neom_Resume.pdf",
+    "resume:pdf": "RESUME_PDF_OUTPUT=public/resume.pdf playwright test --project=chromium --grep 'prints to one page' && cp public/resume.pdf ../../output/pdf/Nieb_Hasan_Neom_Resume.pdf",
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@fontsource/source-sans-3": "5.3.0",
+    "@fontsource/source-serif-4": "5.3.0",
     "astro": "7.1.1"
   },
   "devDependencies": {

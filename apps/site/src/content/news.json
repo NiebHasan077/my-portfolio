@@ -1,0 +1,43 @@
+[
+  {
+    "id": "works26-sc26",
+    "publish": true,
+    "date": "2026-11",
+    "text": "First-author paper at WORKS26, held with SC26 in Chicago on 15 November. I will also be at SC26 as a student volunteer.",
+    "href": "/research/guarded-orchestration/",
+    "linkLabel": "About the paper",
+    "claimIds": [
+      "publication-works26-accepted",
+      "event-works26-sc26",
+      "service-sc26-volunteer"
+    ]
+  },
+  {
+    "id": "netbench-v1-1",
+    "publish": true,
+    "date": "2026-09",
+    "text": "Released NetBench v1.1.0, the benchmark and analysis code for a controlled study of domain adaptation for networking LLMs.",
+    "href": "https://doi.org/10.5281/zenodo.21892017",
+    "linkLabel": "DOI",
+    "claimIds": ["project-netbench-release"]
+  },
+  {
+    "id": "escience-2026",
+    "publish": true,
+    "date": "2026-09",
+    "text": "Short paper on self-tuning retrieval of large-scale genomic data at IEEE eScience 2026 in Naples.",
+    "href": "https://www.escience-conference.org/2026/papers",
+    "linkLabel": "Accepted papers",
+    "claimIds": [
+      "publication-escience-accepted",
+      "publication-escience-authors"
+    ]
+  },
+  {
+    "id": "phd-start",
+    "publish": true,
+    "date": "2025-08",
+    "text": "Started my PhD at Missouri S&T as a Kummer Doctoral Fellow.",
+    "claimIds": ["education-mst-phd", "education-mst-fellowship-graduation"]
+  }
+]

@@ -3,6 +3,7 @@ import educationData from "./education.json";
 import experienceData from "./experience.json";
 import highlightsData from "./highlights.json";
 import linksData from "./links.json";
+import newsData from "./news.json";
 import profileData from "./profile.json";
 import projectsData from "./projects.json";
 import publicationsData from "./publications.json";
@@ -27,23 +28,86 @@ export type Link = {
   claimIds: string[];
 };
 
+export type LabeledLink = { label: string; href: string };
+
 export type Profile = {
   publish: boolean;
   displayName: string;
-  headline: string;
-  summary: string;
-  about: string;
+  role: string;
+  affiliation: string;
+  affiliationShort: string;
+  fellowship: string;
+  description: string;
+  bio: string[];
+  availability: string;
   broadLocation: string;
+  photo: string | null;
+  claimIds: string[];
+};
+
+export type NewsItem = {
+  id: string;
+  publish: boolean;
+  /** Year and month, as YYYY-MM. */
+  date: string;
+  text: string;
+  href?: string;
+  linkLabel?: string;
+  claimIds: string[];
+};
+
+export type ResearchItem = {
+  id: string;
+  publish: boolean;
+  title: string;
+  tagline: string;
+  status: string;
+  tone: "released" | "accepted" | "progress";
+  summary: string;
+  /** One-sentence version for the CV. */
+  short: string;
+  stack: string[];
+  href: string;
+  links: LabeledLink[];
+  claimIds: string[];
+};
+
+export type Project = {
+  id: string;
+  publish: boolean;
+  title: string;
+  summary: string;
+  stack: string[];
+  href: string;
+  links: LabeledLink[];
+  claimIds: string[];
+};
+
+export type Publication = {
+  id: string;
+  publish: boolean;
+  title: string;
+  authors: string[];
+  venue: string;
+  status: "published" | "accepted" | "preprint";
+  year: number;
+  note?: string;
+  links: LabeledLink[];
   claimIds: string[];
 };
 
 export type Experience = {
   id: string;
   publish: boolean;
-  organization: string;
   role: string;
-  period: string;
+  organization: string;
+  location: string;
+  start: string;
+  end: string;
   summary: string;
+  bullets: string[];
+  href?: string;
+  hrefLabel?: string;
   claimIds: string[];
 };
 
@@ -52,56 +116,18 @@ export type Education = {
   publish: boolean;
   institution: string;
   degree: string;
-  period: string;
-  details?: string[];
-  claimIds: string[];
-};
-
-export type Project = {
-  id: string;
-  publish: boolean;
-  title: string;
-  eyebrow: string;
-  summary: string;
+  start: string;
+  end: string;
   details: string[];
-  technologies: string[];
-  href: string;
-  claimIds: string[];
-};
-
-export type Research = {
-  id: string;
-  publish: boolean;
-  title: string;
-  summary: string;
-  eyebrow: string;
-  status: string;
-  href: string;
-  workstreams: Array<{
-    title: string;
-    status: string;
-    summary: string;
-  }>;
-  claimIds: string[];
-};
-
-export type Publication = {
-  id: string;
-  publish: boolean;
-  title: string;
-  venue: string;
-  status: "published" | "accepted" | "preprint";
-  year: number;
-  href?: string;
   claimIds: string[];
 };
 
 export type Highlight = {
   id: string;
   publish: boolean;
-  category: "problem-solving" | "leadership";
+  category: "honor" | "service";
   title: string;
-  detail: string;
+  detail?: string;
   href?: string;
   claimIds: string[];
 };
@@ -114,19 +140,44 @@ export type SkillGroup = {
   claimIds: string[];
 };
 
-export const claims = claimsData as Claim[];
-export const education = educationData as Education[];
-export const experience = experienceData as Experience[];
-export const highlights = highlightsData as Highlight[];
-export const links = linksData as Link[];
-export const profile = profileData as Profile;
-export const projects = projectsData as Project[];
-export const publications = publicationsData as Publication[];
-export const research = researchData as Research[];
-export const skillGroups = (skillsData as SkillGroup[]).filter(
-  (group) => group.publish,
-);
+const published = <T extends { publish: boolean }>(items: T[]) =>
+  items.filter((item) => item.publish);
 
-export const publishedProjects = projects.filter((project) => project.publish);
-export const availableLinks = links.filter((link) => link.available);
-export const publishedHighlights = highlights.filter((item) => item.publish);
+export const claims = claimsData as Claim[];
+export const profile = profileData as Profile;
+export const links = (linksData as Link[]).filter((link) => link.available);
+export const news = published(newsData as NewsItem[]);
+export const research = published(researchData as ResearchItem[]);
+export const projects = published(projectsData as Project[]);
+export const publications = published(publicationsData as Publication[]);
+export const experience = published(experienceData as Experience[]);
+export const education = published(educationData as Education[]);
+export const highlights = published(highlightsData as Highlight[]);
+export const skillGroups = published(skillsData as SkillGroup[]);
+
+export const linkOf = (kind: Link["kind"]) =>
+  links.find((link) => link.kind === kind);
+
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+/** Formats a YYYY-MM date as "Sep 2026". */
+export const monthYear = (date: string) => {
+  const [year, month] = date.split("-");
+  return `${months[Number(month) - 1]} ${year}`;
+};
+
+/** True for the owner's own name in an author list. */
+export const isSelf = (author: string) => /\bNeom$/.test(author);

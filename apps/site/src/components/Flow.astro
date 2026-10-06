@@ -1,0 +1,28 @@
+---
+type Step = { title: string; text: string };
+type Props = {
+  /** Names the diagram for screen readers. */
+  label: string;
+  steps: Step[];
+  /** Describes the edge from the last step back to the first, for loops. */
+  loop?: string;
+  caption?: string;
+};
+
+const { label, steps, loop, caption } = Astro.props;
+---
+
+<figure class:list={["flow", `steps-${steps.length}`]} aria-label={label}>
+  <ol>
+    {
+      steps.map((step) => (
+        <li>
+          <strong>{step.title}</strong>
+          <span>{step.text}</span>
+        </li>
+      ))
+    }
+  </ol>
+  {loop && <p class="loop">↻ {loop}</p>}
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

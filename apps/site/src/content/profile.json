@@ -1,19 +1,31 @@
 {
   "publish": true,
   "displayName": "Nieb Hasan Neom",
-  "headline": "Computer Science PhD Student | AI Systems for Distributed Systems & Networking | Backend Engineering",
-  "summary": "I’m Nieb Hasan Neom, a Computer Science PhD student and Kummer Doctoral Fellow building AI systems for distributed systems and networking. My work combines guarded LLM orchestration and agent-driven data movement with three years of backend engineering.",
-  "about": "I build AI systems for distributed infrastructure: guarded LLM workflows, telemetry-driven data movement, and reproducible systems evaluation. My approach comes from both research and production backend engineering, so I treat constraints, failure modes, and operational evidence as part of the design—not as cleanup after a model works.",
-  "broadLocation": "Rolla, Missouri, United States",
+  "role": "PhD student in Computer Science",
+  "affiliation": "Missouri University of Science and Technology",
+  "affiliationShort": "Missouri S&T",
+  "fellowship": "Kummer Innovation and Entrepreneurship Doctoral Fellow",
+  "description": "Nieb Hasan Neom is a Computer Science PhD student at Missouri S&T who builds AI systems for high-performance networking and distributed computing.",
+  "bio": [
+    "I build AI systems for high-performance networking and distributed computing, and I care as much about how they are engineered as about what they measure.",
+    "My research covers LLM agents that tune bulk data transfers from live TCP telemetry, guarded orchestration that lets scientists run trained models through natural language, and a benchmark that measures what domain adaptation teaches a language model about networking. I work in the Computer Systems & Networking Lab with Dr. Md Arifuzzaman.",
+    "Before the PhD, I spent three years as a backend engineer at Kona Software Lab, building Spring Boot microservices for a token-trading platform and a card personalization system that is now in commercial use."
+  ],
+  "availability": "Seeking Summer 2027 research and research-engineering internships.",
+  "broadLocation": "Rolla, Missouri",
+  "photo": "/photo.jpg",
   "claimIds": [
-    "focus-ai-systems",
     "identity-display-name",
-    "identity-headline",
     "identity-location",
+    "identity-availability-2027",
     "education-mst-phd",
     "education-mst-fellowship-graduation",
+    "experience-mst-research-lab",
     "experience-kona-se2",
+    "experience-kona-services",
+    "experience-kona-card-personalization",
     "research-guarded-orchestration",
-    "research-data-movement-optimizer"
+    "research-data-movement-optimizer",
+    "project-netbench-release"
   ]
 }

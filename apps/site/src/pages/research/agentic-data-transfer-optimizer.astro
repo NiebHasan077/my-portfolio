@@ -1,0 +1,65 @@
+---
+import Flow from "../../components/Flow.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { research } from "../../content";
+
+const item = research.find((entry) => entry.id === "agentic-data-transfer-optimizer");
+if (!item) throw new Error("Agentic Data Transfer Optimizer content is missing");
+---
+
+<BaseLayout title="Agentic Data Transfer Optimizer · Nieb Hasan Neom" description={item.tagline} current="Research" compact>
+  <article class="doc">
+    <p class="crumb"><a href="/#research">← Research</a></p>
+    <header class="doc-head">
+      <h1>{item.title}</h1>
+      <p class="lede">{item.tagline}</p>
+      <dl class="facts">
+        <div><dt>Status</dt><dd class:list={["status", `tone-${item.tone}`]}>{item.status}</dd></div>
+        <div><dt>Built with</dt><dd>{item.stack.join(", ")}</dd></div>
+      </dl>
+    </header>
+
+    <section>
+      <h2>The problem</h2>
+      <p>
+        Bulk data movers usually run with a hand-tuned, static concurrency setting. The right number of parallel streams depends on the network path, competing traffic, and host load, all of which change during a long transfer.
+      </p>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+      <p>
+        A sender and receiver move data over TCP through a multiprocessing worker pool with zero-copy <code>sendfile()</code> transfers. At each probing interval the system observes the transfer, two agents reason about it, and the runtime acts on a bounded recommendation.
+      </p>
+      <Flow
+        label="Optimizer control loop"
+        steps={[
+          { title: "Observe", text: "Read TCP socket statistics, congestion window, retransmissions, RTT variance, and host load." },
+          { title: "Diagnose", text: "The Diagnostic agent turns observations and recent history into a structured assessment." },
+          { title: "Decide", text: "The Decision agent recommends a concurrency change or holds the current setting." },
+          { title: "Enforce", text: "Hard limits, bounded deltas, graduated ramping, and oscillation damping shape the action." },
+        ]}
+        loop="Each action is evaluated at the next interval, closing an observe, reason, act, evaluate loop."
+      />
+    </section>
+
+    <section>
+      <h2>Design choices</h2>
+      <ul class="bullets">
+        <li>The model recommends and the system enforces. No agent output can push concurrency outside the permitted range.</li>
+        <li>Repeated reversals are detected and damped before the next action, and large changes are ramped in steps.</li>
+        <li>Structured memory and a decision journal record what each agent saw and chose.</li>
+        <li>The model layer is pluggable across local Ollama models, fine-tuned Hugging Face checkpoints, OpenAI, and Google Gemini.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Open questions</h2>
+      <ul class="bullets">
+        <li>Can agent decisions stay stable as telemetry changes, without oscillating?</li>
+        <li>When does adaptive concurrency beat a well-chosen static setting, on which paths and workloads?</li>
+      </ul>
+      <p>The prototype is built and evaluation is under way. Results will appear here once controlled comparisons are complete.</p>
+    </section>
+  </article>
+</BaseLayout>

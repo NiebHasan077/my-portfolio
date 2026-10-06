@@ -1,0 +1,166 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  education,
+  experience,
+  highlights,
+  isSelf,
+  linkOf,
+  links,
+  profile,
+  publications,
+  research,
+  skillGroups,
+} from "../content";
+
+const site = Astro.site!;
+const resume = linkOf("resume");
+const statusLabel = { accepted: "accepted", published: "published", preprint: "preprint" };
+const printable = (href: string) => href.replace(/^mailto:|^https:\/\/(www\.)?|\/$/g, "");
+const email = linkOf("email");
+const github = linkOf("github");
+const profiles = links.filter((link) => link.kind === "linkedin" || link.kind === "scholar");
+const lab = experience.find((item) => item.id === "missouri-st-gra");
+const industry = experience.filter((item) => item.id !== "missouri-st-gra");
+const honors = highlights.filter((item) => item.category === "honor");
+const service = highlights.filter((item) => item.category === "service");
+const phrase = (item: { title: string; detail?: string }) => (item.detail ? `${item.title} (${item.detail})` : item.title);
+const cvService = service.filter((item) => item.id !== "sports-leadership" && item.id !== "kuet-math-club");
+---
+
+<BaseLayout title={`CV · ${profile.displayName}`} description={`Curriculum vitae of ${profile.displayName}, ${profile.role} at ${profile.affiliation}.`} current="CV" compact>
+  <header class="cv-head no-print">
+    <h1>Curriculum vitae</h1>
+    {
+      resume && (
+        <a class="button" href={resume.href} download="Nieb_Hasan_Neom_CV.pdf">
+          Download PDF <span aria-hidden="true">↓</span>
+        </a>
+      )
+    }
+  </header>
+
+  <header class="print-head print-only">
+    <h1>{profile.displayName}</h1>
+    <p>
+      {profile.role}, {profile.affiliation} · {profile.broadLocation}
+    </p>
+    <p>
+      {email && <a href={email.href}>{printable(email.href)}</a>} · <a href={site.href}>{printable(site.href)}</a>
+      {github && <> · <a href={github.href}>{printable(github.href)}</a></>}
+      {profiles.map((link) => <> · <a href={link.href}>{link.label}</a></>)}
+    </p>
+  </header>
+
+  <div class="cv-sheet">
+    <section aria-labelledby="cv-education">
+      <h2 id="cv-education">Education</h2>
+      {
+        education.map((item) => (
+          <div class="cv-row cv-item">
+            <div>
+              <h3>{item.degree}, {item.institution}</h3>
+              <p class="muted">{item.details.join(" · ")}</p>
+            </div>
+            <p class="date">
+              {item.start} – {item.end}
+            </p>
+          </div>
+        ))
+      }
+    </section>
+
+    {
+      lab && (
+        <section aria-labelledby="cv-research">
+          <h2 id="cv-research">Research</h2>
+          <div class="cv-row">
+            <div>
+              <h3>
+                {lab.role}, {lab.organization}
+              </h3>
+              <p class="muted">{lab.summary}</p>
+            </div>
+            <p class="date">
+              {lab.start} – {lab.end}
+            </p>
+          </div>
+          <ul class="bullets">
+            {research.map((item) => (
+              <li>
+                <strong>{item.title}</strong> ({item.status}). {item.short}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <section aria-labelledby="cv-industry">
+      <h2 id="cv-industry">Industry</h2>
+      {
+        industry.map((item) => (
+          <div class="cv-item">
+            <div class="cv-row">
+              <div>
+                <h3>
+                  {item.role}, {item.organization}
+                </h3>
+                <p class="muted">
+                  {item.location} · {item.summary}
+                </p>
+              </div>
+              <p class="date">
+                {item.start} – {item.end}
+              </p>
+            </div>
+            <ul class="bullets">
+              {item.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <section aria-labelledby="cv-publications">
+      <h2 id="cv-publications">Publications</h2>
+      {
+        publications.map((item) => (
+          <p class="cv-item cv-pub">
+            {item.authors.map((author, index) => (
+              <>
+                {isSelf(author) ? <strong>{author}</strong> : author}
+                {index < item.authors.length - 1 ? ", " : ". "}
+              </>
+            ))}
+            <span class="pub-title">{item.title}.</span> <span class="venue">{item.venue}, {item.year} ({statusLabel[item.status]}).</span>
+          </p>
+        ))
+      }
+      <p class="cv-item cv-pub">
+        <strong>Software:</strong> N. H. Neom, R. M. Swargo, M. Arifuzzaman. <span class="pub-title">NetBench v1.1.0.</span> <span class="venue">Zenodo, 2026. doi:10.5281/zenodo.21892017</span>
+      </p>
+    </section>
+
+    <section aria-labelledby="cv-skills">
+      <h2 id="cv-skills">Skills</h2>
+      <div class="cv-skills">
+        {
+          skillGroups.map((group) => (
+            <p>
+              <strong>{group.title}:</strong> {group.items.join(", ")}
+            </p>
+          ))
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="cv-honors">
+      <h2 id="cv-honors">Honors and service</h2>
+      <p><strong>Honors:</strong> {honors.map(phrase).join("; ")}.</p>
+      <p><strong>Service:</strong> {cvService.map((item) => item.title).join("; ")}.</p>
+    </section>
+  </div>
+</BaseLayout>
