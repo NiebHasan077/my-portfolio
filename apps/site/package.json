@@ -8,7 +8,6 @@
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
-    "resume:pdf": "RESUME_PDF_OUTPUT=public/resume.pdf playwright test --project=chromium --grep 'prints to one page' && cp public/resume.pdf ../../output/pdf/Nieb_Hasan_Neom_Resume.pdf",
     "test:e2e": "playwright test"
   },
   "dependencies": {

@@ -23,7 +23,7 @@
     "location": "Dhaka, Bangladesh",
     "start": "2022",
     "end": "2025",
-    "summary": "Joined as a Graduate Engineer and was promoted in 2024.",
+    "summary": "Joined in 2022 as a Graduate Engineer and was promoted in 2024.",
     "bullets": [
       "Owned 6 of the 30 Spring Boot microservices behind Kona Token Trade and contributed to 15, across trade, wallet, user, payment, and fee management.",
       "Replaced synchronous REST calls between services with Kafka messaging, so one unavailable downstream service could no longer fail an in-flight transaction.",
@@ -40,7 +40,8 @@
       "experience-kona-kafka",
       "experience-kona-payments",
       "experience-kona-card-personalization",
-      "experience-kona-mentoring"
+      "experience-kona-mentoring",
+      "experience-kona-p2p-origin"
     ]
   }
 ]

@@ -1,0 +1,742 @@
+{
+  "source": "https://codeforces.com/api/user.rating?handle=Nieb_Hasan_077",
+  "fetched": "2026-10-06",
+  "handle": "Nieb_Hasan_077",
+  "points": [
+    {
+      "date": "2017-09-24",
+      "rating": 1393,
+      "contest": "Manthan, Codefest 17"
+    },
+    {
+      "date": "2017-09-25",
+      "rating": 1301,
+      "contest": "Codeforces Round 436 (Div. 2)"
+    },
+    {
+      "date": "2017-09-30",
+      "rating": 1227,
+      "contest": "Codeforces Round 437 (Div. 2, based on MemSQL Start[c]UP 3.0 - Round 2)"
+    },
+    {
+      "date": "2017-11-17",
+      "rating": 1119,
+      "contest": "Codeforces Round 446 (Div. 2)"
+    },
+    {
+      "date": "2017-12-11",
+      "rating": 1060,
+      "contest": "Codeforces Round 450 (Div. 2)"
+    },
+    {
+      "date": "2017-12-12",
+      "rating": 1072,
+      "contest": "Educational Codeforces Round 34 (Rated for Div. 2)"
+    },
+    {
+      "date": "2017-12-16",
+      "rating": 1043,
+      "contest": "Codeforces Round 451 (Div. 2)"
+    },
+    {
+      "date": "2017-12-17",
+      "rating": 1090,
+      "contest": "Codeforces Round 452 (Div. 2)"
+    },
+    {
+      "date": "2017-12-19",
+      "rating": 1117,
+      "contest": "Codeforces Round 453 (Div. 2)"
+    },
+    {
+      "date": "2017-12-23",
+      "rating": 1033,
+      "contest": "Codeforces Round 454 (Div. 2, based on Technocup 2018 Elimination Round 4)"
+    },
+    {
+      "date": "2017-12-28",
+      "rating": 933,
+      "contest": "Educational Codeforces Round 35 (Rated for Div. 2)"
+    },
+    {
+      "date": "2017-12-29",
+      "rating": 970,
+      "contest": "Good Bye 2017"
+    },
+    {
+      "date": "2018-01-05",
+      "rating": 1148,
+      "contest": "Codeforces Round 456 (Div. 2)"
+    },
+    {
+      "date": "2018-01-08",
+      "rating": 1108,
+      "contest": "Hello 2018"
+    },
+    {
+      "date": "2018-01-13",
+      "rating": 1117,
+      "contest": "Educational Codeforces Round 36 (Rated for Div. 2)"
+    },
+    {
+      "date": "2018-01-20",
+      "rating": 1120,
+      "contest": "Codecraft-18 and Codeforces Round 458 (Div. 1 + Div. 2, combined)"
+    },
+    {
+      "date": "2018-01-29",
+      "rating": 1135,
+      "contest": "Codeforces Round 459 (Div. 2)"
+    },
+    {
+      "date": "2018-01-31",
+      "rating": 1098,
+      "contest": "Codeforces Round 460 (Div. 2)"
+    },
+    {
+      "date": "2018-02-07",
+      "rating": 1013,
+      "contest": "Codeforces Round 461 (Div. 2)"
+    },
+    {
+      "date": "2018-02-14",
+      "rating": 930,
+      "contest": "Codeforces Round 462 (Div. 2)"
+    },
+    {
+      "date": "2018-02-17",
+      "rating": 928,
+      "contest": "Codeforces Round 464 (Div. 2)"
+    },
+    {
+      "date": "2018-02-24",
+      "rating": 1039,
+      "contest": "Codeforces Round 466 (Div. 2)"
+    },
+    {
+      "date": "2018-03-06",
+      "rating": 1026,
+      "contest": "Educational Codeforces Round 39 (Rated for Div. 2)"
+    },
+    {
+      "date": "2018-03-22",
+      "rating": 1155,
+      "contest": "Educational Codeforces Round 40 (Rated for Div. 2)"
+    },
+    {
+      "date": "2018-03-23",
+      "rating": 1187,
+      "contest": "Codeforces Round 471 (Div. 2)"
+    },
+    {
+      "date": "2018-03-24",
+      "rating": 1094,
+      "contest": "Codeforces Round 472 (rated, Div. 2, based on VK Cup 2018 Round 2)"
+    },
+    {
+      "date": "2018-04-03",
+      "rating": 1078,
+      "contest": "Codeforces Round 473 (Div. 2)"
+    },
+    {
+      "date": "2018-04-10",
+      "rating": 1195,
+      "contest": "Educational Codeforces Round 42 (Rated for Div. 2)"
+    },
+    {
+      "date": "2018-04-17",
+      "rating": 1170,
+      "contest": "Tinkoff Internship Warmup Round 2018 and Codeforces Round 475 (Div. 2)"
+    },
+    {
+      "date": "2018-04-30",
+      "rating": 1159,
+      "contest": "Educational Codeforces Round 43 (Rated for Div. 2)"
+    },
+    {
+      "date": "2018-07-01",
+      "rating": 1164,
+      "contest": "Codeforces Round 493 (Div. 2)"
+    },
+    {
+      "date": "2018-09-02",
+      "rating": 1240,
+      "contest": "Manthan, Codefest 18 (rated, Div. 1 + Div. 2)"
+    },
+    {
+      "date": "2018-09-05",
+      "rating": 1299,
+      "contest": "Codeforces Round 507 (Div. 2, based on Olympiad of Metropolises)"
+    },
+    {
+      "date": "2018-09-07",
+      "rating": 1257,
+      "contest": "Educational Codeforces Round 50 (Rated for Div. 2)"
+    },
+    {
+      "date": "2018-09-17",
+      "rating": 1297,
+      "contest": "Codeforces Round 510 (Div. 2)"
+    },
+    {
+      "date": "2018-09-20",
+      "rating": 1305,
+      "contest": "Educational Codeforces Round 51 (Rated for Div. 2)"
+    },
+    {
+      "date": "2018-09-21",
+      "rating": 1331,
+      "contest": "Codeforces Round 511 (Div. 2)"
+    },
+    {
+      "date": "2018-09-23",
+      "rating": 1354,
+      "contest": "Codeforces Round 512 (Div. 2, based on Technocup 2019 Elimination Round 1)"
+    },
+    {
+      "date": "2018-10-05",
+      "rating": 1331,
+      "contest": "Codeforces Round 514 (Div. 2)"
+    },
+    {
+      "date": "2018-10-11",
+      "rating": 1358,
+      "contest": "Educational Codeforces Round 52 (Rated for Div. 2)"
+    },
+    {
+      "date": "2018-10-14",
+      "rating": 1299,
+      "contest": "Codeforces Round 516 (Div. 2, by Moscow Team Olympiad)"
+    },
+    {
+      "date": "2018-10-24",
+      "rating": 1344,
+      "contest": "Codeforces Round 518 (Div. 2) [Thanks, Mail.Ru!]"
+    },
+    {
+      "date": "2018-10-25",
+      "rating": 1325,
+      "contest": "Educational Codeforces Round 53 (Rated for Div. 2)"
+    },
+    {
+      "date": "2018-10-28",
+      "rating": 1284,
+      "contest": "Codeforces Round 519 by Botan Investments"
+    },
+    {
+      "date": "2018-11-10",
+      "rating": 1309,
+      "contest": "Mail.Ru Cup 2018 Round 2"
+    },
+    {
+      "date": "2018-11-12",
+      "rating": 1268,
+      "contest": "Educational Codeforces Round 54 (Rated for Div. 2)"
+    },
+    {
+      "date": "2018-11-16",
+      "rating": 1311,
+      "contest": "Codeforces Round 521 (Div. 3)"
+    },
+    {
+      "date": "2018-11-22",
+      "rating": 1308,
+      "contest": "Codeforces Round 523 (Div. 2)"
+    },
+    {
+      "date": "2018-12-04",
+      "rating": 1313,
+      "contest": "Codeforces Round 525 (Div. 2)"
+    },
+    {
+      "date": "2018-12-15",
+      "rating": 1311,
+      "contest": "Educational Codeforces Round 56 (Rated for Div. 2)"
+    },
+    {
+      "date": "2019-01-23",
+      "rating": 1251,
+      "contest": "Codeforces Round 535 (Div. 3)"
+    },
+    {
+      "date": "2019-04-06",
+      "rating": 1273,
+      "contest": "Codeforces Global Round 2"
+    },
+    {
+      "date": "2019-04-16",
+      "rating": 1306,
+      "contest": "Codeforces Round 552 (Div. 3)"
+    },
+    {
+      "date": "2019-04-18",
+      "rating": 1307,
+      "contest": "Codeforces Round 553 (Div. 2)"
+    },
+    {
+      "date": "2019-04-22",
+      "rating": 1370,
+      "contest": "Educational Codeforces Round 63 (Rated for Div. 2)"
+    },
+    {
+      "date": "2019-04-26",
+      "rating": 1389,
+      "contest": "Codeforces Round 555 (Div. 3)"
+    },
+    {
+      "date": "2019-04-29",
+      "rating": 1509,
+      "contest": "Codeforces Round 556 (Div. 2)"
+    },
+    {
+      "date": "2019-05-12",
+      "rating": 1481,
+      "contest": "Codeforces Round 559 (Div. 2)"
+    },
+    {
+      "date": "2019-05-14",
+      "rating": 1495,
+      "contest": "Codeforces Round 560 (Div. 3)"
+    },
+    {
+      "date": "2019-05-15",
+      "rating": 1475,
+      "contest": "Educational Codeforces Round 65 (Rated for Div. 2)"
+    },
+    {
+      "date": "2019-05-26",
+      "rating": 1438,
+      "contest": "Codeforces Round 562 (Div. 2)"
+    },
+    {
+      "date": "2019-06-09",
+      "rating": 1351,
+      "contest": "Codeforces Round 565 (Div. 3)"
+    },
+    {
+      "date": "2019-06-21",
+      "rating": 1307,
+      "contest": "Codeforces Round 569 (Div. 2)"
+    },
+    {
+      "date": "2019-06-26",
+      "rating": 1345,
+      "contest": "Codeforces Round 570 (Div. 3)"
+    },
+    {
+      "date": "2019-06-30",
+      "rating": 1356,
+      "contest": "Educational Codeforces Round 67 (Rated for Div. 2)"
+    },
+    {
+      "date": "2019-07-05",
+      "rating": 1393,
+      "contest": "Codeforces Round 572 (Div. 2)"
+    },
+    {
+      "date": "2019-07-14",
+      "rating": 1331,
+      "contest": "Educational Codeforces Round 68 (Rated for Div. 2)"
+    },
+    {
+      "date": "2019-08-22",
+      "rating": 1361,
+      "contest": "Educational Codeforces Round 71 (Rated for Div. 2)"
+    },
+    {
+      "date": "2019-08-25",
+      "rating": 1340,
+      "contest": "Manthan, Codefest 19 (open for everyone, rated, Div. 1 + Div. 2)"
+    },
+    {
+      "date": "2019-09-14",
+      "rating": 1360,
+      "contest": "Codeforces Round 584 - Dasha Code Championship - Elimination Round (rated, open for everyone, Div. 1 + Div. 2)"
+    },
+    {
+      "date": "2019-09-18",
+      "rating": 1350,
+      "contest": "Codeforces Round 586 (Div. 1 + Div. 2)"
+    },
+    {
+      "date": "2019-09-19",
+      "rating": 1308,
+      "contest": "Educational Codeforces Round 73 (Rated for Div. 2)"
+    },
+    {
+      "date": "2019-09-21",
+      "rating": 1310,
+      "contest": "Codeforces Round 587 (Div. 3)"
+    },
+    {
+      "date": "2019-09-23",
+      "rating": 1226,
+      "contest": "Codeforces Round 588 (Div. 2)"
+    },
+    {
+      "date": "2019-09-29",
+      "rating": 1160,
+      "contest": "Codeforces Round 589 (Div. 2)"
+    },
+    {
+      "date": "2019-10-01",
+      "rating": 1157,
+      "contest": "Codeforces Round 590 (Div. 3)"
+    },
+    {
+      "date": "2019-10-20",
+      "rating": 1224,
+      "contest": "Codeforces Round 594 (Div. 2)"
+    },
+    {
+      "date": "2019-10-22",
+      "rating": 1260,
+      "contest": "Codeforces Round 595 (Div. 3)"
+    },
+    {
+      "date": "2019-10-24",
+      "rating": 1306,
+      "contest": "Educational Codeforces Round 75 (Rated for Div. 2)"
+    },
+    {
+      "date": "2019-11-01",
+      "rating": 1358,
+      "contest": "Codeforces Round 597 (Div. 2)"
+    },
+    {
+      "date": "2019-11-04",
+      "rating": 1418,
+      "contest": "Codeforces Round 598 (Div. 3)"
+    },
+    {
+      "date": "2019-11-06",
+      "rating": 1481,
+      "contest": "Codeforces Round 599 (Div. 2)"
+    },
+    {
+      "date": "2019-11-13",
+      "rating": 1485,
+      "contest": "Educational Codeforces Round 76 (Rated for Div. 2)"
+    },
+    {
+      "date": "2019-11-16",
+      "rating": 1451,
+      "contest": "Codeforces Round 600 (Div. 2)"
+    },
+    {
+      "date": "2019-12-05",
+      "rating": 1483,
+      "contest": "Codeforces Round 604 (Div. 2)"
+    },
+    {
+      "date": "2019-12-14",
+      "rating": 1358,
+      "contest": "Codeforces Round 606 (Div. 2, based on Technocup 2020 Elimination Round 4)"
+    },
+    {
+      "date": "2019-12-15",
+      "rating": 1405,
+      "contest": "Codeforces Round 607 (Div. 2)"
+    },
+    {
+      "date": "2019-12-15",
+      "rating": 1381,
+      "contest": "Codeforces Round 608 (Div. 2)"
+    },
+    {
+      "date": "2019-12-19",
+      "rating": 1362,
+      "contest": "Educational Codeforces Round 78 (Rated for Div. 2)"
+    },
+    {
+      "date": "2019-12-24",
+      "rating": 1358,
+      "contest": "Codeforces Round 610 (Div. 2)"
+    },
+    {
+      "date": "2019-12-28",
+      "rating": 1444,
+      "contest": "Codeforces Round 611 (Div. 3)"
+    },
+    {
+      "date": "2020-02-12",
+      "rating": 1394,
+      "contest": "Educational Codeforces Round 82 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-02-13",
+      "rating": 1367,
+      "contest": "Codeforces Round 619 (Div. 2)"
+    },
+    {
+      "date": "2020-02-15",
+      "rating": 1334,
+      "contest": "Codeforces Round 620 (Div. 2)"
+    },
+    {
+      "date": "2020-02-24",
+      "rating": 1370,
+      "contest": "Codeforces Round 624 (Div. 3)"
+    },
+    {
+      "date": "2020-03-01",
+      "rating": 1321,
+      "contest": "Codeforces Round 625 (Div. 2, based on Technocup 2020 Final Round)"
+    },
+    {
+      "date": "2020-03-14",
+      "rating": 1369,
+      "contest": "Codeforces Round 628 (Div. 2)"
+    },
+    {
+      "date": "2020-03-26",
+      "rating": 1351,
+      "contest": "Codeforces Round 629 (Div. 3)"
+    },
+    {
+      "date": "2020-03-31",
+      "rating": 1337,
+      "contest": "Codeforces Round 630 (Div. 2)"
+    },
+    {
+      "date": "2020-04-03",
+      "rating": 1404,
+      "contest": "Codeforces Round 631 (Div. 2) - Thanks, Denis aramis Shitov!"
+    },
+    {
+      "date": "2020-04-08",
+      "rating": 1418,
+      "contest": "Codeforces Round 632 (Div. 2)"
+    },
+    {
+      "date": "2020-04-10",
+      "rating": 1476,
+      "contest": "Educational Codeforces Round 85 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-04-12",
+      "rating": 1499,
+      "contest": "Codeforces Round 633 (Div. 2)"
+    },
+    {
+      "date": "2020-04-13",
+      "rating": 1436,
+      "contest": "Codeforces Round 634 (Div. 3)"
+    },
+    {
+      "date": "2020-04-15",
+      "rating": 1416,
+      "contest": "Codeforces Round 635 (Div. 2)"
+    },
+    {
+      "date": "2020-04-21",
+      "rating": 1436,
+      "contest": "Codeforces Round 636 (Div. 3)"
+    },
+    {
+      "date": "2020-04-23",
+      "rating": 1481,
+      "contest": "Codeforces Round 637 (Div. 2) - Thanks, Ivan Belonogov!"
+    },
+    {
+      "date": "2020-04-26",
+      "rating": 1458,
+      "contest": "Educational Codeforces Round 86 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-05-01",
+      "rating": 1358,
+      "contest": "Codeforces Round 638 (Div. 2)"
+    },
+    {
+      "date": "2020-05-17",
+      "rating": 1365,
+      "contest": "Educational Codeforces Round 87 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-05-26",
+      "rating": 1323,
+      "contest": "Codeforces Round 645 (Div. 2)"
+    },
+    {
+      "date": "2020-05-28",
+      "rating": 1378,
+      "contest": "Educational Codeforces Round 88 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-05-31",
+      "rating": 1374,
+      "contest": "Codeforces Round 646 (Div. 2)"
+    },
+    {
+      "date": "2020-06-04",
+      "rating": 1458,
+      "contest": "Codeforces Round 647 (Div. 2) - Thanks, Algo Muse!"
+    },
+    {
+      "date": "2020-06-07",
+      "rating": 1428,
+      "contest": "Codeforces Round 648 (Div. 2)"
+    },
+    {
+      "date": "2020-06-11",
+      "rating": 1462,
+      "contest": "Educational Codeforces Round 89 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-06-13",
+      "rating": 1424,
+      "contest": "Codeforces Round 649 (Div. 2)"
+    },
+    {
+      "date": "2020-06-16",
+      "rating": 1443,
+      "contest": "Codeforces Round 650 (Div. 3)"
+    },
+    {
+      "date": "2020-06-18",
+      "rating": 1446,
+      "contest": "Codeforces Global Round 8"
+    },
+    {
+      "date": "2020-06-20",
+      "rating": 1380,
+      "contest": "Codeforces Round 651 (Div. 2)"
+    },
+    {
+      "date": "2020-06-23",
+      "rating": 1375,
+      "contest": "Codeforces Round 652 (Div. 2)"
+    },
+    {
+      "date": "2020-06-25",
+      "rating": 1410,
+      "contest": "Educational Codeforces Round 90 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-06-28",
+      "rating": 1513,
+      "contest": "Codeforces Round 653 (Div. 3)"
+    },
+    {
+      "date": "2020-07-01",
+      "rating": 1425,
+      "contest": "Codeforces Round 654 (Div. 2)"
+    },
+    {
+      "date": "2020-07-04",
+      "rating": 1467,
+      "contest": "Codeforces Global Round 9"
+    },
+    {
+      "date": "2020-07-17",
+      "rating": 1569,
+      "contest": "Codeforces Round 656 (Div. 3)"
+    },
+    {
+      "date": "2020-07-21",
+      "rating": 1598,
+      "contest": "Codeforces Round 658 (Div. 2)"
+    },
+    {
+      "date": "2020-07-24",
+      "rating": 1629,
+      "contest": "Codeforces Round 659 (Div. 2)"
+    },
+    {
+      "date": "2020-08-09",
+      "rating": 1530,
+      "contest": "Codeforces Round 663 (Div. 2)"
+    },
+    {
+      "date": "2020-08-14",
+      "rating": 1454,
+      "contest": "Educational Codeforces Round 93 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-08-25",
+      "rating": 1349,
+      "contest": "Educational Codeforces Round 94 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-09-24",
+      "rating": 1415,
+      "contest": "Codeforces Round 672 (Div. 2)"
+    },
+    {
+      "date": "2020-09-28",
+      "rating": 1482,
+      "contest": "Codeforces Round 674 (Div. 3)"
+    },
+    {
+      "date": "2020-11-21",
+      "rating": 1382,
+      "contest": "Codeforces Round 685 (Div. 2)"
+    },
+    {
+      "date": "2020-11-30",
+      "rating": 1382,
+      "contest": "Educational Codeforces Round 99 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-12-06",
+      "rating": 1398,
+      "contest": "Codeforces Global Round 12"
+    },
+    {
+      "date": "2020-12-11",
+      "rating": 1446,
+      "contest": "Codeforces Round 689 (Div. 2, based on Zed Code Competition)"
+    },
+    {
+      "date": "2020-12-15",
+      "rating": 1499,
+      "contest": "Codeforces Round 690 (Div. 3)"
+    },
+    {
+      "date": "2020-12-17",
+      "rating": 1509,
+      "contest": "Educational Codeforces Round 100 (Rated for Div. 2)"
+    },
+    {
+      "date": "2020-12-20",
+      "rating": 1492,
+      "contest": "Codeforces Round 692 (Div. 2, based on Technocup 2021 Elimination Round 3)"
+    },
+    {
+      "date": "2021-01-04",
+      "rating": 1477,
+      "contest": "Codeforces Round 693 (Div. 3)"
+    },
+    {
+      "date": "2021-02-12",
+      "rating": 1393,
+      "contest": "Codeforces Round 701 (Div. 2)"
+    },
+    {
+      "date": "2021-02-15",
+      "rating": 1444,
+      "contest": "Educational Codeforces Round 104 (Rated for Div. 2)"
+    },
+    {
+      "date": "2021-02-16",
+      "rating": 1498,
+      "contest": "Codeforces Round 702 (Div. 3)"
+    },
+    {
+      "date": "2021-02-18",
+      "rating": 1464,
+      "contest": "Codeforces Round 703 (Div. 2)"
+    },
+    {
+      "date": "2023-01-24",
+      "rating": 1448,
+      "contest": "Educational Codeforces Round 142 (Rated for Div. 2)"
+    },
+    {
+      "date": "2023-01-27",
+      "rating": 1415,
+      "contest": "Codeforces Round 847 (Div. 3)"
+    }
+  ]
+}

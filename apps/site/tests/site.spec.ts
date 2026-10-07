@@ -2,36 +2,43 @@ import { expect, test } from "@playwright/test";
 
 const pages = [
   "/",
+  "/about/",
+  "/publications/",
   "/research/netbench/",
   "/research/guarded-orchestration/",
   "/research/agentic-data-transfer-optimizer/",
   "/projects/kona-token-trade/",
+  "/projects/card-personalization/",
+  "/projects/loadlens/",
   "/cv/",
 ];
-const navLabels = ["Research", "Publications", "Experience", "CV"];
+const navLabels = ["Work", "Publications", "About", "CV"];
 
-test("home page leads with the name, role, and the work", async ({ page }) => {
+test("home page leads with the name, the idea, and the work", async ({
+  page,
+}) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
     "Nieb Hasan Neom",
   );
-  await expect(page.getByText("PhD student in Computer Science")).toBeVisible();
-  for (const name of ["News", "Research", "Publications", "Experience"])
-    await expect(
-      page.getByRole("heading", { level: 2, name, exact: true }),
-    ).toBeVisible();
+  await expect(
+    page.getByText("the model proposes and the system decides"),
+  ).toBeVisible();
+  const work = page.locator("#work");
   for (const title of [
-    "NetBench: domain adaptation for networking LLMs",
-    "Guarded orchestration for scientific models",
+    "NetBench",
+    "Guarded orchestration",
     "Agentic Data Transfer Optimizer",
+    "Kona Token Trade",
+    "Card Personalization System",
+    "LoadLens",
   ])
     await expect(
-      page.getByRole("heading", { level: 3, name: title }),
+      work.getByRole("heading", { level: 3, name: title, exact: true }),
     ).toBeVisible();
   await expect(
-    page.locator(".authors strong", { hasText: "N. H. Neom" }).first(),
-  ).toBeVisible();
-  await expect(page.locator(".frame button")).toHaveCount(0);
+    page.getByRole("link", { name: "Résumé (PDF)" }).first(),
+  ).toHaveAttribute("href", "/Nieb_Hasan_Neom_Resume.pdf");
 });
 
 test("navigation is visible on every page", async ({ page }) => {
@@ -59,17 +66,17 @@ test("no page scrolls sideways from 320 to 1440 px", async ({ page }, info) => {
   }
 });
 
-test("nav links lead to their sections and the CV", async ({ page }) => {
+test("menu links reach their pages", async ({ page }) => {
   await page.goto("/research/netbench/");
   const nav = page.getByRole("navigation", { name: "Main" });
-  await nav.getByRole("link", { name: "Experience", exact: true }).click();
-  await expect(page).toHaveURL(/\/#experience$/);
-  await expect(page.locator("#experience")).toBeInViewport();
-  await nav.getByRole("link", { name: "CV", exact: true }).click();
-  await expect(page).toHaveURL(/\/cv\/$/);
+  await nav.getByRole("link", { name: "Publications", exact: true }).click();
+  await expect(page).toHaveURL(/\/publications\/$/);
   await expect(
-    nav.getByRole("link", { name: "CV", exact: true }),
+    nav.getByRole("link", { name: "Publications", exact: true }),
   ).toHaveAttribute("aria-current", "page");
+  await nav.getByRole("link", { name: "Work", exact: true }).click();
+  await expect(page).toHaveURL(/\/#work$/);
+  await expect(page.locator("#work")).toBeInViewport();
 });
 
 test("keyboard focus is visible", async ({ page }, info) => {
@@ -79,42 +86,91 @@ test("keyboard focus is visible", async ({ page }, info) => {
   await expect(
     page.getByRole("link", { name: "Skip to content" }),
   ).toBeFocused();
-  await expect(
-    page.getByRole("link", { name: "Skip to content" }),
-  ).toBeInViewport();
-  const research = page
+  const about = page
     .getByRole("navigation", { name: "Main" })
-    .getByRole("link", { name: "Research", exact: true });
-  await research.focus();
-  const outline = await research.evaluate(
-    (el) => getComputedStyle(el).outlineStyle,
-  );
-  expect(outline).not.toBe("none");
+    .getByRole("link", { name: "About", exact: true });
+  await about.focus();
+  expect(
+    await about.evaluate((el) => getComputedStyle(el).outlineStyle),
+  ).not.toBe("none");
 });
 
-test("detail pages carry their facts and withhold unpublished results", async ({
+test("NetBench explorer filters real questions", async ({ page }) => {
+  await page.goto("/research/netbench/");
+  const explorer = page.locator("[data-explorer]");
+  await explorer.scrollIntoViewIfNeeded();
+  const count = explorer.locator("[data-count]");
+  await expect(count).toContainText("233 matching · 233 scored · 9 excluded");
+  await explorer
+    .getByRole("button", { name: /^Concurrency Tuning and Scaling/ })
+    .click();
+  await expect(count).toContainText("9 matching");
+  await explorer.getByRole("button", { name: "Hard", exact: true }).click();
+  await expect(explorer.locator(".nb-item .hard").first()).toBeVisible();
+  await page.getByLabel("Show the excluded items").check();
+  await explorer
+    .getByRole("button", { name: /^Concurrency Tuning and Scaling/ })
+    .click();
+  await explorer.getByRole("button", { name: "All levels" }).click();
+  await expect(count).toContainText("242 matching");
+});
+
+test("guarded orchestration replay blocks until inputs are complete", async ({
   page,
 }) => {
-  await page.goto("/research/netbench/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "NetBench",
-  );
-  await expect(
-    page.getByRole("link", { name: /zenodo archive/i }),
-  ).toHaveAttribute("href", "https://doi.org/10.5281/zenodo.21892017");
-
   await page.goto("/research/guarded-orchestration/");
-  await expect(page.getByText("Accepted · WORKS26 at SC26")).toBeVisible();
-  await expect(page.getByText("98.5%", { exact: false })).toHaveCount(0);
-
-  await page.goto("/research/agentic-data-transfer-optimizer/");
-  await expect(page.getByText(/^In progress/)).toBeVisible();
-
-  await page.goto("/projects/kona-token-trade/");
+  const replay = page.locator("[data-replay]");
+  const gate = replay.locator("[data-gate]");
+  await replay.getByRole("button", { name: "Next step" }).click();
+  await expect(gate).toHaveText("Blocked: 3 inputs missing");
+  await replay.getByRole("button", { name: "Next step" }).click();
+  await expect(gate).toHaveText("Guard passed: the model runs once");
+  for (let i = 0; i < 3; i++)
+    await replay.getByRole("button", { name: "Next step" }).click();
+  await expect(gate).toHaveText("Blocked: 7 inputs missing");
+  await expect(page.getByText(/98\.5|87\.13|178/)).toHaveCount(0);
   await expect(
-    page.getByRole("heading", { name: "From synchronous calls to Kafka" }),
-  ).toBeVisible();
+    page.getByRole("link", { name: /GitHub/ }).first(),
+  ).toHaveAttribute(
+    "href",
+    "https://github.com/arif-zaman/pCorona-Orchestration",
+  );
+});
+
+test("Kona pages animate the Kafka change and show no performance figures", async ({
+  page,
+}) => {
+  await page.goto("/projects/kona-token-trade/");
+  const kafka = page.locator("[data-kafka]");
+  for (let i = 0; i < 5; i++)
+    await kafka.getByRole("button", { name: "Next step" }).click();
+  await expect(kafka.locator('[data-say="after"]')).toHaveText(
+    "It reads the waiting event, and the trade completes.",
+  );
   await expect(page.getByText(/\d+(\.\d+)?\s?%/)).toHaveCount(0);
+  await page.goto("/projects/card-personalization/");
+  await expect(page.getByText(/\d+(\.\d+)?\s?%/)).toHaveCount(0);
+});
+
+test("publications filter and offer citations", async ({ page }) => {
+  await page.goto("/publications/");
+  await page.getByRole("button", { name: "Software", exact: true }).click();
+  await expect(page.locator(".pub:visible")).toHaveCount(1);
+  await page.getByRole("button", { name: "All", exact: true }).click();
+  await expect(page.locator(".pub:visible")).toHaveCount(6);
+  await page.locator(".pub").first().getByText("Cite").click();
+  await expect(page.locator(".pub").first().locator("pre")).toContainText(
+    "@inproceedings{neom2026guarded",
+  );
+});
+
+test("rating charts respond to the keyboard", async ({ page }) => {
+  await page.goto("/about/");
+  const chart = page.locator("[data-chart]").first();
+  await chart.locator("svg").focus();
+  await page.keyboard.press("Home");
+  await expect(chart.locator("[data-readout]")).toContainText("Sep 2017");
+  await expect(page.locator(".gallery img")).toHaveCount(3);
 });
 
 test("external links are HTTPS", async ({ page }) => {
@@ -132,11 +188,11 @@ test("external links are HTTPS", async ({ page }) => {
   }
 });
 
-test("CV offers the PDF and prints to one page", async ({ page }, info) => {
+test("CV offers the résumé and prints to one page", async ({ page }, info) => {
   await page.goto("/cv/");
   await expect(
-    page.getByRole("link", { name: /download pdf/i }),
-  ).toHaveAttribute("href", "/resume.pdf");
+    page.getByRole("link", { name: /download résumé/i }),
+  ).toHaveAttribute("href", "/Nieb_Hasan_Neom_Resume.pdf");
   test.skip(
     info.project.name !== "chromium",
     "PDF output needs desktop Chromium",
@@ -146,10 +202,8 @@ test("CV offers the PDF and prints to one page", async ({ page }, info) => {
     page.getByRole("heading", { name: "Nieb Hasan Neom" }),
   ).toBeVisible();
   const pdf = await page.pdf({
-    path: process.env.RESUME_PDF_OUTPUT,
     preferCSSPageSize: true,
     printBackground: true,
-    tagged: true,
   });
   const pageCount = (pdf.toString("latin1").match(/\/Type\s*\/Page[^s]/g) ?? [])
     .length;

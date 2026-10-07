@@ -22,19 +22,22 @@ const github = linkOf("github");
 const profiles = links.filter((link) => link.kind === "linkedin" || link.kind === "scholar");
 const lab = experience.find((item) => item.id === "missouri-st-gra");
 const industry = experience.filter((item) => item.id !== "missouri-st-gra");
-const honors = highlights.filter((item) => item.category === "honor");
+// The printed CV keeps to one page, so it lists the four main honors only.
+const cvHonors = ["codeforces-expert", "leetcode-knight", "konasl-coding-combat", "kuet-technical-scholarship"];
+const honors = highlights.filter((item) => item.category === "honor" && cvHonors.includes(item.id));
 const service = highlights.filter((item) => item.category === "service");
 const phrase = (item: { title: string; detail?: string }) => (item.detail ? `${item.title} (${item.detail})` : item.title);
 const cvService = service.filter((item) => item.id !== "sports-leadership" && item.id !== "kuet-math-club");
 ---
 
-<BaseLayout title={`CV · ${profile.displayName}`} description={`Curriculum vitae of ${profile.displayName}, ${profile.role} at ${profile.affiliation}.`} current="CV" compact>
+<BaseLayout title={`CV · ${profile.displayName}`} description={`Curriculum vitae of ${profile.displayName}, ${profile.role} at ${profile.affiliation}.`} current="CV">
+  <div class="wrap">
   <header class="cv-head no-print">
     <h1>Curriculum vitae</h1>
     {
       resume && (
-        <a class="button" href={resume.href} download="Nieb_Hasan_Neom_CV.pdf">
-          Download PDF <span aria-hidden="true">↓</span>
+        <a class="button" href={resume.href} download="Nieb_Hasan_Neom_Resume.pdf">
+          Download résumé (PDF) <span aria-hidden="true">↓</span>
         </a>
       )
     }
@@ -162,5 +165,6 @@ const cvService = service.filter((item) => item.id !== "sports-leadership" && it
       <p><strong>Honors:</strong> {honors.map(phrase).join("; ")}.</p>
       <p><strong>Service:</strong> {cvService.map((item) => item.title).join("; ")}.</p>
     </section>
+  </div>
   </div>
 </BaseLayout>

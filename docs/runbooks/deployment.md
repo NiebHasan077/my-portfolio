@@ -13,7 +13,7 @@ Push or merge to `main` and allow Cloudflare Pages to deploy. Pages runs `pnpm c
 
 ## Smoke test
 
-Check Home on a laptop and a phone, each research page, the Kona page, the CV and its PDF download, that `/work` and `/resume` redirect, keyboard navigation, and that the response carries the `Content-Security-Policy` header. Record the commit and Pages deployment URL in the release note.
+Check Home on a laptop and a phone, About, Publications, each case study and its interactive piece, the CV and the résumé download, that `/work`, `/resume`, and `/resume.pdf` redirect, keyboard navigation, the browser console for CSP errors, and that the response carries the `Content-Security-Policy` header. Record the commit and Pages deployment URL in the release note.
 
 ## Rollback
 

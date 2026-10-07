@@ -9,6 +9,7 @@ import projectsData from "./projects.json";
 import publicationsData from "./publications.json";
 import researchData from "./research.json";
 import skillsData from "./skills.json";
+import testimonialsData from "./testimonials.json";
 
 export type Claim = {
   id: string;
@@ -125,10 +126,20 @@ export type Education = {
 export type Highlight = {
   id: string;
   publish: boolean;
-  category: "honor" | "service";
+  category: "honor" | "service" | "certification";
   title: string;
   detail?: string;
   href?: string;
+  claimIds: string[];
+};
+
+export type Testimonial = {
+  id: string;
+  publish: boolean;
+  quote: string;
+  name: string;
+  role: string;
+  relation: string;
   claimIds: string[];
 };
 
@@ -154,6 +165,7 @@ export const experience = published(experienceData as Experience[]);
 export const education = published(educationData as Education[]);
 export const highlights = published(highlightsData as Highlight[]);
 export const skillGroups = published(skillsData as SkillGroup[]);
+export const testimonials = published(testimonialsData as Testimonial[]);
 
 export const linkOf = (kind: Link["kind"]) =>
   links.find((link) => link.kind === kind);

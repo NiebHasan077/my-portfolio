@@ -29,16 +29,9 @@
   },
   {
     "kind": "resume",
-    "label": "CV (PDF)",
-    "href": "/resume.pdf",
+    "label": "Résumé (PDF)",
+    "href": "/Nieb_Hasan_Neom_Resume.pdf",
     "available": true,
-    "claimIds": [
-      "identity-display-name",
-      "contact-email",
-      "experience-mst-gra",
-      "experience-kona-se2",
-      "education-mst-phd",
-      "education-kuet-bs"
-    ]
+    "claimIds": ["resume-pdf-owner-version"]
   }
 ]

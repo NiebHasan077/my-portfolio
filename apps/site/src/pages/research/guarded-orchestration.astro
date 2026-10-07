@@ -1,60 +1,110 @@
 ---
 import Authors from "../../components/Authors.astro";
 import Flow from "../../components/Flow.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import GuardedReplay from "../../components/GuardedReplay.astro";
+import CaseLayout from "../../layouts/CaseLayout.astro";
 import { publications, research } from "../../content";
 
 const item = research.find((entry) => entry.id === "guarded-orchestration");
 const paper = publications.find((entry) => entry.id === "guarded-orchestration-works26");
 if (!item || !paper) throw new Error("Guarded orchestration content is missing");
+const repo = "https://github.com/arif-zaman/pCorona-Orchestration";
+const sections = [
+  { id: "problem", label: "The problem" },
+  { id: "hard", label: "Why it is hard" },
+  { id: "role", label: "My role" },
+  { id: "approach", label: "The approach" },
+  { id: "conversation", label: "A conversation" },
+  { id: "decisions", label: "Decisions" },
+  { id: "results", label: "Results" },
+  { id: "cite", label: "Links and citation" },
+];
 ---
 
-<BaseLayout title="Guarded orchestration for scientific models · Nieb Hasan Neom" description={item.tagline} current="Research" compact>
-  <article class="doc">
-    <p class="crumb"><a href="/#research">← Research</a></p>
-    <header class="doc-head">
-      <h1>{item.title}</h1>
-      <p class="lede">{item.tagline}</p>
-      <dl class="facts">
-        <div><dt>Status</dt><dd class:list={["status", `tone-${item.tone}`]}>{item.status}</dd></div>
-        <div><dt>Paper</dt><dd>{paper.title}</dd></div>
-        <div><dt>Authors</dt><dd><Authors authors={paper.authors} /></dd></div>
-        <div><dt>Venue</dt><dd>WORKS26, held with SC26 in Chicago on 15 November 2026</dd></div>
-      </dl>
-    </header>
+<CaseLayout
+  title="Guarded orchestration for scientific models · Nieb Hasan Neom"
+  description={item.tagline}
+  heading="Guarded orchestration for scientific models"
+  lede={item.tagline}
+  sections={sections}
+>
+  <dl class="facts" slot="facts">
+    <div><dt>Status</dt><dd class:list={["status", `tone-${item.tone}`]}>{item.status}</dd></div>
+    <div><dt>Paper</dt><dd>{paper.title}</dd></div>
+    <div><dt>Authors</dt><dd><Authors authors={paper.authors} /></dd></div>
+    <div><dt>Venue</dt><dd>WORKS26, held with SC26 in Chicago on 15 November 2026</dd></div>
+    <div><dt>Code</dt><dd class="links"><a href={repo}>GitHub ↗</a></dd></div>
+  </dl>
 
-    <section>
-      <h2>The problem</h2>
-      <p>
-        LLM function calling maps a request onto a tool call. A scientific prediction model needs more than that: its inputs often arrive over several turns of conversation, and a missing value has to stop the run rather than be guessed. When a scientist corrects an input, asks a what-if question, or starts over, earlier values must not leak into the new run.
-      </p>
-    </section>
+  <section id="problem">
+    <h2>The problem</h2>
+    <p>
+      Scientists publish trained prediction models so others can reuse them, but the models usually arrive as code, notebooks, or command-line tools. Using one means knowing the exact input names, types, and units. A language model in front of the model could take a plain-language description instead, but function calling only gives it a way to call a tool. It does not say when a scientific input is complete, or what a correction should change.
+    </p>
+  </section>
 
-    <section>
-      <h2>The approach</h2>
-      <p>
-        I designed a state-aware layer between the conversation and the model backend. It keeps the workflow state explicit, so the language model can interpret requests but cannot run a model on incomplete or invalid inputs.
-      </p>
-      <Flow
-        label="Guarded orchestration workflow"
-        steps={[
-          { title: "Accumulate", text: "Collect required inputs across conversational turns." },
-          { title: "Validate", text: "Check every argument against a typed schema." },
-          { title: "Gate", text: "Block execution while required state is incomplete." },
-          { title: "Execute", text: "Run the trained prediction model on complete inputs." },
-        ]}
-        loop="Correction, what-if, and reset requests are explicit state transitions back into the workflow."
-      />
-    </section>
+  <section id="hard">
+    <h2>Why it is hard</h2>
+    <ul class="bullets">
+      <li>Inputs often arrive over several turns, and a missing value has to stop the run rather than be guessed.</li>
+      <li>Every value must reach the model with the right name and type.</li>
+      <li>When a scientist corrects one input or asks a what-if question, nothing else may change; when they start a new sample, nothing old may carry over.</li>
+      <li>A fluent answer from the language model is not evidence that the model ran.</li>
+    </ul>
+  </section>
 
-    <section>
-      <h2>Where it runs</h2>
-      <p>The workflow was instantiated for protein-corona prediction over a backend of trained prediction models.</p>
-    </section>
+  <section id="role">
+    <h2>My role</h2>
+    <p>
+      I am the first author. I designed the guarded, state-aware workflow and its execution rules, and instantiated it for protein-corona prediction over a backend of trained prediction models, with my co-authors M. R. Gartia and M. Arifuzzaman.
+    </p>
+  </section>
 
-    <section>
-      <h2>Results</h2>
-      <p>The results are in the WORKS26 paper. A link will be added here when the proceedings are online.</p>
-    </section>
-  </article>
-</BaseLayout>
+  <section id="approach">
+    <h2>The approach</h2>
+    <p>
+      The workflow splits the work between the language model and the service around it. The language model interprets: it collects values from the conversation, narrates results, and recognizes what a follow-up means. The service enforces: it checks the inputs, runs the backend, and holds the state that later steps build on.
+    </p>
+    <Flow
+      label="Guarded orchestration workflow"
+      legend
+      steps={[
+        { title: "Collect", text: "Gather inputs across turns and ask for anything missing.", role: "model" },
+        { title: "Guard", text: "Translate names, then recheck that every input is present and typed.", role: "service" },
+        { title: "Execute", text: "Run the trained model once and store the accepted inputs.", role: "service" },
+        { title: "Narrate", text: "Explain the returned result in the scientist's terms.", role: "model" },
+        { title: "Steer", text: "Read a follow-up as a correction, a what-if, or a new sample.", role: "model" },
+      ]}
+      loop="A correction or what-if changes one input and keeps the rest; a new sample clears everything."
+      caption="Redrawn for this site from the paper's workflow."
+    />
+    <p>
+      For protein-corona prediction the model needs ten descriptors: base material, surface modification, TEM size, zeta potential, protein source, plasma concentration, nanoparticle concentration, and centrifugation speed, time, and temperature.
+    </p>
+  </section>
+
+  <section id="conversation">
+    <h2>A conversation</h2>
+    <p>Step through a session to watch the inputs fill in, the backend stay blocked until all ten are present, and what-if, correction, and reset each change the state differently.</p>
+    <GuardedReplay />
+  </section>
+
+  <section id="decisions">
+    <h2>Decisions</h2>
+    <ol class="decisions">
+      <li><b>Enforce completeness in the service, not the prompt.</b> The prompt tells the language model when to call the tool, but the service checks the inputs again before anything runs. Nothing incomplete reaches the backend, whatever the model decides.</li>
+      <li><b>Give every follow-up an explicit meaning.</b> A correction and a what-if each change one value and keep the others; a new sample starts from nothing. The rules live in the workflow, not in the model's judgment.</li>
+      <li><b>Keep the language model out of the science.</b> It interprets and explains, but every prediction comes from the trained model, returned as data before it is narrated.</li>
+    </ol>
+  </section>
+
+  <section id="results">
+    <h2>Results</h2>
+    <p>The results are in the WORKS26 paper. A link to the paper will be added here when the proceedings are online.</p>
+  </section>
+
+  <section id="cite">
+    <h2>Links and citation</h2>
+    <p class="links"><a href={repo}>Code on GitHub ↗</a><a href="/publications/#guarded-orchestration-works26">Citation</a></p>
+  </section>
+</CaseLayout>

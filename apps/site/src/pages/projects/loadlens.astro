@@ -1,0 +1,66 @@
+---
+import CaseLayout from "../../layouts/CaseLayout.astro";
+import { projects } from "../../content";
+
+const item = projects.find((entry) => entry.id === "loadlens");
+if (!item) throw new Error("LoadLens content is missing");
+const sections = [
+  { id: "problem", label: "The problem" },
+  { id: "what", label: "What it does" },
+  { id: "boundary", label: "The safety boundary" },
+  { id: "links", label: "Links" },
+];
+---
+
+<CaseLayout title="LoadLens · Nieb Hasan Neom" description={item.summary} heading="LoadLens" lede="Is this week actually doable? A student workload planner that answers honestly." sections={sections}>
+  <dl class="facts" slot="facts">
+    <div><dt>Type</dt><dd>Side project, public prototype</dd></div>
+    <div><dt>Built with</dt><dd>TypeScript, Cloudflare D1</dd></div>
+    <div>
+      <dt>Links</dt>
+      <dd class="links">{item.links.map((link) => <a href={link.href}>{link.label} ↗</a>)}</dd>
+    </div>
+  </dl>
+
+  <section id="problem">
+    <h2>The problem</h2>
+    <p>
+      A student's week is classes, deadlines, work, commuting, meals, and everything else. Calendars show when things happen, but not whether the required work can actually fit. LoadLens combines all of it into an honest capacity plan.
+    </p>
+    <figure class="figure">
+      <img class="shot" src="/img/loadlens-overview.jpg" width="1440" height="900" alt="LoadLens overview with sample data, showing the question Is this week actually doable, a weekly feasibility verdict, and workload totals" loading="lazy" decoding="async" />
+      <figcaption>The weekly overview, with sample data.</figcaption>
+    </figure>
+  </section>
+
+  <section id="what">
+    <h2>What it does</h2>
+    <ul class="bullets">
+      <li>Builds a start-of-semester course draft and flags meeting conflicts, lunch pressure, tight transitions, and uneven daily load.</li>
+      <li>Combines fixed events with flexible work in a weekly capacity plan, shown as calendar blocks or a workload heatmap.</li>
+      <li>Adapts flexible work to early-bird, flexible, or night-owl preferences.</li>
+      <li>Answers schedule questions and makes one-item changes in plain language through LoadLens Coach.</li>
+    </ul>
+    <figure class="figure">
+      <img class="shot" src="/img/loadlens-schedule.jpg" width="1360" height="820" alt="LoadLens weekly capacity map with classes, commutes, meals, and flexible tasks laid out across the week" loading="lazy" decoding="async" />
+      <figcaption>The capacity map: fixed events and placed tasks across the week.</figcaption>
+    </figure>
+  </section>
+
+  <section id="boundary">
+    <h2>The safety boundary</h2>
+    <p>
+      The same rule as my research applies: the model proposes, and code decides. Language models interpret requests and suggest placements, but they are never the source of truth. LoadLens code owns permissions, feasible time windows, conflicts, deadlines, workload numbers, validation, and every state change.
+    </p>
+    <ul class="bullets">
+      <li>Every Coach change needs Apply before it takes effect, its impact is recalculated deterministically, and Undo is one step.</li>
+      <li>If the model is unavailable, slow, or returns something invalid, the calendar stays unchanged and a local scheduler takes over.</li>
+      <li>Official course meetings and imported deadlines stay read-only.</li>
+    </ul>
+  </section>
+
+  <section id="links">
+    <h2>Links</h2>
+    <p class="links">{item.links.map((link) => <a href={link.href}>{link.label} ↗</a>)}</p>
+  </section>
+</CaseLayout>

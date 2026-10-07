@@ -1,0 +1,20 @@
+---
+import PublicationList from "../components/PublicationList.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { linkOf, profile } from "../content";
+
+const scholar = linkOf("scholar");
+---
+
+<BaseLayout title={`Publications · ${profile.displayName}`} description={`Papers, preprints, and software by ${profile.displayName}, with citations.`} current="Publications">
+  <div class="wrap">
+    <header class="case-head">
+      <h1>Publications</h1>
+      <p class="lede">Papers, a preprint, and a software release. My name is in bold, and every entry has a citation you can copy.</p>
+      {scholar && <p class="links"><a href={scholar.href} rel="me noreferrer">Google Scholar profile ↗</a></p>}
+    </header>
+    <div class="prose section">
+      <PublicationList />
+    </div>
+  </div>
+</BaseLayout>

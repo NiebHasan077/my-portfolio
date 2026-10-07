@@ -5,7 +5,7 @@ module.exports = {
       url: [
         "http://localhost/",
         "http://localhost/research/netbench/",
-        "http://localhost/projects/kona-token-trade/",
+        "http://localhost/about/",
         "http://localhost/cv/",
       ],
     },

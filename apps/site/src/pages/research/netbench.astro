@@ -1,79 +1,139 @@
 ---
 import Authors from "../../components/Authors.astro";
 import Flow from "../../components/Flow.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import NetBenchExplorer from "../../components/NetBenchExplorer.astro";
+import CaseLayout from "../../layouts/CaseLayout.astro";
 import { research } from "../../content";
 
 const item = research.find((entry) => entry.id === "netbench");
 if (!item) throw new Error("NetBench content is missing");
 const repo = "https://github.com/NiebHasan077/NetBench";
 const doi = "https://doi.org/10.5281/zenodo.21892017";
+const sections = [
+  { id: "problem", label: "The problem" },
+  { id: "hard", label: "Why it is hard" },
+  { id: "role", label: "My role" },
+  { id: "approach", label: "The approach" },
+  { id: "explore", label: "Explore the benchmark" },
+  { id: "decisions", label: "Decisions" },
+  { id: "evidence", label: "The study" },
+  { id: "next", label: "What's next" },
+  { id: "cite", label: "Links and citation" },
+];
 ---
 
-<BaseLayout title="NetBench: domain adaptation for networking LLMs · Nieb Hasan Neom" description={item.tagline} current="Research" compact>
-  <article class="doc">
-    <p class="crumb"><a href="/#research">← Research</a></p>
-    <header class="doc-head">
-      <h1>{item.title}</h1>
-      <p class="lede">{item.tagline}</p>
-      <dl class="facts">
-        <div><dt>Status</dt><dd class:list={["status", `tone-${item.tone}`]}>{item.status}</dd></div>
-        <div><dt>Authors</dt><dd><Authors authors={["N. H. Neom", "R. M. Swargo", "M. Arifuzzaman"]} /></dd></div>
-        <div><dt>Licence</dt><dd>Code Apache-2.0 · data CC-BY-4.0</dd></div>
-        <div>
-          <dt>Links</dt>
-          <dd class="links"><a href={repo}>Code ↗</a><a href={doi}>Zenodo archive ↗</a><a href={`${repo}/blob/main/BENCHMARK_CARD.md`}>Benchmark card ↗</a></dd>
-        </div>
-      </dl>
-    </header>
+<CaseLayout title="NetBench · Nieb Hasan Neom" description={item.tagline} heading="NetBench" lede={item.tagline} sections={sections}>
+  <dl class="facts" slot="facts">
+    <div><dt>Status</dt><dd class:list={["status", `tone-${item.tone}`]}>{item.status}</dd></div>
+    <div><dt>Authors</dt><dd><Authors authors={["N. H. Neom", "R. M. Swargo", "M. Arifuzzaman"]} /></dd></div>
+    <div><dt>Licence</dt><dd>Code Apache-2.0 · data CC-BY-4.0</dd></div>
+    <div>
+      <dt>Links</dt>
+      <dd class="links"><a href={repo}>Code ↗</a><a href={doi}>Zenodo archive ↗</a></dd>
+    </div>
+  </dl>
 
-    <section>
-      <h2>The question</h2>
-      <p>
-        Teams adapt general language models to specialist fields by fine-tuning them, continuing their pre-training on domain text, or giving them retrieval over a document store. NetBench asks what each of those methods actually changes about what a model knows of high-performance networking: bulk data transfer, congestion control, bottleneck diagnosis, and the parameters that govern them.
-      </p>
-    </section>
+  <section id="problem">
+    <h2>The problem</h2>
+    <p>
+      Teams adapt general language models to a specialist field in three ways: they fine-tune them, continue their pre-training on domain text, or give them retrieval over a document store. NetBench asks what each of those methods actually changes about what a model knows of high-performance networking: bulk data transfer, congestion control, bottleneck diagnosis, and the parameters that govern them.
+    </p>
+  </section>
 
-    <section>
-      <h2>The benchmark</h2>
-      <p>
-        HPN-QA has 242 open-ended questions, 233 of them scored, generated from 175 open-access publications. Each answer is graded against a reference on correctness, completeness, clarity, and conciseness. Every item carries its source evidence with DOI and licence, and a three-model calibration ladder assigns its difficulty.
-      </p>
-    </section>
+  <section id="hard">
+    <h2>Why it is hard</h2>
+    <ul class="bullets">
+      <li>The questions have to come from the research literature and be answerable from it, without leaking into the data the models are trained on.</li>
+      <li>A fair comparison needs every model to answer the same items under the same protocol. Retrieval also sees source passages that closed-book models never do, so its advantage has to be reported separately.</li>
+      <li>LLM judges grade at scale, but their scores mean little until people check them.</li>
+      <li>With a couple of hundred questions, statistical significance is easy to reach. Whether a difference matters has to be decided before anyone looks at the results.</li>
+    </ul>
+  </section>
 
-    <section>
-      <h2>The study</h2>
-      <p>
-        Eight open-weight models from 1B to 27B parameters answer the same items under up to eight adaptation variants: the instruct baseline, LoRA and full supervised fine-tuning, continued pre-training, and retrieval. Three frontier API models answer them too, as baselines. Two independent LLM judges score every answer, and a two-expert human study validates the primary judge. The design and statistical protocol were fixed before any results were analysed.
-      </p>
-      <Flow
-        label="NetBench pipeline"
-        steps={[
-          { title: "Collect papers", text: "Acquire open-access PDFs and remove duplicates." },
-          { title: "Build the corpus", text: "Convert PDFs to cleaned text." },
-          { title: "Generate data", text: "Produce the HPN-QA benchmark and instruction-tuning data." },
-          { title: "Adapt and answer", text: "Fine-tune, pre-train, or add retrieval, then generate answers." },
-          { title: "Judge and analyse", text: "Two LLM judges score; analysis code builds every table and figure." },
-        ]}
-        caption="One data pipeline feeds six self-contained modules. The direct and retrieval variants share judge prompts, rubric, and output schema, so their results compare directly."
-      />
-    </section>
+  <section id="role">
+    <h2>My role</h2>
+    <p>
+      I am the first author of NetBench, with R. M. Swargo and Dr. Md Arifuzzaman. All three of us reviewed every question in the benchmark, and that review removed 9 of the 242.
+    </p>
+  </section>
 
-    <section>
-      <h2>Reproducibility</h2>
-      <p>
-        <code>make reproduce</code> regenerates every CSV, table, and figure behind the paper from the committed judged outputs, and fails if anything comes back different. It runs on every push. Source PDFs, the text corpus, and model weights are not redistributed; the repository records their checksums and explains which steps can be re-run and which cannot.
-      </p>
-    </section>
+  <section id="approach">
+    <h2>The approach</h2>
+    <p>
+      One data pipeline feeds six self-contained modules, from collecting papers to the analysis that produces every table and figure. Local open-weight models write, validate, and calibrate every benchmark item; no paid API generates or filters any of them.
+    </p>
+    <Flow
+      label="NetBench pipeline"
+      steps={[
+        { title: "Collect papers", text: "Acquire open-access PDFs and remove duplicates." },
+        { title: "Build the corpus", text: "Convert PDFs to cleaned text." },
+        { title: "Generate data", text: "Write the HPN-QA benchmark and separate instruction-tuning data." },
+        { title: "Adapt and answer", text: "Fine-tune, pre-train, or add retrieval, then answer every item." },
+        { title: "Judge and analyse", text: "LLM judges score; analysis code builds every table and figure." },
+      ]}
+    />
+    <h3>The benchmark, HPN-QA</h3>
+    <p>
+      HPN-QA has 242 open-ended questions, 233 of them scored, generated from 175 open-access publications. Each answer is graded against a reference on correctness, completeness, clarity, and conciseness. The items fall into 10 categories, deliberately uneven because they follow the literature's own emphasis, and four splits: 200 test, 30 dev, 8 adversarial, and 4 synthesis items that combine two papers.
+    </p>
+  </section>
 
-    <section>
-      <h2>Status</h2>
-      <p>
-        Version 1.1.0 was released on 30 September 2026. The paper describing the study is in preparation, and its results will be linked here once it is public.
-      </p>
-      <p class="cite">
-        Cite as: N. H. Neom, R. M. Swargo, M. Arifuzzaman. <em>NetBench</em>, v1.1.0. Zenodo, 2026. <a href={doi}>doi:10.5281/zenodo.21892017</a>
-      </p>
-    </section>
-  </article>
-</BaseLayout>
+  <section id="explore">
+    <h2>Explore the benchmark</h2>
+    <p>Pick a category, a difficulty, or a question type, and open any reference answer. The items expert review removed can be shown with the reason for each.</p>
+    <NetBenchExplorer />
+  </section>
+
+  <section id="decisions">
+    <h2>Decisions</h2>
+    <ol class="decisions">
+      <li><b>Measure difficulty instead of assigning it.</b> A weak, a mid-sized, and a strong model answer every item, and the label records which of them succeed: 77 easy, 99 medium, and 66 hard. The ladder overrode the generator's own guess on 144 of 242 items.</li>
+      <li><b>Run cheap, auditable checks before any LLM critic.</b> Schema checks, exact quote matching against the source, an 8-gram leak check against the training corpus, and near-duplicate removal carry the load. An LLM critic comes last, and an item gets one rewrite at most.</li>
+      <li><b>Keep closed-book and retrieval results apart.</b> Retrieval sees passages the other variants never do, so a gap between them is an information-access effect, reported in its own table and never as model quality.</li>
+      <li><b>Fix the statistics before reading the results.</b> Paired Wilcoxon tests with Benjamini–Hochberg correction at q = 0.05, plus a rule that a difference counts only if it moves at least 0.25 on the 1–5 scale, has an effect size d_z of at least 0.2, and is significant.</li>
+      <li><b>Ship the excluded items, flagged.</b> The 9 questions expert review removed stay in the release with their reasons, so anyone can audit how 242 became 233.</li>
+    </ol>
+  </section>
+
+  <section id="evidence">
+    <h2>The study</h2>
+    <p>
+      Eight open-weight models from 1B to 27B parameters answer every item in up to eight variants, alongside three frontier API models answering closed-book. Two independent LLM judges score every answer, and a two-expert human study validates the primary judge.
+    </p>
+    <div class="table-box">
+      <table>
+        <thead><tr><th>Group</th><th>Models or variants</th></tr></thead>
+        <tbody>
+          <tr><td>Small</td><td>llama-3.2-1b, gemma-3-1b, qwen3.5-2b</td></tr>
+          <tr><td>Medium</td><td>llama-3.1-8b, qwen3.5-9b, gemma-3-12b</td></tr>
+          <tr><td>Large</td><td>gemma-3-27b, qwen3.5-27b</td></tr>
+          <tr><td>API baselines</td><td>gpt-4o, gemini-2.5-pro, claude-sonnet-4-6</td></tr>
+          <tr><td>Closed-book variants</td><td>Instruct, LoRA SFT, full SFT, CPT plus SFT, LoRA CPT plus SFT</td></tr>
+          <tr><td>Retrieval variants</td><td>Instruct plus RAG, CPT plus SFT plus RAG, LoRA CPT plus SFT plus RAG</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Five research questions frame the study: which adaptation recipe moves networking knowledge, how consistent the effects are across model families and sizes, what retrieval adds compared with changing the weights, how close adapted open models come to frontier APIs and at what inference cost, and how often statistical significance overstates a difference that matters.
+    </p>
+    <p>
+      <code>make reproduce</code> regenerates every CSV, table, and figure behind the paper from the committed judged outputs, and fails if anything comes back different. It runs on every push.
+    </p>
+    <p class="note">The findings are in the paper, which is in preparation. They will appear here once it is public.</p>
+  </section>
+
+  <section id="next">
+    <h2>What's next</h2>
+    <p>
+      The paper comes first. The release is honest about its limits: each run used a single seed, the benchmark itself is model-generated and then expert-reviewed, and the API baselines were not run with retrieval. Source PDFs, the text corpus, and model weights are not redistributed, and the repository explains which steps can be re-run and which cannot.
+    </p>
+  </section>
+
+  <section id="cite">
+    <h2>Links and citation</h2>
+    <p class="links"><a href={repo}>Code on GitHub ↗</a><a href={doi}>Zenodo archive ↗</a><a href={`${repo}/blob/main/BENCHMARK_CARD.md`}>Benchmark card ↗</a></p>
+    <p class="cite-box">
+      N. H. Neom, R. M. Swargo, M. Arifuzzaman. <em>NetBench</em>, v1.1.0. Zenodo, 2026. <a href={doi}>doi:10.5281/zenodo.21892017</a>
+    </p>
+  </section>
+</CaseLayout>

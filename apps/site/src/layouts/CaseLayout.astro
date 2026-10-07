@@ -1,0 +1,46 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+type Props = {
+  title: string;
+  description: string;
+  heading: string;
+  lede: string;
+  /** Section ids and labels, in page order, for the "On this page" rail. */
+  sections: Array<{ id: string; label: string }>;
+  current?: "Work" | "Publications" | "About" | "CV";
+  crumb?: { label: string; href: string };
+};
+
+const { title, description, heading, lede, sections, current = "Work", crumb = { label: "Work", href: "/#work" } } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} current={current} reading>
+  <div class="wrap">
+    <header class="case-head">
+      <p class="crumb"><a href={crumb.href}>← {crumb.label}</a></p>
+      <h1>{heading}</h1>
+      <p class="lede">{lede}</p>
+      <slot name="facts" />
+    </header>
+    <div class="case-body">
+      <div class="prose">
+        <slot />
+      </div>
+      <aside class="toc" aria-label="On this page">
+        <nav>
+          <p>On this page</p>
+          <ol data-toc>
+            {
+              sections.map((section) => (
+                <li>
+                  <a href={`#${section.id}`}>{section.label}</a>
+                </li>
+              ))
+            }
+          </ol>
+        </nav>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

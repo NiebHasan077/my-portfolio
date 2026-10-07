@@ -17,7 +17,7 @@ No server-side runtime, database, analytics product, or runtime secret is requir
 
 ## Release
 
-Push or merge to `main` and Pages deploys it. The build command is the release gate: `pnpm check && pnpm build` runs the claims ledger, TypeScript, content validation, and static-site validation, so an unapproved claim or a broken route fails the build and is never published. Run the deployment smoke checks afterwards and inspect Home, one research page, the Kona page, the CV and its PDF download, one old address such as `/work` redirecting, the 404 route, and the response headers.
+Push or merge to `main` and Pages deploys it. The build command is the release gate: `pnpm check && pnpm build` runs the claims ledger, TypeScript, content validation, and static-site validation, so an unapproved claim or a broken route fails the build and is never published. Run the deployment smoke checks afterwards and inspect Home, About, Publications, one research page with its interactive piece, the CV and the résumé download, one old address such as `/resume.pdf` redirecting, the 404 route, and the response headers.
 
 ## Rollback
 

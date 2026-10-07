@@ -1,0 +1,191 @@
+---
+import RatingChart from "../components/RatingChart.astro";
+import codeforces from "../data/codeforces.json";
+import leetcode from "../data/leetcode.json";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { highlights, profile, skillGroups, testimonials } from "../content";
+
+const honors = highlights.filter((item) => item.category === "honor");
+const service = highlights.filter((item) => item.category === "service");
+const certifications = highlights.filter((item) => item.category === "certification");
+const sections = [
+  { id: "story", label: "Story" },
+  { id: "path", label: "Path" },
+  { id: "colleagues", label: "What colleagues say" },
+  { id: "problem-solving", label: "Problem solving" },
+  { id: "community", label: "Teaching and community" },
+  { id: "skills", label: "Skills" },
+  { id: "honors", label: "Honors and certificates" },
+  { id: "outside", label: "Outside the lab" },
+];
+---
+
+<BaseLayout title={`About · ${profile.displayName}`} description={`The story behind ${profile.displayName}'s move from backend engineering to AI systems research.`} current="About" reading>
+  <div class="wrap">
+    <header class="case-head">
+      <h1>About</h1>
+      <p class="lede">{profile.bio[0]}</p>
+    </header>
+    <div class="case-body">
+      <div class="prose">
+        <section id="story">
+          <h2>Story</h2>
+          <p>
+            I studied Computer Science and Engineering at KUET in Bangladesh. Competitive programming taught me to think in algorithms, and undergraduate research led to my first two papers: a review of fall-detection systems built on smartphone sensors, and a hybrid Bangla sign-language recognizer from my thesis.
+          </p>
+          <p>
+            In 2022 I joined Kona Software Lab as a Graduate Engineer on the P2P cryptocurrency trading platform that became Kona Token Trade. Later I was sent to Kona I in Seoul to learn its card personalization system and bring it to Bangladesh. That meant reading specifications, learning how an unfamiliar system worked, connecting the dots across personalization devices and concepts, and setting it all up until a card came out personalized end to end. It felt like research.
+          </p>
+          <p>
+            As language models and automation take over routine engineering, I want to be a domain expert, not a generalist. That is why I started a PhD at Missouri S&amp;T in 2025. In the Computer Systems &amp; Networking Lab with Dr. Md Arifuzzaman, I build AI systems for high-performance networking and scientific workflows, and I care most about keeping models inside the limits of the systems they act on.
+          </p>
+        </section>
+
+        <section id="path">
+          <h2>Path</h2>
+          <ol class="path">
+            <li>
+              <p class="date">2025 – now</p>
+              <div>
+                <h3>PhD student and Graduate Research Assistant</h3>
+                <p class="org">Missouri University of Science and Technology · Kummer Innovation and Entrepreneurship Doctoral Fellow</p>
+                <ul class="bullets">
+                  <li>First-author paper accepted at WORKS26, held with SC26; co-author of a short paper at IEEE eScience 2026.</li>
+                  <li>Released NetBench, an open benchmark and study of domain adaptation for networking LLMs.</li>
+                  <li>Building an agentic optimizer for bulk data transfers, evaluated on the CloudLab, FABRIC, and TACC/ACCESS testbeds.</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <p class="date">2022 – 2025</p>
+              <div>
+                <h3>Graduate Engineer to Software Engineer II</h3>
+                <p class="org">Kona Software Lab, Dhaka · promoted in 2024</p>
+                <ul class="bullets">
+                  <li>Backend for the P2P trading platform that became <a href="/projects/kona-token-trade/">Kona Token Trade</a>: owned 6 of 30 microservices and moved them onto Kafka.</li>
+                  <li>Trained at Kona I in Seoul, then set up the <a href="/projects/card-personalization/">Card Personalization System</a> in Bangladesh; in 2025, worked on Card Personalization with Instant Issuance.</li>
+                  <li>Ran learning sessions for new joiners, mentored two junior engineers, and helped organize the 2023 Kona coding contest.</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <p class="date">2017 – 2022</p>
+              <div>
+                <h3>BSc in Computer Science and Engineering</h3>
+                <p class="org">Khulna University of Engineering &amp; Technology · KUET Technical Scholarship</p>
+                <ul class="bullets">
+                  <li>Thesis on Bangla sign-language recognition: I designed the background-elimination step, using adaptive Gaussian thresholding and morphological noise removal.</li>
+                  <li>Competitive programmer, workshop organizer, and math-club officer.</li>
+                </ul>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section id="colleagues">
+          <h2>What colleagues say</h2>
+          <div class="quotes">
+            {
+              testimonials.map((t) => (
+                <blockquote class="quote">
+                  <p>“{t.quote}”</p>
+                  <footer>
+                    {t.name}, {t.role}, who {t.relation}
+                  </footer>
+                </blockquote>
+              ))
+            }
+          </div>
+          <p class="caption">From recommendations on LinkedIn.</p>
+        </section>
+
+        <section id="problem-solving">
+          <h2>Problem solving</h2>
+          <div class="stats">
+            <div class="stat"><b>1,100+</b><span>problems solved across judges</span></div>
+            <div class="stat"><b>1629</b><span>peak Codeforces rating, Expert</span></div>
+            <div class="stat"><b>Knight</b><span>on LeetCode, peak 1895</span></div>
+            <div class="stat"><b>Top 6.05%</b><span>LeetCode global ranking, October 2026</span></div>
+          </div>
+          <h3>Codeforces rating</h3>
+          <RatingChart
+            title="Codeforces rating history"
+            points={codeforces.points}
+            yMin={800}
+            yMax={1800}
+            yTicks={[1000, 1200, 1400, 1600]}
+            bands={[
+              { from: 800, to: 1200, fill: "#cfcfcf", label: "Newbie", ink: "#5f5f5f" },
+              { from: 1200, to: 1400, fill: "#b7e3b7", label: "Pupil", ink: "#2c6e2c" },
+              { from: 1400, to: 1600, fill: "#b5e6e2", label: "Specialist", ink: "#1b6f69" },
+              { from: 1600, to: 1800, fill: "#c4cff3", label: "Expert", ink: "#2f4fb0" },
+            ]}
+          />
+          <h3>LeetCode contest rating</h3>
+          <RatingChart title="LeetCode contest rating history" points={leetcode.points} yMin={1500} yMax={1950} yTicks={[1600, 1700, 1800, 1900]} />
+          <p class="caption">
+            Hover, tap, or use the arrow keys on a chart to read each contest. {leetcode.solved} LeetCode problems, 550+ on Codeforces, 140+ on UVa, and CodeChef 4-star with a peak of 1819. Data from public profiles, fetched 6 October 2026: <a href="https://codeforces.com/profile/Nieb_Hasan_077">Codeforces</a>, <a href="https://leetcode.com/u/Nieb_Hasan_077/">LeetCode</a>.
+          </p>
+        </section>
+
+        <section id="community">
+          <h2>Teaching and community</h2>
+          <ul class="bullets">
+            {service.map((item) => <li>{item.title}{item.detail && <span class="muted">, {item.detail}</span>}</li>)}
+            <li>Learning sessions on backend development for new joiners at Kona Software Lab</li>
+          </ul>
+        </section>
+
+        <section id="skills">
+          <h2>Skills</h2>
+          <dl class="skills">
+            {
+              skillGroups.map((group) => (
+                <div>
+                  <dt>{group.title}</dt>
+                  <dd>{group.items.join(", ")}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </section>
+
+        <section id="honors">
+          <h2>Honors and certificates</h2>
+          <div class="columns">
+            <div>
+              <h3>Honors</h3>
+              <ul class="plain-list">
+                {honors.map((item) => <li>{item.href ? <a href={item.href}>{item.title}</a> : item.title}{item.detail && <span class="detail">, {item.detail}</span>}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h3>Coursera certificates</h3>
+              <ul class="plain-list">
+                {certifications.map((item) => <li>{item.title}<span class="detail">, {item.detail?.replace("Coursera, ", "")}</span></li>)}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="outside">
+          <h2>Outside the lab</h2>
+          <p>A few recent trips.</p>
+          <div class="gallery">
+            <img src="/img/travel-bridge.jpg" width="720" height="900" alt="Nieb standing in front of a red suspension bridge over a bay" loading="lazy" decoding="async" />
+            <img src="/img/travel-sequoia.jpg" width="720" height="900" alt="Nieb leaning on a fence in front of a giant sequoia" loading="lazy" decoding="async" />
+            <img src="/img/travel-overlook.jpg" width="720" height="900" alt="Nieb smiling at an overlook above a river valley in autumn" loading="lazy" decoding="async" />
+          </div>
+        </section>
+      </div>
+      <aside class="toc" aria-label="On this page">
+        <nav>
+          <p>On this page</p>
+          <ol data-toc>
+            {sections.map((s) => <li><a href={`#${s.id}`}>{s.label}</a></li>)}
+          </ol>
+        </nav>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

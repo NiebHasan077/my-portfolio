@@ -247,7 +247,7 @@
     "publicSafe": false,
     "approved": false,
     "lastVerified": "2026-10-05",
-    "notes": "Exclusion record. Never reference it from a published record, and do not add a Kona performance figure to any file in this repository."
+    "notes": "Exclusion record for website pages. Never reference it from a published record or add a Kona performance figure to page content. The owner chose on 2026-10-07 to keep it in the downloadable résumé PDF only."
   },
   {
     "id": "research-guarded-orchestration-backend",
@@ -447,5 +447,210 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-10-05"
+  },
+  {
+    "id": "identity-motivation",
+    "statement": "Nieb Hasan Neom moved from backend engineering to research because undergraduate research had already led to two papers, because studying card-personalization specifications, systems, and devices at Kona felt like research, and because LLMs and automation make deep domain expertise more valuable than general software engineering.",
+    "evidence": "owner's own account, 2026-10-07; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "research-guarded-orchestration-workflow",
+    "statement": "The guarded orchestration workflow collects inputs across turns, passes a guard that translates and rechecks them, executes the backend once, narrates the returned result, and handles steering. The language model collects inputs, narrates, and interprets intent, while the service enforces the guard, execution, and stored state; corrections and what-if changes keep every other field, and a new sample clears the state.",
+    "evidence": "accepted WORKS26 paper (owner-provided camera-ready); redrawn for the site, not copied; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07",
+    "notes": "Show only the redrawn workflow and an adapted conversation until the proceedings are public. No figures, dataset, latency, or model provider."
+  },
+  {
+    "id": "research-guarded-orchestration-schema",
+    "statement": "The protein-corona application takes ten descriptors: base material, surface modification, TEM size, zeta potential, protein source, plasma concentration, nanoparticle concentration, and centrifugation speed, time, and temperature.",
+    "evidence": "https://github.com/arif-zaman/pCorona-Orchestration; accepted WORKS26 paper; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "research-guarded-orchestration-repo",
+    "statement": "The source code for the guarded orchestration work is public at github.com/arif-zaman/pCorona-Orchestration.",
+    "evidence": "https://github.com/arif-zaman/pCorona-Orchestration; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "research-optimizer-local-models",
+    "statement": "The Agentic Data Transfer Optimizer is designed around small local models that can run on CPU, so it needs no external API, and it avoids tool-calling agents because they require large models.",
+    "evidence": "owner research notes; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "research-optimizer-numeric-guard",
+    "statement": "The optimizer gives the model telemetry that is already computed, so the model never does arithmetic, and keeps the previous decision whenever the model's output is invalid.",
+    "evidence": "owner research notes; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "research-optimizer-eval-plan",
+    "statement": "The optimizer's planned evaluation covers concurrent transfers, a transfer that joins an existing fixed-concurrency transfer, I/O congestion, and packet loss on intermediate nodes.",
+    "evidence": "owner research notes; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07",
+    "notes": "A plan, not a result."
+  },
+  {
+    "id": "experience-kona-p2p-origin",
+    "statement": "Nieb Hasan Neom started at Kona Software Lab in 2022 as a Graduate Engineer on the P2P cryptocurrency trading platform, which later became Kona Token Trade.",
+    "evidence": "LinkedIn recommendation by Kazi Ziaul Hassan, 2025-04-13, visible to all LinkedIn members; LinkedIn export; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "experience-kona-fresher",
+    "statement": "Nieb Hasan Neom joined Kona Software Lab as a new graduate and worked across the full development cycle on the trade, wallet, user, and fee-management systems of Kona Token Trade.",
+    "evidence": "LinkedIn export, July 2026; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "experience-kona-learning-sessions",
+    "statement": "Nieb Hasan Neom ran learning sessions on backend development for new joiners at Kona Software Lab and helped organize the Kona coding contest in 2023.",
+    "evidence": "owner academic résumé; LinkedIn export; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "experience-kona-stack",
+    "statement": "Nieb Hasan Neom's Kona work used Java 8, Spring Boot 2, PostgreSQL, and MongoDB.",
+    "evidence": "owner academic résumé; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "experience-kona-card-bootstrap",
+    "statement": "Kona I ran its Card Personalization System at its head office in South Korea. To bring the business to Bangladesh, Nieb Hasan Neom studied the card-personalization specifications, learned how the Korean system worked, set the whole system up in the Bangladesh office, and completed an end-to-end card personalization.",
+    "evidence": "owner's own account, 2026-10-07; LinkedIn export; owner academic résumé; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "experience-kona-instant-issuance",
+    "statement": "In 2025 Nieb Hasan Neom worked on Kona's Card Personalization with Instant Issuance project.",
+    "evidence": "LinkedIn recommendation by Kazi Ziaul Hassan, 2025-04-13; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "testimonial-saiful-islam",
+    "statement": "Md Saiful Islam, Director of Engineering, who managed Nieb Hasan Neom directly on the P2P and Card Personalization projects, wrote that he is one of the most dedicated and detail-oriented professionals I've worked with.",
+    "evidence": "LinkedIn recommendation, 2025-07-15, visible to all LinkedIn members; owner approved quoting on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "testimonial-shahriar-mamun",
+    "statement": "Shahriar Mamun, Senior Director at Kona Software Lab, wrote that he found Nieb Hasan Neom extremely talented, motivated, active, and composed.",
+    "evidence": "LinkedIn recommendation, 2024-04-27, visible to all LinkedIn members; owner approved quoting on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "research-bsl-method",
+    "statement": "The thesis's background-elimination method used adaptive Gaussian thresholding, followed by morphological operations to remove noise.",
+    "evidence": "owner academic résumé; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "achievement-problem-solving-totals",
+    "statement": "Nieb Hasan Neom has solved more than 1,100 programming problems, including 550+ on Codeforces, 218 on LeetCode, and 140+ on UVa, and reached CodeChef 4-star with a peak rating of 1819.",
+    "evidence": "owner résumés; LeetCode profile, 2026-10-06; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "achievement-codeforces-history",
+    "statement": "Nieb Hasan Neom took part in 147 rated Codeforces contests from September 2017 to January 2023, peaking at 1629 (Expert); the latest rating is 1415.",
+    "evidence": "https://codeforces.com/api/user.rating?handle=Nieb_Hasan_077, fetched 2026-10-06",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "achievement-leetcode-current",
+    "statement": "Nieb Hasan Neom took part in 22 rated LeetCode contests from July 2021 to March 2023, peaking at 1895; the current rating is 1861 (Knight), in the top 6.05% of 886,096 ranked users, with 218 problems solved.",
+    "evidence": "https://leetcode.com/u/Nieb_Hasan_077/ and its public API, fetched 2026-10-06",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07",
+    "notes": "Snapshot. The percentage moves over time; refresh it with the date."
+  },
+  {
+    "id": "achievement-intra-kuet",
+    "statement": "Nieb Hasan Neom was the best performer of the 2016 batch in the 2020 Intra-KUET Programming Contest (11th of 90), placed 10th of 73 teams in 2019, and was first runner-up in the KUET Math Club math quiz in 2018.",
+    "evidence": "owner résumés; LinkedIn export; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "certifications-coursera",
+    "statement": "Nieb Hasan Neom holds four Coursera certificates from 2020: Version Control with Git (September), Neural Networks and Deep Learning (October), Improving Deep Neural Networks (November), and Structuring Machine Learning Projects (December).",
+    "evidence": "LinkedIn Licenses & certifications; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "leadership-dates",
+    "statement": "Nieb Hasan Neom was an executive member of SGIPC at KUET from 2018 to 2022, Assistant Organizing Secretary of the KUET Math Club from February 2020 to March 2022, and an executive committee member of the Organization of KUET Sports from October 2020 to March 2022.",
+    "evidence": "owner academic résumé; LinkedIn volunteering; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "project-loadlens-features",
+    "statement": "LoadLens builds a start-of-semester course draft, combines fixed events with flexible work in a weekly capacity plan, shows the schedule as calendar blocks or a workload heatmap, and offers LoadLens Coach for natural-language changes that need Apply, can be undone in one step, and fall back to a deterministic local scheduler when the model is unavailable.",
+    "evidence": "https://github.com/NiebHasan077/LoadLens README; public prototype screenshots, 2026-10-06; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07"
+  },
+  {
+    "id": "project-netbench-design",
+    "statement": "NetBench asks five research questions about adaptation mechanism, heterogeneity across models, retrieval versus parametric adaptation, the gap to frontier APIs and its cost, and measurement rigor. It compares up to eight variants per model (instruct, LoRA SFT, full SFT, CPT plus SFT, LoRA CPT plus SFT, and three retrieval variants) and fixes its statistics in advance: paired Wilcoxon tests, Benjamini–Hochberg correction at q = 0.05, and a practical-significance rule requiring a change of at least 0.25 on the 1–5 scale, an effect size d_z of at least 0.2, and significance. The benchmark has splits of 200 test, 30 dev, 8 adversarial, and 4 synthesis items; difficulty of 77 easy, 99 medium, and 66 hard set by a three-model calibration ladder that overrode the generator's label on 144 of 242 items; and 10 categories. All three authors reviewed every question, which removed 9. The models are llama-3.2-1b, gemma-3-1b, qwen3.5-2b, llama-3.1-8b, qwen3.5-9b, gemma-3-12b, gemma-3-27b, and qwen3.5-27b, with gpt-4o, gemini-2.5-pro, and claude-sonnet-4-6 as API baselines.",
+    "evidence": "https://github.com/NiebHasan077/NetBench BENCHMARK_CARD.md and docs/STUDY_DESIGN.md; owner approved on 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07",
+    "notes": "Design only. Findings wait for the paper."
+  },
+  {
+    "id": "resume-pdf-owner-version",
+    "statement": "The downloadable résumé is the owner's research résumé with the phone number removed, published at the owner's request.",
+    "evidence": "owner decision, 2026-10-07",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-07",
+    "notes": "The owner chose to publish GPA, citation counts, and the Kona caching figure in this file only. Website pages still omit them."
   }
 ]

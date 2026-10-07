@@ -1,0 +1,204 @@
+---
+/* An illustrative conversation that follows the paper's protocol with changed
+   values. It shows workflow behavior only: no prediction is ever displayed. */
+const fields = [
+  ["material", "Base material"],
+  ["surface", "Surface modification"],
+  ["size", "TEM size (nm)"],
+  ["zeta", "Zeta potential (mV)"],
+  ["source", "Protein source"],
+  ["plasma", "Plasma concentration (v/v%)"],
+  ["np", "NP concentration (mg/L)"],
+  ["speed", "Centrifugation speed (g)"],
+  ["time", "Centrifugation time (min)"],
+  ["temp", "Centrifugation temperature (°C)"],
+] as const;
+
+type Step = {
+  user: string;
+  agent: string;
+  set?: Record<string, string>;
+  reset?: boolean;
+  run?: boolean;
+  kind: string;
+};
+
+const steps: Step[] = [
+  {
+    kind: "Collect",
+    user: "40 nm silica nanoparticles with an NH₂ surface and +12 mV zeta potential, in 50% fetal bovine serum at 200 mg/L.",
+    set: { material: "SiO₂", surface: "NH₂", size: "40", zeta: "+12", source: "FBS", plasma: "50", np: "200" },
+    agent: "I still need the centrifugation speed, time, and temperature before I can run the model.",
+  },
+  {
+    kind: "Guard and execute",
+    user: "15,000 g for 20 minutes at 4 °C.",
+    set: { speed: "15000", time: "20", temp: "4" },
+    run: true,
+    agent: "All ten inputs passed the check. The model ran once, and I'll walk you through what it returned.",
+  },
+  {
+    kind: "What-if",
+    user: "What if the surface were PEG instead?",
+    set: { surface: "PEG" },
+    run: true,
+    agent: "Ran again with a PEG surface. The other nine inputs are unchanged.",
+  },
+  {
+    kind: "Correction",
+    user: "Sorry, the zeta potential was +8 mV.",
+    set: { zeta: "+8" },
+    run: true,
+    agent: "Corrected the zeta potential to +8 mV and ran again with everything else unchanged.",
+  },
+  {
+    kind: "Reset",
+    user: "New sample: 100 nm polystyrene with a COOH surface.",
+    reset: true,
+    set: { material: "PS", surface: "COOH", size: "100" },
+    agent: "Started a new sample. Nothing carries over from the last one, so I need the other seven inputs before anything runs.",
+  },
+];
+
+// Precompute the state after each step for the static version.
+let current: Record<string, string> = {};
+const states = steps.map((step) => {
+  if (step.reset) current = {};
+  current = { ...current, ...step.set };
+  const filled = Object.keys(current).length;
+  return { filled, gate: step.run && filled === fields.length ? "runs" : `blocked, ${fields.length - filled} missing` };
+});
+---
+
+<figure class="panel" data-illustrative data-replay data-steps={JSON.stringify(steps)} data-fields={JSON.stringify(fields)} aria-label="Illustrative conversation with the guarded workflow">
+  <div class="panel-bar">
+    <h3>A conversation with the workflow</h3>
+    <p class="kicker">Illustrative values · predictions not shown</p>
+  </div>
+  <div class="panel-body">
+    <ol class="list-rows" data-static>
+      {
+        steps.map((step, i) => (
+          <li>
+            <p class="kicker">
+              {i + 1} · {step.kind}
+            </p>
+            <p>
+              <strong>Scientist:</strong> {step.user}
+            </p>
+            <p>
+              <strong>Workflow:</strong> {step.agent}
+            </p>
+            <p class="muted">
+              {states[i]!.filled} of {fields.length} inputs held · backend {states[i]!.gate}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="replay live" data-live hidden>
+      <div class="chat" data-chat aria-live="polite" aria-label="Conversation"></div>
+      <div class="state">
+        <h4>Workflow state</h4>
+        <div class="slots" data-slots></div>
+        <h4>Backend</h4>
+        <p class="gate blocked" data-gate>Blocked: inputs incomplete</p>
+      </div>
+    </div>
+    <div class="controls" data-controls hidden>
+      <button class="button solid small" type="button" data-play>Play</button>
+      <button class="button small" type="button" data-next>Next step</button>
+      <button class="button small" type="button" data-restart>Restart</button>
+      <span class="step-count" data-count></span>
+    </div>
+  </div>
+</figure>
+
+<script>
+  type Step = { user: string; agent: string; set?: Record<string, string>; reset?: boolean; run?: boolean; kind: string };
+  const root = document.querySelector<HTMLElement>("[data-replay]");
+  if (root) {
+    const steps = JSON.parse(root.dataset.steps ?? "[]") as Step[];
+    const fields = JSON.parse(root.dataset.fields ?? "[]") as Array<[string, string]>;
+    const chat = root.querySelector<HTMLElement>("[data-chat]")!;
+    const slots = root.querySelector<HTMLElement>("[data-slots]")!;
+    const gate = root.querySelector<HTMLElement>("[data-gate]")!;
+    const play = root.querySelector<HTMLButtonElement>("[data-play]")!;
+    const next = root.querySelector<HTMLButtonElement>("[data-next]")!;
+    const count = root.querySelector<HTMLElement>("[data-count]")!;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let index = 0;
+    let timer: number | undefined;
+    let state: Record<string, string> = {};
+
+    const el = (tag: string, className: string, text: string) => {
+      const node = document.createElement(tag);
+      node.className = className;
+      node.textContent = text;
+      return node;
+    };
+    const drawSlots = (changed: string[] = []) => {
+      slots.replaceChildren(
+        ...fields.map(([key, label]) => {
+          const row = el("div", "slot", "");
+          if (state[key]) row.classList.add("filled");
+          if (changed.includes(key)) row.classList.add("changed");
+          row.append(el("span", "", label), el("span", "value", state[key] ?? "missing"));
+          return row;
+        }),
+      );
+    };
+    const setGate = (running: boolean) => {
+      const missing = fields.filter(([key]) => !state[key]).length;
+      gate.className = `gate ${running ? "running" : "blocked"}`;
+      gate.textContent = running ? "Guard passed: the model runs once" : `Blocked: ${missing} input${missing === 1 ? "" : "s"} missing`;
+    };
+    const pause = () => {
+      window.clearInterval(timer);
+      timer = undefined;
+      play.textContent = "Play";
+    };
+    const restart = () => {
+      pause();
+      index = 0;
+      state = {};
+      chat.replaceChildren(el("p", "msg system", "A scientist describes an experiment"));
+      drawSlots();
+      setGate(false);
+      play.disabled = next.disabled = false;
+      count.textContent = `0 / ${steps.length}`;
+    };
+    const step = () => {
+      const s = steps[index];
+      if (!s) return pause();
+      index += 1;
+      if (s.reset) state = {};
+      state = { ...state, ...s.set };
+      chat.append(el("p", "msg system", s.kind), el("p", "msg user", s.user), el("p", "msg agent", s.agent));
+      chat.scrollTop = chat.scrollHeight;
+      drawSlots(Object.keys(s.set ?? {}));
+      setGate(Boolean(s.run) && fields.every(([key]) => state[key]));
+      count.textContent = `${index} / ${steps.length}`;
+      if (index >= steps.length) {
+        pause();
+        play.disabled = next.disabled = true;
+      }
+    };
+
+    root.querySelector("[data-static]")!.setAttribute("hidden", "");
+    root.querySelector("[data-live]")!.removeAttribute("hidden");
+    root.querySelector("[data-controls]")!.removeAttribute("hidden");
+    play.addEventListener("click", () => {
+      if (timer) return pause();
+      play.textContent = "Pause";
+      step();
+      timer = window.setInterval(step, reduce ? 4500 : 2600);
+    });
+    next.addEventListener("click", () => {
+      pause();
+      step();
+    });
+    root.querySelector("[data-restart]")!.addEventListener("click", restart);
+    restart();
+  }
+</script>

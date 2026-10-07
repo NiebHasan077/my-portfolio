@@ -1,0 +1,36 @@
+---
+/* Reading progress and the "On this page" highlight. Both are enhancements: the
+   page reads the same without them. */
+---
+
+<script>
+  const bar = document.querySelector<HTMLElement>("[data-progress]");
+  const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-toc] a")];
+  const targets = links.map((link) => document.getElementById(link.hash.slice(1)));
+
+  const update = () => {
+    const root = document.documentElement;
+    const max = root.scrollHeight - root.clientHeight;
+    bar?.style.setProperty("transform", `scaleX(${max > 0 ? root.scrollTop / max : 0})`);
+    let current = -1;
+    targets.forEach((target, index) => {
+      if (target && target.getBoundingClientRect().top < window.innerHeight * 0.3) current = index;
+    });
+    links.forEach((link, index) => link.setAttribute("aria-current", String(index === current)));
+  };
+
+  let queued = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        update();
+      });
+    },
+    { passive: true },
+  );
+  update();
+</script>

@@ -1,0 +1,200 @@
+---
+import data from "../data/hpn-qa-v5.json";
+
+/** id, question, answer, category, difficulty, type, split, exclusion reason. */
+type Item = { id: string; q: string; a: string; c: string; d: string; t: string; s: string; x: string | null };
+const items = data as Item[];
+const scored = items.filter((item) => !item.x);
+const categories = Object.entries(
+  items.reduce<Record<string, number>>((counts, item) => {
+    counts[item.c] = (counts[item.c] ?? 0) + 1;
+    return counts;
+  }, {}),
+).sort((a, b) => b[1] - a[1]);
+const largest = categories[0]![1];
+const difficulties = ["easy", "medium", "hard"] as const;
+const types = [...new Set(items.map((item) => item.t))].sort();
+
+// Six readable examples from the test split, one per large category, cycling difficulty.
+const samples = categories.slice(0, 6).flatMap(([category], i) => {
+  const want = difficulties[i % 3];
+  const pool = scored.filter((item) => item.s === "test" && item.c === category && item.q.length <= 230);
+  return pool.find((item) => item.d === want) ?? pool[0] ?? [];
+});
+const label = (word: string) => word[0]!.toUpperCase() + word.slice(1);
+---
+
+<figure class="panel" data-dataset data-explorer aria-label="HPN-QA question explorer">
+  <div class="panel-bar">
+    <h3>Explore HPN-QA</h3>
+    <p class="nb-count" data-count aria-live="polite">
+      {items.length} questions · {scored.length} scored · {items.length - scored.length} excluded by expert review
+    </p>
+  </div>
+  <div class="panel-body">
+    <div class="nb-cats" data-cats role="group" aria-label="Questions per category">
+      {
+        categories.map(([category, count]) => (
+          <button class="nb-cat" type="button" data-category={category} aria-pressed="false" disabled>
+            <span class="label">{category}</span>
+            <svg class="bar" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+              <rect class="track" width="100" height="10" rx="2" />
+              <rect class="fill" width={((count / largest) * 100).toFixed(1)} height="10" rx="2" />
+            </svg>
+            <span class="count">{count}</span>
+          </button>
+        ))
+      }
+    </div>
+    <div class="nb-filters" data-controls hidden>
+      <div class="chips" role="group" aria-label="Filter by difficulty">
+        <button class="chip" type="button" data-difficulty="all" aria-pressed="true">All levels</button>
+        {
+          difficulties.map((d) => (
+            <button class="chip" type="button" data-difficulty={d} aria-pressed="false">
+              {label(d)}
+            </button>
+          ))
+        }
+      </div>
+      <label for="nb-type">
+        Type
+        <select id="nb-type" data-type>
+          <option value="all">All types</option>
+          {types.map((t) => <option value={t}>{label(t)}</option>)}
+        </select>
+      </label>
+      <label for="nb-excluded"><input type="checkbox" id="nb-excluded" data-excluded /> Show the excluded items</label>
+    </div>
+    <p class="muted" data-static-note>Six sample questions from the test split. With JavaScript on, every question can be filtered and read.</p>
+    <ol class="nb-list" data-list>
+      {
+        samples.map((item) => (
+          <li class="nb-item">
+            <p class="nb-meta">
+              <span>{item.id}</span>
+              <span class={item.d}>{item.d}</span>
+              <span>{item.t}</span>
+              <span>{item.c}</span>
+            </p>
+            <p class="nb-q">{item.q}</p>
+            <details>
+              <summary>Reference answer</summary>
+              <p>{item.a}</p>
+            </details>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="controls">
+      <button class="button small" type="button" data-more hidden>Show more</button>
+    </div>
+    <p class="caption">
+      Difficulty is measured, not authored: a three-model calibration ladder answered every item. Reference answers are model-written and were reviewed by all three authors. Source quotes are left out because they belong to the cited papers. Data: HPN-QA v5.0, <a href="https://github.com/NiebHasan077/NetBench">NetBench</a>, CC-BY-4.0.
+    </p>
+  </div>
+</figure>
+
+<script>
+  type Item = { id: string; q: string; a: string; c: string; d: string; t: string; s: string; x: string | null };
+  const root = document.querySelector<HTMLElement>("[data-explorer]");
+  if (root) {
+    const list = root.querySelector<HTMLOListElement>("[data-list]")!;
+    const count = root.querySelector<HTMLElement>("[data-count]")!;
+    const more = root.querySelector<HTMLButtonElement>("[data-more]")!;
+    const cats = [...root.querySelectorAll<HTMLButtonElement>("[data-category]")];
+    const chips = [...root.querySelectorAll<HTMLButtonElement>("[data-difficulty]")];
+    const type = root.querySelector<HTMLSelectElement>("[data-type]")!;
+    const excluded = root.querySelector<HTMLInputElement>("[data-excluded]")!;
+    const state = { category: "", difficulty: "all", type: "all", excluded: false, shown: 6 };
+    let items: Item[] = [];
+
+    const el = (tag: string, className?: string, text?: string) => {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    };
+
+    const render = () => {
+      const matches = items.filter(
+        (item) =>
+          (state.excluded || !item.x) &&
+          (!state.category || item.c === state.category) &&
+          (state.difficulty === "all" || item.d === state.difficulty) &&
+          (state.type === "all" || item.t === state.type),
+      );
+      const scored = items.filter((item) => !item.x).length;
+      count.textContent = `${matches.length} matching · ${scored} scored · ${items.length - scored} excluded by expert review`;
+      cats.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.category === state.category)));
+      chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.difficulty === state.difficulty)));
+      list.replaceChildren(
+        ...matches.slice(0, state.shown).map((item) => {
+          const li = el("li", "nb-item" + (item.x ? " excluded" : ""));
+          const meta = el("p", "nb-meta");
+          meta.append(el("span", "", item.id), el("span", item.d, item.d), el("span", "", item.t), el("span", "", item.c));
+          const details = el("details");
+          details.append(el("summary", "", "Reference answer"), el("p", "", item.a));
+          li.append(meta, el("p", "nb-q", item.q), details);
+          if (item.x) li.append(el("p", "nb-x", `Excluded by expert review: ${item.x}`));
+          return li;
+        }),
+      );
+      if (!matches.length) list.append(el("li", "nb-item", "No questions match these filters. Clear one to see more."));
+      more.hidden = matches.length <= state.shown;
+    };
+
+    const start = async () => {
+      try {
+        const response = await fetch("/data/hpn-qa-v5.json");
+        if (!response.ok) return;
+        items = (await response.json()) as Item[];
+      } catch {
+        return;
+      }
+      root.querySelector("[data-controls]")!.removeAttribute("hidden");
+      root.querySelector("[data-static-note]")!.setAttribute("hidden", "");
+      cats.forEach((b) => (b.disabled = false));
+      const reset = () => {
+        state.shown = 6;
+        render();
+      };
+      cats.forEach((b) =>
+        b.addEventListener("click", () => {
+          state.category = state.category === b.dataset.category ? "" : (b.dataset.category ?? "");
+          reset();
+        }),
+      );
+      chips.forEach((c) =>
+        c.addEventListener("click", () => {
+          state.difficulty = c.dataset.difficulty ?? "all";
+          reset();
+        }),
+      );
+      type.addEventListener("change", () => {
+        state.type = type.value;
+        reset();
+      });
+      excluded.addEventListener("change", () => {
+        state.excluded = excluded.checked;
+        reset();
+      });
+      more.addEventListener("click", () => {
+        state.shown += 6;
+        render();
+      });
+      render();
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          observer.disconnect();
+          void start();
+        }
+      },
+      { rootMargin: "400px" },
+    );
+    observer.observe(root);
+  }
+</script>

@@ -25,6 +25,7 @@ const records = [
   ...(await load<RecordWithClaims[]>("publications.json")),
   ...(await load<RecordWithClaims[]>("highlights.json")),
   ...(await load<RecordWithClaims[]>("skills.json")),
+  ...(await load<RecordWithClaims[]>("testimonials.json")),
 ];
 
 const links =

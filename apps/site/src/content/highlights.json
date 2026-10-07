@@ -34,6 +34,21 @@
     "claimIds": ["education-kuet-scholarship"]
   },
   {
+    "id": "intra-kuet-contests",
+    "publish": true,
+    "category": "honor",
+    "title": "Best performer of the 2016 batch, Intra-KUET Programming Contest 2020",
+    "detail": "11th of 90; 10th of 73 teams in 2019",
+    "claimIds": ["achievement-intra-kuet"]
+  },
+  {
+    "id": "kuet-math-quiz",
+    "publish": true,
+    "category": "honor",
+    "title": "First runner-up, KUET Math Club math quiz 2018",
+    "claimIds": ["achievement-intra-kuet"]
+  },
+  {
     "id": "sc26-student-volunteer",
     "publish": true,
     "category": "service",
@@ -71,5 +86,37 @@
     "title": "Captain, CSE cricket team",
     "detail": "and organizer of university sports events",
     "claimIds": ["leadership-sports"]
+  },
+  {
+    "id": "cert-git",
+    "publish": true,
+    "category": "certification",
+    "title": "Version Control with Git",
+    "detail": "Coursera, September 2020",
+    "claimIds": ["certifications-coursera"]
+  },
+  {
+    "id": "cert-nn",
+    "publish": true,
+    "category": "certification",
+    "title": "Neural Networks and Deep Learning",
+    "detail": "Coursera, October 2020",
+    "claimIds": ["certifications-coursera"]
+  },
+  {
+    "id": "cert-improving",
+    "publish": true,
+    "category": "certification",
+    "title": "Improving Deep Neural Networks",
+    "detail": "Coursera, November 2020",
+    "claimIds": ["certifications-coursera"]
+  },
+  {
+    "id": "cert-structuring",
+    "publish": true,
+    "category": "certification",
+    "title": "Structuring Machine Learning Projects",
+    "detail": "Coursera, December 2020",
+    "claimIds": ["certifications-coursera"]
   }
 ]

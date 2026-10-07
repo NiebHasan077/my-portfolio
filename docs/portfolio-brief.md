@@ -20,12 +20,13 @@ Public role line: PhD student in Computer Science, Missouri S&T. The home page o
 
 ## Site scope
 
-- A home page with bio, news, research, publications, experience and education, skills, honors, and service, beside a masthead with photo, role, availability, navigation, and contact links.
-- Research pages: NetBench (`/research/netbench/`), guarded orchestration (`/research/guarded-orchestration/`), and the Agentic Data Transfer Optimizer (`/research/agentic-data-transfer-optimizer/`).
-- One industry page, Kona Token Trade (`/projects/kona-token-trade/`), and the CV (`/cv/`) with a one-page PDF.
-- Bangla sign language recognition appears as a publication with a note on the owner's thesis contribution; its case page was retired.
-- Direct email, LinkedIn, GitHub, Google Scholar, and CV links.
-- No general blog, contact form, database, cookies, third-party analytics, or interactive experiment.
+- A curated home page: hero with the thesis line, a "now" row, six work cards, recent news, and selected publications. Menu: Work · Publications · About · CV.
+- About: story, path, colleague quotes, problem-solving charts, teaching and community, skills, honors and certificates, and travel photos.
+- Publications: every paper, the preprint, and the NetBench release, with filters and BibTeX.
+- Case studies with a shared arc (problem, why it is hard, role, approach, decisions, evidence, next): NetBench, guarded orchestration, and the Agentic Data Transfer Optimizer under `/research/`; Kona Token Trade, Card Personalization, and LoadLens under `/projects/`.
+- The CV page, which prints to one page, and the owner's research résumé as the downloadable PDF.
+- A Notes section for technical writing is planned after the case studies.
+- No contact form, database, cookies, third-party analytics, outside services, or interactive experiment that simulates a transfer or runs a model. Interactive pieces explain recorded behavior or let visitors browse published data.
 - Static Cloudflare Pages hosting on a free subdomain.
 
 ## Approved identity and contact

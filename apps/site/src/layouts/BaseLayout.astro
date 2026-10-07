@@ -4,28 +4,29 @@ import "@fontsource/source-sans-3/latin-400-italic.css";
 import "@fontsource/source-sans-3/latin-600.css";
 import "@fontsource/source-serif-4/latin-600.css";
 import "../styles/global.css";
+import ReadingAids from "../components/ReadingAids.astro";
 import { linkOf, links, profile } from "../content";
 
 type Props = {
   title: string;
   description: string;
-  /** Which nav entry this page belongs to. */
-  current?: "Research" | "Publications" | "Experience" | "CV";
-  /** Home page: the masthead name is the page's h1. */
+  /** Which menu entry this page belongs to. */
+  current?: "Work" | "Publications" | "About" | "CV";
+  /** Home page: the hero carries the name, so the header shows only the menu. */
   home?: boolean;
-  /** Detail pages: on phones, show only the name and the navigation. */
-  compact?: boolean;
+  /** Long pages: a reading-progress bar and an "On this page" rail. */
+  reading?: boolean;
   /** Structured data for search engines, serialized as JSON-LD. */
   jsonLd?: Record<string, unknown>;
 };
 
-const { title, description, current, home = false, compact = false, jsonLd } = Astro.props;
+const { title, description, current, home = false, reading = false, jsonLd } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL("/og.jpg", Astro.site);
 const nav = [
-  ["Research", "/#research"],
-  ["Publications", "/#publications"],
-  ["Experience", "/#experience"],
+  ["Work", "/#work"],
+  ["Publications", "/publications/"],
+  ["About", "/about/"],
   ["CV", "/cv/"],
 ] as const;
 const email = linkOf("email");
@@ -56,38 +57,18 @@ const external = (href: string) => href.startsWith("https://");
     <title>{title}</title>
     {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
-  <body class:list={{ compact }}>
+  <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <div class="frame">
-      <header class="masthead">
-        {
-          profile.photo && (
-            <img class="portrait" src={profile.photo} width="480" height="480" alt="" decoding="async" fetchpriority={home ? "high" : "auto"} />
-          )
-        }
-        <div>
-          {
-            home ? (
-              <h1 class="name">{profile.displayName}</h1>
-            ) : (
-              <p class="name">
-                <a href="/">{profile.displayName}</a>
-              </p>
-            )
-          }
-          <p class="role">
-            {profile.role}<br />{profile.affiliationShort}
-          </p>
-        </div>
-        <div class="masthead-extra">
-          <p class="availability">{profile.availability}</p>
-        </div>
+    {reading && <div class="progress" data-progress aria-hidden="true"></div>}
+    <header class:list={["site-header", { home }]}>
+      <div class="wrap">
+        {!home && <a class="wordmark" href="/">{profile.displayName}</a>}
         <nav class="site-nav" aria-label="Main">
           <ul>
             {
               nav.map(([label, href]) => (
                 <li>
-                  <a href={href} aria-current={current === label && label === "CV" ? "page" : undefined}>
+                  <a href={href} aria-current={current === label && label !== "Work" ? "page" : undefined}>
                     {label}
                   </a>
                 </li>
@@ -95,30 +76,33 @@ const external = (href: string) => href.startsWith("https://");
             }
           </ul>
         </nav>
-        <ul class="contact-links masthead-extra" aria-label="Contact and profiles">
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>
+          {profile.displayName} · {profile.broadLocation}
+          {email && <> · <a href={email.href}>{email.href.replace("mailto:", "")}</a></>}
+          <br />Updated October 2026
+        </p>
+        <ul aria-label="Profiles and résumé">
           {
-            links.map((link) => (
-              <li>
-                <a href={link.href} rel={external(link.href) ? "me noreferrer" : undefined}>
-                  {link.kind === "email" ? "Email" : link.label}
-                </a>
-              </li>
-            ))
+            links
+              .filter((link) => link.kind !== "email")
+              .map((link) => (
+                <li>
+                  <a href={link.href} rel={external(link.href) ? "me noreferrer" : undefined}>
+                    {link.label}
+                  </a>
+                </li>
+              ))
           }
         </ul>
-      </header>
-      <main id="main">
-        <div class="content">
-          <slot />
-        </div>
-        <footer class="site-footer">
-          <p>
-            {profile.displayName} · {profile.broadLocation}
-            {email && <> · <a href={email.href}>{email.href.replace("mailto:", "")}</a></>}
-          </p>
-          <p>Updated October 2026</p>
-        </footer>
-      </main>
-    </div>
+      </div>
+    </footer>
+    {reading && <ReadingAids />}
   </body>
 </html>

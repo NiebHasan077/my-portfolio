@@ -1,5 +1,10 @@
 ---
-type Step = { title: string; text: string };
+type Step = {
+  title: string;
+  text: string;
+  /** Who performs the step, when the diagram distinguishes them. */
+  role?: "model" | "service";
+};
 type Props = {
   /** Names the diagram for screen readers. */
   label: string;
@@ -7,22 +12,40 @@ type Props = {
   /** Describes the edge from the last step back to the first, for loops. */
   loop?: string;
   caption?: string;
+  /** Show a legend for the two roles. */
+  legend?: boolean;
 };
 
-const { label, steps, loop, caption } = Astro.props;
+const { label, steps, loop, caption, legend = false } = Astro.props;
+const roleName = { model: "Language model", service: "Service" };
 ---
 
 <figure class:list={["flow", `steps-${steps.length}`]} aria-label={label}>
   <ol>
     {
       steps.map((step) => (
-        <li>
+        <li class:list={{ "role-service": step.role === "service" }}>
           <strong>{step.title}</strong>
           <span>{step.text}</span>
+          {step.role && <span class="who">{roleName[step.role]}</span>}
         </li>
       ))
     }
   </ol>
   {loop && <p class="loop">↻ {loop}</p>}
+  {
+    legend && (
+      <p class="legend">
+        <span>
+          <i aria-hidden="true" />
+          Language model interprets
+        </span>
+        <span>
+          <i class="service" aria-hidden="true" />
+          Service enforces
+        </span>
+      </p>
+    )
+  }
   {caption && <figcaption>{caption}</figcaption>}
 </figure>

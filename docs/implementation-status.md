@@ -2,13 +2,15 @@
 
 ## Implemented locally
 
-- Static Astro portfolio redesigned on 2026-10-05: one home page (bio, news, research, publications, experience, skills, honors, service), detail pages for NetBench, guarded orchestration, the Agentic Data Transfer Optimizer, and Kona Token Trade, a CV page, and a 404. Old `/work`, `/experience`, `/about`, and `/resume` addresses redirect through `public/_redirects`.
-- One light theme with self-hosted Source Serif 4 and Source Sans 3. Navigation stays visible at every width, and the site ships no JavaScript.
-- Content security policy and security headers in `public/_headers`; styles stay external so the policy forbids inline styles and all scripts.
-- Typed public content for identity, news, three research records, two projects, five publications with author lists, the NetBench software release, experience, education, five skill groups, honors, and service.
+- Static Astro portfolio, enhanced on 2026-10-07: a curated home page (hero, now row, six work cards, recent news, selected publications), About (story, path, colleague quotes, problem-solving charts, teaching, skills, honors and certificates, photos), Publications (filters and BibTeX), six case studies (NetBench, guarded orchestration, the Agentic Data Transfer Optimizer, Kona Token Trade, Card Personalization, LoadLens), the CV, and a 404. Retired addresses redirect through `public/_redirects`.
+- Menu: Work · Publications · About · CV, visible at every width. One light theme with self-hosted Source Serif 4 and Source Sans 3.
+- Interactive pieces, each with a complete static fallback: the NetBench question explorer (HPN-QA served from `/data/hpn-qa-v5.json`), the guarded-orchestration replay, the Kafka before-and-after animation, publication filters and copy-to-clipboard citations, Codeforces and LeetCode rating charts, and a reading-progress bar with an "On this page" rail.
+- Scripts are bundled modules under `/_astro/`; the content security policy in `public/_headers` allows scripts and data requests from the site's own origin only, and forbids inline scripts and styles. The validator caps compressed script at 30 KB per page.
+- Every figure shown on a page must appear in an approved claim; the static validator fails the build otherwise. Dataset samples, illustrations, SVG drawings, and citation blocks are exempt.
+- Typed public content for identity, news, three research records, three projects, five publications with author lists, the NetBench software release, experience, education, five skill groups, honors, certificates, service, and two testimonials, plus snapshots of Codeforces and LeetCode history in `apps/site/src/data/`.
 - Research-track identity published from the ledger: Kummer Innovation and Entrepreneurship Doctoral Fellow, the Computer Systems & Networking Lab and advisor, an anticipated May 2030 graduation, and the accepted WORKS26 and IEEE eScience 2026 papers.
 - Claims-ledger validation that fails closed when a published record references an unapproved or non-public-safe claim.
-- Web CV and a one-page downloadable PDF generated from its print stylesheet.
+- Web CV that prints to one page, and the owner's research résumé as the downloadable PDF (`/Nieb_Hasan_Neom_Resume.pdf`, phone number removed; `/resume.pdf` redirects to it).
 - CI for formatting, type/content checks, tests, build validation, browser checks, Lighthouse, dependency review, and weekly report-only audits.
 - Pages-only Cloudflare deployment and rollback documentation plus sanitized Slack notification support.
 
@@ -39,9 +41,10 @@ The application domain itself is now covered by the approved `research-guarded-o
 
 ## Claims intentionally withheld
 
-- Kona Token Trade performance metrics.
+- Kona Token Trade performance metrics on website pages. The owner chose to keep the caching figure, GPA, and citation counts in the downloadable résumé PDF.
 - Comparative results, model superiority, or optimization effectiveness for the Agentic Data Transfer Optimizer until reproducible public-safe evidence is supplied and approved.
-- NetBench results. The site publishes the benchmark's scale and method, which the public repository documents, and links the results once the paper is public.
+- NetBench results. The site publishes the benchmark's scale, design, and questions, which the public repository documents, and adds findings once the paper is public.
+- WORKS26 specifics until the proceedings are public on 15 November 2026: the page shows only a redrawn workflow and an illustrative conversation with changed values and no predictions.
 - Collaborator-side and backend evaluation figures behind the accepted orchestration paper.
 - Private addresses, phone numbers, test scores, and any unapproved extracurricular detail.
 

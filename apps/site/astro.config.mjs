@@ -7,4 +7,6 @@ export default defineConfig({
   // Stylesheets stay external so the content security policy in public/_headers
   // can forbid inline styles.
   build: { inlineStylesheets: "never" },
+  // Likewise for scripts: Vite would otherwise inline small bundles into the page.
+  vite: { build: { assetsInlineLimit: 0 } },
 });

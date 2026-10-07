@@ -1,0 +1,134 @@
+---
+/* The same trade sent through both designs while a downstream service is down.
+   A simplified illustration, not Kona's production topology. */
+const steps = [
+  { before: [150, "", "A downstream service goes down.", "down"], after: [150, "", "The same outage happens here.", "down"] },
+  { before: [462, "", "The trade service calls it directly and waits for a reply.", "down"], after: [270, "", "The trade service publishes an event to a Kafka topic and moves on.", "down"] },
+  { before: [462, "fail", "No reply arrives, so the in-flight transaction fails.", "down"], after: [320, "", "The event waits in the topic.", "down"] },
+  { before: [462, "fail", "The user has to try again.", "up"], after: [320, "", "The downstream service comes back.", "up"] },
+  { before: [462, "fail", "Recovery comes too late for this trade.", "up"], after: [495, "done", "It reads the waiting event, and the trade completes.", "up"] },
+] as const;
+---
+
+<figure class="panel" data-kafka data-steps={JSON.stringify(steps)} aria-label="Synchronous calls compared with Kafka messaging during an outage">
+  <div class="panel-bar">
+    <h3>The same trade, two designs</h3>
+    <p class="kicker">Simplified illustration</p>
+  </div>
+  <div class="panel-body">
+    <div class="lanes" data-live hidden>
+      <div class="lane">
+        <h4>Before <span>synchronous REST</span></h4>
+        <div class="svg-box">
+          <svg viewBox="0 0 640 96" role="img" aria-label="Before: the trade service calls the downstream service directly">
+            <path class="k-wire" d="M150 48 H470"></path>
+            <g class="k-node"><rect x="20" y="20" width="130" height="56" rx="10"></rect><text x="40" y="45">Trade service</text><text class="sub" x="40" y="62">starts a trade</text></g>
+            <g class="k-node" data-node="before"><rect x="470" y="20" width="150" height="56" rx="10"></rect><text x="490" y="45">Downstream</text><text class="sub" x="490" y="62" data-sub="before">service</text></g>
+            <circle class="k-token" data-token="before" cx="150" cy="48" r="8"></circle>
+          </svg>
+        </div>
+        <p class="say" data-say="before">Press Play to send the same trade through both designs.</p>
+      </div>
+      <div class="lane">
+        <h4>After <span>Kafka messaging</span></h4>
+        <div class="svg-box">
+          <svg viewBox="0 0 640 96" role="img" aria-label="After: the trade service publishes to a Kafka topic and the downstream service consumes it">
+            <path class="k-wire" d="M150 48 H245 M395 48 H470"></path>
+            <g class="k-node"><rect x="20" y="20" width="130" height="56" rx="10"></rect><text x="40" y="45">Trade service</text><text class="sub" x="40" y="62">publishes an event</text></g>
+            <g class="k-node queue"><rect x="245" y="20" width="150" height="56" rx="10"></rect><text x="268" y="45">Kafka topic</text><text class="sub" x="268" y="62">keeps the event</text></g>
+            <g class="k-node" data-node="after"><rect x="470" y="20" width="150" height="56" rx="10"></rect><text x="490" y="45">Downstream</text><text class="sub" x="490" y="62" data-sub="after">service</text></g>
+            <circle class="k-token" data-token="after" cx="150" cy="48" r="8"></circle>
+          </svg>
+        </div>
+        <p class="say" data-say="after"></p>
+      </div>
+    </div>
+    <ol class="k-steps" data-static>
+      {
+        steps.map((s) => (
+          <li>
+            <span>
+              <strong>Before:</strong> {s.before[2]}
+            </span>
+            <span>
+              <strong>After:</strong> {s.after[2]}
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="controls" data-controls hidden>
+      <button class="button solid small" type="button" data-play>Play</button>
+      <button class="button small" type="button" data-next>Next step</button>
+      <button class="button small" type="button" data-restart>Restart</button>
+      <span class="step-count" data-count></span>
+    </div>
+  </div>
+</figure>
+
+<script>
+  type Lane = readonly [number, string, string, string];
+  const root = document.querySelector<HTMLElement>("[data-kafka]");
+  if (root) {
+    const steps = JSON.parse(root.dataset.steps ?? "[]") as Array<{ before: Lane; after: Lane }>;
+    const play = root.querySelector<HTMLButtonElement>("[data-play]")!;
+    const next = root.querySelector<HTMLButtonElement>("[data-next]")!;
+    const count = root.querySelector<HTMLElement>("[data-count]")!;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let index = -1;
+    let timer: number | undefined;
+
+    const draw = (lane: "before" | "after", values?: Lane) => {
+      const token = root.querySelector(`[data-token="${lane}"]`)!;
+      const node = root.querySelector(`[data-node="${lane}"]`)!;
+      const sub = root.querySelector(`[data-sub="${lane}"]`)!;
+      const say = root.querySelector(`[data-say="${lane}"]`)!;
+      token.setAttribute("cx", String(values ? values[0] : 150));
+      token.setAttribute("class", `k-token ${values?.[1] ?? ""}`);
+      node.setAttribute("class", `k-node ${values?.[3] ?? ""}`);
+      sub.textContent = values ? (values[3] === "down" ? "unavailable" : "available") : "service";
+      say.textContent = values ? values[2] : lane === "before" ? "Press Play to send the same trade through both designs." : "";
+    };
+    const render = () => {
+      const s = steps[index];
+      draw("before", s?.before);
+      draw("after", s?.after);
+      count.textContent = `${index + 1} / ${steps.length}`;
+    };
+    const pause = () => {
+      window.clearInterval(timer);
+      timer = undefined;
+      play.textContent = "Play";
+    };
+    const step = () => {
+      if (index >= steps.length - 1) return pause();
+      index += 1;
+      render();
+      if (index >= steps.length - 1) {
+        pause();
+        play.disabled = next.disabled = true;
+      }
+    };
+
+    root.querySelector("[data-static]")!.setAttribute("hidden", "");
+    root.querySelector("[data-live]")!.removeAttribute("hidden");
+    root.querySelector("[data-controls]")!.removeAttribute("hidden");
+    play.addEventListener("click", () => {
+      if (timer) return pause();
+      play.textContent = "Pause";
+      step();
+      timer = window.setInterval(step, reduce ? 4000 : 1900);
+    });
+    next.addEventListener("click", () => {
+      pause();
+      step();
+    });
+    root.querySelector("[data-restart]")!.addEventListener("click", () => {
+      pause();
+      index = -1;
+      play.disabled = next.disabled = false;
+      render();
+    });
+    render();
+  }
+</script>

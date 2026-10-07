@@ -1,80 +1,71 @@
 ---
-import Flow from "../../components/Flow.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import KafkaCompare from "../../components/KafkaCompare.astro";
+import CaseLayout from "../../layouts/CaseLayout.astro";
 import { projects } from "../../content";
 
 const item = projects.find((entry) => entry.id === "kona-token-trade");
 if (!item) throw new Error("Kona Token Trade content is missing");
+const sections = [
+  { id: "problem", label: "The platform" },
+  { id: "role", label: "My role" },
+  { id: "kafka", label: "From calls to Kafka" },
+  { id: "security", label: "Security and payments" },
+  { id: "team", label: "Beyond the code" },
+];
 ---
 
-<BaseLayout title="Kona Token Trade · Nieb Hasan Neom" description={item.summary} current="Experience" compact>
-  <article class="doc">
-    <p class="crumb"><a href="/#experience">← Experience</a></p>
-    <header class="doc-head">
-      <h1>{item.title}</h1>
-      <p class="lede">Backend services for a blockchain-based token-trading platform, built at Kona Software Lab.</p>
-      <dl class="facts">
-        <div><dt>Role</dt><dd>Software Engineer II, backend</dd></div>
-        <div><dt>When</dt><dd>2022 – 2025</dd></div>
-        <div><dt>Built with</dt><dd>{item.stack.join(", ")}</dd></div>
-      </dl>
-    </header>
+<CaseLayout
+  title="Kona Token Trade · Nieb Hasan Neom"
+  description={item.summary}
+  heading="Kona Token Trade"
+  lede="Backend services for a blockchain-based token-trading platform at Kona Software Lab, from its start as a P2P trading platform."
+  sections={sections}
+>
+  <dl class="facts" slot="facts">
+    <div><dt>Role</dt><dd>Graduate Engineer, then Software Engineer II</dd></div>
+    <div><dt>When</dt><dd>2022 – 2025</dd></div>
+    <div><dt>Built with</dt><dd>Java 8, Spring Boot 2, Apache Kafka, PostgreSQL, MongoDB, AWS S3, SNS, EC2</dd></div>
+  </dl>
 
-    <section>
-      <h2>What I owned</h2>
-      <p>
-        The platform ran on 30 Spring Boot microservices. I owned 6 of them and contributed to 15, across trade, wallet, user, payment, and fee management.
-      </p>
-    </section>
+  <section id="problem">
+    <h2>The platform</h2>
+    <p>
+      I joined Kona Software Lab in 2022 as a Graduate Engineer, straight after graduation, on a P2P cryptocurrency trading platform. It grew into Kona Token Trade, a blockchain-based token-trading platform running on 30 Spring Boot microservices for trading, wallets, users, payments, and fees.
+    </p>
+    <p>A trade touches several of those services, so a slow or failing service anywhere in the chain can put a transaction in progress at risk.</p>
+  </section>
 
-    <section>
-      <h2>From synchronous calls to Kafka</h2>
-      <p>
-        Services called each other over synchronous REST. If one downstream service was unavailable, a transaction already in progress could fail with it. I replaced those calls with Kafka messaging, so a service that is briefly down catches up when it returns instead of failing the trade.
-      </p>
-      <div class="compare">
-        <div>
-          <h3>Before</h3>
-          <Flow
-            label="Before: synchronous REST"
-            steps={[
-              { title: "Trade request", text: "A user starts a transaction." },
-              { title: "Synchronous REST call", text: "The service waits on a downstream service." },
-              { title: "Downstream unavailable", text: "The in-flight transaction fails." },
-            ]}
-          />
-        </div>
-        <div>
-          <h3>After</h3>
-          <Flow
-            label="After: Kafka messaging"
-            steps={[
-              { title: "Trade request", text: "A user starts a transaction." },
-              { title: "Event on Kafka", text: "The service publishes and moves on." },
-              { title: "Downstream consumes", text: "The service processes the event when it is available." },
-            ]}
-          />
-        </div>
-      </div>
-      <p class="cite">A simplified illustration of the change, not the production topology.</p>
-    </section>
+  <section id="role">
+    <h2>My role</h2>
+    <p>
+      I owned 6 of the 30 services and contributed to 15, working across the full development cycle on the trade, wallet, user, and fee-management systems. I was promoted to Software Engineer II in 2024.
+    </p>
+  </section>
 
-    <section>
-      <h2>Security and payments</h2>
-      <p>
-        I added two-factor authentication to asset buy and sell operations and integrated bank-account and Kona card payment gateways. I also added caching to reduce response latency, and built backend services against AWS S3, SNS, and EC2.
-      </p>
-    </section>
+  <section id="kafka">
+    <h2>From synchronous calls to Kafka</h2>
+    <p>
+      Services called each other over synchronous REST. A service would call the next one and wait for the reply, so if that downstream service was unavailable, a transaction already in progress could fail with it.
+    </p>
+    <p>
+      I replaced those calls with Kafka messaging. A service now publishes an event and moves on, and the downstream service processes the event when it is available. Kafka keeps the event until it is read, so a service that is restarting or briefly down delays its part of the work instead of failing the whole trade.
+    </p>
+    <KafkaCompare />
+  </section>
 
-    <section>
-      <h2>Also at Kona</h2>
-      <ul class="bullets">
-        <li>
-          Built the Card Personalization System in Java and Apache Struts against GlobalPlatform, Visa, Mastercard, and EMV specifications. It is in commercial use, and I was chosen for a 14-day training program on it at parent company Kona I in Seoul.
-        </li>
-        <li>Mentored and onboarded two junior engineers.</li>
-        <li>Joined as a Graduate Engineer and was promoted in 2024.</li>
-      </ul>
-    </section>
-  </article>
-</BaseLayout>
+  <section id="security">
+    <h2>Security and payments</h2>
+    <p>
+      I added two-factor authentication to buy and sell operations, integrated bank-account and Kona card payment gateways, and added caching to reduce response latency. The services were built against AWS S3, SNS, and EC2.
+    </p>
+  </section>
+
+  <section id="team">
+    <h2>Beyond the code</h2>
+    <ul class="bullets">
+      <li>Ran learning sessions on backend development for new joiners, and mentored and onboarded two junior engineers.</li>
+      <li>Helped organize the 2023 Kona coding contest, where my team placed first runner-up of 20.</li>
+      <li>Moved on to the <a href="/projects/card-personalization/">Card Personalization System</a>, bringing Kona I's system from Seoul to Bangladesh.</li>
+    </ul>
+  </section>
+</CaseLayout>

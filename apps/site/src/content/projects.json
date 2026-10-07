@@ -15,7 +15,23 @@
       "experience-kona-mentoring",
       "experience-kona-payments",
       "experience-kona-card-personalization",
-      "experience-kona-promotion"
+      "experience-kona-promotion",
+      "experience-kona-p2p-origin",
+      "experience-kona-fresher"
+    ]
+  },
+  {
+    "id": "card-personalization",
+    "publish": true,
+    "title": "Card Personalization System",
+    "summary": "Brought Kona I's smart-card personalization system from its head office in South Korea to Bangladesh: studied the specifications, learned the running system, set it up in the Bangladesh office, and personalized cards end to end.",
+    "stack": ["Java", "Apache Struts", "EMV", "GlobalPlatform"],
+    "href": "/projects/card-personalization/",
+    "links": [],
+    "claimIds": [
+      "experience-kona-card-personalization",
+      "experience-kona-card-bootstrap",
+      "experience-kona-instant-issuance"
     ]
   },
   {
@@ -24,8 +40,17 @@
     "title": "LoadLens",
     "summary": "A student workload planner that checks whether a week of classes, deadlines, and commitments actually fits. Language models propose schedule changes; deterministic code checks every one before it applies.",
     "stack": ["TypeScript", "Cloudflare"],
-    "href": "https://github.com/NiebHasan077/LoadLens",
-    "links": [],
-    "claimIds": ["project-loadlens"]
+    "href": "/projects/loadlens/",
+    "links": [
+      {
+        "label": "Code",
+        "href": "https://github.com/NiebHasan077/LoadLens"
+      },
+      {
+        "label": "Live prototype",
+        "href": "https://loadlens-student-planner.niebhasanneom0.chatgpt.site/"
+      }
+    ],
+    "claimIds": ["project-loadlens", "project-loadlens-features"]
   }
 ]

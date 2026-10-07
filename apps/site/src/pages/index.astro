@@ -1,32 +1,21 @@
 ---
 import Authors from "../components/Authors.astro";
+import WorkCard from "../components/WorkCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import {
-  education,
-  experience,
-  highlights,
-  linkOf,
-  monthYear,
-  news,
-  profile,
-  projects,
-  publications,
-  research,
-  skillGroups,
-} from "../content";
+import { linkOf, monthYear, news, profile, publications } from "../content";
 
 const site = Astro.site!;
-const external = (href: string) => href.startsWith("https://");
-const sideProjects = projects.filter((project) => project.id !== "kona-token-trade");
-const honors = highlights.filter((item) => item.category === "honor");
-const service = highlights.filter((item) => item.category === "service");
-const statusLabel = { accepted: "Accepted", published: "Published", preprint: "Preprint" };
+const resume = linkOf("resume");
+const email = linkOf("email");
+const scholar = linkOf("scholar");
+const github = linkOf("github");
 const sameAs = (["github", "linkedin", "scholar"] as const).flatMap((kind) => linkOf(kind)?.href ?? []);
+const selected = publications.filter((p) => p.status !== "preprint").slice(0, 3);
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  dateModified: "2026-10-05",
+  dateModified: "2026-10-07",
   mainEntity: {
     "@type": "Person",
     name: profile.displayName,
@@ -35,7 +24,7 @@ const jsonLd = {
     jobTitle: profile.role,
     affiliation: { "@type": "CollegeOrUniversity", name: profile.affiliation },
     alumniOf: { "@type": "CollegeOrUniversity", name: "Khulna University of Engineering & Technology" },
-    email: linkOf("email")?.href,
+    email: email?.href,
     sameAs,
     knowsAbout: ["High-performance networking", "Distributed systems", "Agentic AI systems", "Large language models"],
   },
@@ -43,200 +32,131 @@ const jsonLd = {
 ---
 
 <BaseLayout title={`${profile.displayName} · ${profile.role}, ${profile.affiliationShort}`} description={profile.description} home jsonLd={jsonLd}>
-  <section class="bio" aria-label="About">
-    {profile.bio.map((paragraph) => <p>{paragraph}</p>)}
-  </section>
+  <div class="wrap">
+    <section class="hero" aria-label="Introduction">
+      {profile.photo && <img src={profile.photo} width="480" height="480" alt={`Portrait of ${profile.displayName}`} fetchpriority="high" />}
+      <div>
+        <h1>{profile.displayName}</h1>
+        <p class="lede">I build AI systems for high-performance networking where the model proposes and the system decides.</p>
+        <p class="role">{profile.role}, {profile.affiliationShort} · Kummer Doctoral Fellow</p>
+        <div class="actions">
+          {resume && <a class="button solid" href={resume.href}>Résumé (PDF)</a>}
+          {email && <a class="button" href={email.href}>Email</a>}
+          {scholar && <a class="button" href={scholar.href} rel="me noreferrer">Google Scholar</a>}
+          {github && <a class="button" href={github.href} rel="me noreferrer">GitHub</a>}
+        </div>
+      </div>
+    </section>
 
-  <section class="section" id="news" aria-labelledby="news-heading">
-    <h2 id="news-heading">News</h2>
-    <ul class="news">
-      {
-        news.map((item) => (
-          <li>
-            <time class="date" datetime={item.date}>
-              {monthYear(item.date)}
-            </time>
-            <p>
-              {item.text}
-              {item.href && (
-                <>
-                  {" "}
-                  <a href={item.href}>{item.linkLabel}</a>
-                </>
-              )}
-            </p>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+    <div class="now" aria-label="Now">
+      <div><span class="kicker">Next</span>WORKS26 at SC26 in Chicago, 15 November 2026</div>
+      <div><span class="kicker">Released</span>NetBench v1.1.0, with a DOI on Zenodo</div>
+      <div><span class="kicker">Seeking</span>{profile.availability.replace(/^Seeking /, "").replace(/^./, (c) => c.toUpperCase())}</div>
+    </div>
 
-  <section class="section" id="research" aria-labelledby="research-heading">
-    <h2 id="research-heading">Research</h2>
-    <div class="entries">
-      {
-        research.map((item) => (
-          <article class="entry">
-            <h3>
-              <a href={item.href}>{item.title}</a>
-            </h3>
-            <p class:list={["status", `tone-${item.tone}`]}>{item.status}</p>
-            <p>{item.summary}</p>
-            <ul class="stack" aria-label="Built with">
-              {item.stack.map((tool) => (
-                <li>{tool}</li>
-              ))}
-            </ul>
-            <p class="links">
-              <a href={item.href} aria-label={`Details: ${item.title}`}>
-                Details
-              </a>
-              {item.links.map((link) => (
-                <a href={link.href} aria-label={`${link.label}: ${item.title}`}>
-                  {link.label} ↗
+    <section class="section" id="work" aria-labelledby="work-heading">
+      <div class="section-head">
+        <h2 id="work-heading">Selected work</h2>
+        <a href="/about/">More about me →</a>
+      </div>
+      <p class="group-label">Research</p>
+      <div class="cards">
+        <WorkCard
+          href="/research/netbench/"
+          visual="netbench"
+          tone="released"
+          kicker="Released · v1.1.0"
+          title="NetBench"
+          text="A 242-question benchmark from 175 papers, and a controlled study of what fine-tuning, continued pre-training, and retrieval teach a language model about networking."
+        />
+        <WorkCard
+          href="/research/guarded-orchestration/"
+          visual="guarded"
+          tone="accepted"
+          kicker="Accepted · WORKS26 at SC26"
+          title="Guarded orchestration"
+          text="LLM function calling with workflow state, so scientists can run trained models in plain language and nothing runs until the inputs are complete."
+        />
+        <WorkCard
+          href="/research/agentic-data-transfer-optimizer/"
+          visual="optimizer"
+          tone="progress"
+          kicker="In progress"
+          title="Agentic Data Transfer Optimizer"
+          text="Two agents tune bulk-transfer concurrency from live TCP telemetry, while hard limits keep every action in bounds."
+        />
+      </div>
+      <p class="group-label">Engineering</p>
+      <div class="cards">
+        <WorkCard
+          href="/projects/kona-token-trade/"
+          visual="kona"
+          kicker="Industry · 2022–2025"
+          title="Kona Token Trade"
+          text="Owned 6 of the platform's 30 Spring Boot microservices and moved inter-service calls onto Kafka, so one unavailable service could no longer fail a trade."
+        />
+        <WorkCard
+          href="/projects/card-personalization/"
+          visual="card"
+          kicker="Industry · Seoul to Dhaka"
+          title="Card Personalization System"
+          text="Learned Kona I's smart-card personalization system in Seoul and set it up end to end in Bangladesh."
+        />
+        <WorkCard
+          href="/projects/loadlens/"
+          visual="loadlens"
+          kicker="Side project"
+          title="LoadLens"
+          text="A student workload planner where language models propose schedule changes and deterministic code checks every one."
+        />
+      </div>
+    </section>
+
+    <div class="split section">
+      <section aria-labelledby="news-heading">
+        <div class="section-head">
+          <h2 id="news-heading">Recent</h2>
+        </div>
+        <ul class="list-rows">
+          {
+            news.slice(0, 4).map((item) => (
+              <li>
+                <time class="date" datetime={item.date}>
+                  {monthYear(item.date)}
+                </time>
+                {item.text}
+                {item.href && (
+                  <>
+                    {" "}
+                    <a href={item.href}>{item.linkLabel}</a>
+                  </>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+      <section aria-labelledby="pubs-heading">
+        <div class="section-head">
+          <h2 id="pubs-heading">Selected publications</h2>
+          <a href="/publications/">All publications →</a>
+        </div>
+        <ul class="list-rows">
+          {
+            selected.map((p) => (
+              <li>
+                <a class="pub-title" href={`/publications/#${p.id}`}>
+                  {p.title}
                 </a>
-              ))}
-            </p>
-          </article>
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="section" id="publications" aria-labelledby="publications-heading">
-    <h2 id="publications-heading">Publications</h2>
-    <ol class="pubs">
-      {
-        publications.map((item) => (
-          <li>
-            <p class="pub-title">{item.title}</p>
-            <Authors authors={item.authors} />
-            <p class="venue">
-              {item.venue}, {item.year} · {statusLabel[item.status]}
-            </p>
-            {item.note && <p class="pub-note">{item.note}</p>}
-            {item.links.length > 0 && (
-              <p class="links">
-                {item.links.map((link) => (
-                  <a href={link.href} aria-label={`${link.label}: ${item.title}`}>
-                    {link.label}
-                    {external(link.href) && " ↗"}
-                  </a>
-                ))}
-              </p>
-            )}
-          </li>
-        ))
-      }
-    </ol>
-    <p class="software">
-      <strong>Software.</strong> N. H. Neom, R. M. Swargo, M. Arifuzzaman. <em>NetBench</em>, v1.1.0. Zenodo, 2026.{" "}
-      <a href="https://doi.org/10.5281/zenodo.21892017">doi:10.5281/zenodo.21892017</a>
-    </p>
-  </section>
-
-  <section class="section" id="experience" aria-labelledby="experience-heading">
-    <h2 id="experience-heading">Experience</h2>
-    <ol class="timeline">
-      {
-        experience.map((item) => (
-          <li>
-            <p class="date">
-              {item.start} – {item.end}
-            </p>
-            <div>
-              <h3>{item.role}</h3>
-              <p class="org">
-                {item.organization} · {item.location}
-              </p>
-              <p class="summary">{item.summary}</p>
-              {item.bullets.length > 0 && (
-                <ul class="bullets">
-                  {item.bullets.map((bullet) => (
-                    <li>{bullet}</li>
-                  ))}
-                </ul>
-              )}
-              {item.href && (
-                <p class="links">
-                  <a href={item.href}>{item.hrefLabel}</a>
+                <Authors authors={p.authors} />
+                <p class="venue">
+                  {p.venue}, {p.year}
                 </p>
-              )}
-            </div>
-          </li>
-        ))
-      }
-    </ol>
-
-    <h3 class="subhead">Education</h3>
-    <ol class="timeline">
-      {
-        education.map((item) => (
-          <li>
-            <p class="date">
-              {item.start} – {item.end}
-            </p>
-            <div>
-              <h3>{item.degree}</h3>
-              <p class="org">{item.institution}</p>
-              {item.details.length > 0 && <p class="summary">{item.details.join(" · ")}</p>}
-            </div>
-          </li>
-        ))
-      }
-    </ol>
-  </section>
-
-  <section class="section" id="more" aria-labelledby="more-heading">
-    <h2 id="more-heading">More</h2>
-    <div class="more">
-      <div>
-        <h3>Skills</h3>
-        <dl class="skills">
-          {
-            skillGroups.map((group) => (
-              <div>
-                <dt>{group.title}</dt>
-                <dd>{group.items.join(", ")}</dd>
-              </div>
-            ))
-          }
-        </dl>
-      </div>
-      <div>
-        <h3>Side project</h3>
-        <ul class="plain-list">
-          {
-            sideProjects.map((project) => (
-              <li>
-                <a href={project.href}>{project.title}</a>. {project.summary}
               </li>
             ))
           }
         </ul>
-        <h3 class="more-gap">Honors</h3>
-        <ul class="plain-list">
-          {
-            honors.map((item) => (
-              <li>
-                {item.href ? <a href={item.href}>{item.title}</a> : item.title}
-                {item.detail && <span class="detail">, {item.detail}</span>}
-              </li>
-            ))
-          }
-        </ul>
-        <h3 class="more-gap">Service</h3>
-        <ul class="plain-list">
-          {
-            service.map((item) => (
-              <li>
-                {item.title}
-                {item.detail && <span class="detail">, {item.detail}</span>}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      </section>
     </div>
-  </section>
+  </div>
 </BaseLayout>

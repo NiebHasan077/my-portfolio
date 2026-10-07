@@ -1,18 +1,17 @@
-# Pages that moved in the October 2026 redesign. The static-site validator
-# checks that every target exists, so a rename that breaks one fails the build.
-/work                                     /#research                                 301
-/work/                                    /#research                                 301
+# Addresses from earlier versions of the site. The static-site validator checks
+# that every target exists, so a rename that breaks one fails the build.
+/work                                     /#work                                     301
+/work/                                    /#work                                     301
 /work/guarded-orchestration               /research/guarded-orchestration/           301
 /work/guarded-orchestration/              /research/guarded-orchestration/           301
 /work/agentic-data-transfer-optimizer     /research/agentic-data-transfer-optimizer/ 301
 /work/agentic-data-transfer-optimizer/    /research/agentic-data-transfer-optimizer/ 301
 /work/kona-token-trade                    /projects/kona-token-trade/                301
 /work/kona-token-trade/                   /projects/kona-token-trade/                301
-/work/bangla-sign-language                /#publications                             301
-/work/bangla-sign-language/               /#publications                             301
-/experience                               /#experience                               301
-/experience/                              /#experience                               301
-/about                                    /                                          301
-/about/                                   /                                          301
+/work/bangla-sign-language                /publications/                             301
+/work/bangla-sign-language/               /publications/                             301
+/experience                               /about/#path                               301
+/experience/                              /about/#path                               301
 /resume                                   /cv/                                       301
 /resume/                                  /cv/                                       301
+/resume.pdf                               /Nieb_Hasan_Neom_Resume.pdf                301

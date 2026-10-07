@@ -1,5 +1,6 @@
 import { access, readFile, readdir, stat } from "node:fs/promises";
 import { relative, resolve, sep } from "node:path";
+import { gzipSync } from "node:zlib";
 import { publicRoutes, siteOrigin } from "../apps/site/site.config.mjs";
 
 const root = process.cwd();
@@ -77,12 +78,11 @@ for (const page of builtPages)
 const resume = (
   JSON.parse(links) as Array<{ kind: string; available: boolean; href: string }>
 ).find((link) => link.kind === "resume");
-if (resume?.available && !publicFiles.includes("resume.pdf"))
-  errors.push("Résumé is marked available but resume.pdf is absent");
-if (!resume?.available && publicFiles.includes("resume.pdf"))
-  errors.push(
-    "Unapproved resume.pdf is present while the résumé link is gated",
-  );
+const resumeFile = resume?.href.replace(/^\//, "") ?? "";
+if (resume?.available && !publicFiles.includes(resumeFile))
+  errors.push(`Résumé is marked available but ${resume.href} is absent`);
+if (!resume?.available && publicFiles.some((file) => file.endsWith(".pdf")))
+  errors.push("A PDF is present while the résumé link is gated");
 
 // Old addresses redirect through public/_redirects. Each target must be a
 // built page, and no source may shadow a page that still exists.
@@ -95,7 +95,9 @@ for (const [source, target, status] of redirects) {
   if (!source || !target || !["301", "302", "308"].includes(status ?? ""))
     errors.push(`Malformed redirect: ${source} ${target} ${status}`);
   const path = (target ?? "").split("#")[0]!.replace(/(.)\/$/, "$1");
-  if (!routes.includes(path))
+  const isFile =
+    /\.[a-z0-9]+$/i.test(path) && publicFiles.includes(path.slice(1));
+  if (!routes.includes(path) && !isFile)
     errors.push(
       `Redirect ${source} points at ${target}, which is not a public page`,
     );
@@ -118,9 +120,32 @@ const internalTerms = [
   /built as evidence/i,
   /owner approval/i,
 ];
+// Every figure a visitor reads must appear in an approved claim, so a number
+// cannot slip into prose without evidence. Years, versions, identifiers, SVG
+// drawings, code and citation blocks, and figures marked as dataset samples or
+// illustrations are exempt.
+const approvedText = (
+  JSON.parse(
+    await readFile(resolve(root, "apps/site/src/content/claims.json"), "utf8"),
+  ) as Array<{ statement: string; approved: boolean }>
+)
+  .filter((claim) => claim.approved)
+  .map((claim) => claim.statement)
+  .join(" ")
+  .replace(/(\d),(\d)/g, "$1$2");
+const numbersIn = (text: string) =>
+  text
+    .replace(
+      /doi:\S+|arXiv\S*|\bv?\d+\.\d+\.\d+\b|NB-[A-Z]+-\d+-q\d+|\d{4}\.\d{4,5}/g,
+      " ",
+    )
+    .replace(/(\d),(\d)/g, "$1$2")
+    .match(/\d+(?:\.\d+)?/g) ?? [];
+
 const htmlFiles = (await readdir(dist, { recursive: true })).filter((file) =>
   file.endsWith(".html"),
 );
+const scriptBudget = 30_000;
 for (const file of htmlFiles) {
   const html = await readFile(resolve(dist, file), "utf8");
   const description =
@@ -132,15 +157,59 @@ for (const file of htmlFiles) {
   for (const term of internalTerms)
     if (term.test(text) || term.test(description))
       errors.push(`${file} shows internal wording matching ${term}`);
-  for (const script of html.matchAll(/<script\b([^>]*)>/g))
-    if (!/type="application\/ld\+json"/.test(script[1]!))
-      errors.push(`${file} ships a script; the site runs no JavaScript`);
+
+  // Scripts: only bundled modules from /_astro/, never inline code.
+  let scriptBytes = 0;
+  for (const script of html.matchAll(
+    /<script\b([^>]*)>([\s\S]*?)<\/script>/g,
+  )) {
+    const attrs = script[1]!;
+    if (/type="application\/ld\+json"/.test(attrs)) continue;
+    const src = attrs.match(/src="(\/_astro\/[^"]+\.js)"/)?.[1];
+    if (!src || script[2]!.trim())
+      errors.push(
+        `${file} has an inline or third-party script; the policy allows only /_astro/ modules`,
+      );
+    else
+      scriptBytes += gzipSync(
+        await readFile(resolve(dist, src.slice(1))),
+      ).length;
+  }
+  if (scriptBytes > scriptBudget)
+    errors.push(
+      `${file} loads ${scriptBytes} bytes of compressed script; the budget is ${scriptBudget}`,
+    );
+
+  if (file === "404.html") continue;
+  const visible = html
+    .replace(/<head>[\s\S]*?<\/head>/, " ")
+    .replace(/<script[\s\S]*?<\/script>/g, " ")
+    .replace(/<svg[\s\S]*?<\/svg>/g, " ")
+    .replace(
+      /<figure[^>]*data-(?:dataset|illustrative)[\s\S]*?<\/figure>/g,
+      " ",
+    )
+    .replace(/<code[\s\S]*?<\/code>/g, " ")
+    .replace(/<pre[\s\S]*?<\/pre>/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&[a-z]+;|&#\d+;/g, " ");
+  for (const number of new Set(numbersIn(visible))) {
+    const value = Number(number);
+    if (value < 10 && !number.includes(".")) continue;
+    if (/^(19[89]\d|20[0-3]\d)$/.test(number)) continue;
+    if (!approvedText.includes(number))
+      errors.push(
+        `${file} shows the figure ${number}, which no approved claim contains`,
+      );
+  }
 }
-const jsFiles = (await readdir(dist, { recursive: true })).filter((file) =>
-  /\.m?js$/.test(file),
+const jsFiles = (await readdir(dist, { recursive: true })).filter(
+  (file) => /\.m?js$/.test(file) && !file.startsWith(`_astro${sep}`),
 );
 if (jsFiles.length)
-  errors.push(`dist contains JavaScript: ${jsFiles.join(", ")}`);
+  errors.push(
+    `dist contains JavaScript outside /_astro/: ${jsFiles.join(", ")}`,
+  );
 
 const ogBytes = (await stat(resolve(dist, "og.jpg"))).size;
 if (ogBytes > 200_000)
@@ -151,5 +220,5 @@ if (errors.length)
     `Static validation failed:\n${[...new Set(errors)].join("\n")}`,
   );
 console.log(
-  `Validated ${routes.length} routes, ${redirects.length} redirects, internal links, metadata, robots, sitemap, wording, scripts, and résumé gate.`,
+  `Validated ${routes.length} routes, ${redirects.length} redirects, internal links, metadata, robots, sitemap, wording, figures, scripts, and résumé gate.`,
 );

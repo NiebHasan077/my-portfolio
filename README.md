@@ -21,7 +21,7 @@ pnpm dev
 ```
 
 The local site starts at `http://localhost:4321` by default.
-`pnpm resume:pdf` regenerates the downloadable CV (`apps/site/public/resume.pdf`) from the `/cv/` page's print stylesheet.
+The downloadable résumé, `apps/site/public/Nieb_Hasan_Neom_Resume.pdf`, is the owner's research résumé with the phone number removed. Replace it by hand when the résumé changes; nothing in the build regenerates it. The `/cv/` page still prints to one page from its print stylesheet.
 
 ## Release boundary
 

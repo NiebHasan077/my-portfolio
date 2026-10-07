@@ -1,0 +1,175 @@
+---
+import Authors from "./Authors.astro";
+import { publications } from "../content";
+
+/* Each entry's BibTeX sits in a <details>, so citations work without JavaScript;
+   the script adds the type filter and copy buttons. */
+type Kind = "workshop" | "conference" | "journal" | "preprint" | "software";
+const kinds: Record<string, Kind> = {
+  "guarded-orchestration-works26": "workshop",
+  "segmented-retrieval-escience": "conference",
+  "credsec-preprint": "preprint",
+  "bangla-sign-language-paper": "journal",
+  "fall-detection-review": "journal",
+};
+const bibtex: Record<string, string> = {
+  "guarded-orchestration-works26": `@inproceedings{neom2026guarded,
+  title     = {Guarded, State-Aware Orchestration for Schema-Constrained Scientific Model Execution},
+  author    = {Neom, Nieb Hasan and Gartia, Manas Ranjan and Arifuzzaman, Md},
+  booktitle = {21st Workshop on Workflows in Support of Large-Scale Science (WORKS26), held with SC26},
+  year      = {2026},
+  note      = {To appear}
+}`,
+  "segmented-retrieval-escience": `@inproceedings{swargo2026selftuning,
+  title     = {Self-Tuning Segmented Retrieval of Large-Scale Genomic Data},
+  author    = {Swargo, Rasman Mubtasim and Neom, Nieb Hasan and Arifuzzaman, Md},
+  booktitle = {22nd IEEE International Conference on e-Science (eScience 2026)},
+  year      = {2026},
+  note      = {Short paper, to appear}
+}`,
+  "credsec-preprint": `@misc{habib2024credsec,
+  title         = {CredSec: A Blockchain-based Secure Credential Management System for University Adoption},
+  author        = {Habib, Md. Ahsan and Rahman, Md. Mostafijur and Neom, Nieb Hasan},
+  year          = {2024},
+  eprint        = {2406.05151},
+  archivePrefix = {arXiv}
+}`,
+  "bangla-sign-language-paper": `@article{das2023hybrid,
+  title   = {A hybrid approach for Bangla sign language recognition using deep transfer learning model with random forest classifier},
+  author  = {Das, Sunanda and Imtiaz, Md Samir and Neom, Nieb Hasan and Siddique, Nazmul and Wang, Hui},
+  journal = {Expert Systems with Applications},
+  volume  = {213},
+  pages   = {118914},
+  year    = {2023},
+  doi     = {10.1016/j.eswa.2022.118914}
+}`,
+  "fall-detection-review": `@article{islam2019review,
+  title   = {A Review on Fall Detection Systems Using Data from Smartphone Sensors},
+  author  = {Islam, Md Milon and Neom, Nieb and Imtiaz, Md Samir and Nooruddin, Sheikh and Islam, Md Repon and Islam, Md Rabiul},
+  journal = {Ing{\\'e}nierie des Syst{\\\`e}mes d'Information},
+  volume  = {24},
+  number  = {6},
+  pages   = {569--576},
+  year    = {2019},
+  doi     = {10.18280/isi.240602}
+}`,
+};
+const software = {
+  title: "NetBench v1.1.0: benchmark, framework, and analysis code",
+  authors: ["N. H. Neom", "R. M. Swargo", "M. Arifuzzaman"],
+  venue: "Zenodo, 2026 · software and data",
+  links: [
+    { label: "DOI", href: "https://doi.org/10.5281/zenodo.21892017" },
+    { label: "Code", href: "https://github.com/NiebHasan077/NetBench" },
+  ],
+  bib: `@software{neom2026netbench,
+  title     = {NetBench},
+  author    = {Neom, Nieb Hasan and Swargo, Rasman Mubtasim and Arifuzzaman, Md},
+  version   = {1.1.0},
+  publisher = {Zenodo},
+  year      = {2026},
+  doi       = {10.5281/zenodo.21892017}
+}`,
+};
+const statusLabel = { accepted: "Accepted", published: "Published", preprint: "Preprint" };
+const entries = [
+  ...publications.map((p) => ({
+    id: p.id,
+    kind: kinds[p.id] ?? "journal",
+    title: p.title,
+    authors: p.authors,
+    venue: `${p.venue}, ${p.year} · ${statusLabel[p.status]}`,
+    note: p.note,
+    links: p.links,
+    bib: bibtex[p.id] ?? "",
+  })),
+  { id: "netbench-software", kind: "software" as Kind, note: undefined, ...software },
+];
+const filters: Array<[string, string]> = [
+  ["all", "All"],
+  ["workshop", "Workshop"],
+  ["conference", "Conference"],
+  ["journal", "Journal"],
+  ["preprint", "Preprint"],
+  ["software", "Software"],
+];
+const external = (href: string) => href.startsWith("https://");
+---
+
+<div data-publications>
+  <div class="chips" data-filters role="group" aria-label="Filter by type" hidden>
+    {
+      filters.map(([value, label]) => (
+        <button class="chip" type="button" data-filter={value} aria-pressed={value === "all" ? "true" : "false"}>
+          {label}
+        </button>
+      ))
+    }
+  </div>
+  <ol class="pub-list">
+    {
+      entries.map((entry) => (
+        <li class="pub" data-kind={entry.kind} id={entry.id}>
+          <p class="pub-title">{entry.title}</p>
+          <Authors authors={entry.authors} />
+          <p class="venue">{entry.venue}</p>
+          {entry.note && <p class="note">{entry.note}</p>}
+          <div class="links">
+            {entry.links.map((link) => (
+              <a href={link.href}>
+                {link.label}
+                {external(link.href) && " ↗"}
+              </a>
+            ))}
+            {entry.bib && (
+              <details>
+                <summary>Cite</summary>
+                <div class="bib">
+                  <pre>{entry.bib}</pre>
+                  <button class="copy" type="button" data-copy hidden>
+                    Copy
+                  </button>
+                </div>
+              </details>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-publications]");
+  if (root) {
+    const filters = root.querySelector<HTMLElement>("[data-filters]")!;
+    const chips = [...filters.querySelectorAll<HTMLButtonElement>("[data-filter]")];
+    const items = [...root.querySelectorAll<HTMLElement>("[data-kind]")];
+    filters.removeAttribute("hidden");
+    chips.forEach((chip) =>
+      chip.addEventListener("click", () => {
+        const value = chip.dataset.filter;
+        chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+        items.forEach((item) => item.toggleAttribute("hidden", value !== "all" && item.dataset.kind !== value));
+      }),
+    );
+    for (const button of root.querySelectorAll<HTMLButtonElement>("[data-copy]")) {
+      button.removeAttribute("hidden");
+      const pre = button.previousElementSibling as HTMLElement;
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(pre.textContent ?? "");
+          button.textContent = "Copied";
+        } catch {
+          const range = document.createRange();
+          range.selectNodeContents(pre);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          button.textContent = "Selected";
+        }
+        window.setTimeout(() => (button.textContent = "Copy"), 2000);
+      });
+    }
+  }
+</script>

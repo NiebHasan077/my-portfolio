@@ -15,7 +15,6 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "static:validate": "node --import tsx scripts/validate-static-site.ts",
-    "resume:pdf": "PLAYWRIGHT_BROWSERS_PATH=$PWD/.tools/playwright pnpm --dir apps/site resume:pdf",
     "test:e2e": "PLAYWRIGHT_BROWSERS_PATH=$PWD/.tools/playwright pnpm --dir apps/site exec playwright test",
     "audit:weekly": "node --import tsx scripts/weekly-audit.ts",
     "notify:slack": "node --import tsx scripts/notify-slack.ts"

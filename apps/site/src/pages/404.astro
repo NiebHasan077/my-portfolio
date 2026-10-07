@@ -2,10 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Page not found · Nieb Hasan Neom" description="The page you asked for does not exist." compact>
-  <section class="not-found">
-    <h1>Page not found</h1>
-    <p>That page does not exist or has moved.</p>
-    <p class="links"><a href="/">Home</a><a href="/#research">Research</a><a href="/#publications">Publications</a><a href="/cv/">CV</a></p>
-  </section>
+<BaseLayout title="Page not found · Nieb Hasan Neom" description="The page you asked for does not exist.">
+  <div class="wrap">
+    <section class="not-found">
+      <h1>Page not found</h1>
+      <p>That page does not exist or has moved.</p>
+      <p class="links"><a href="/">Home</a><a href="/#work">Work</a><a href="/publications/">Publications</a><a href="/about/">About</a><a href="/cv/">CV</a></p>
+    </section>
+  </div>
 </BaseLayout>

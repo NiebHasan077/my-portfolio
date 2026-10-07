@@ -1,0 +1,84 @@
+---
+import Flow from "../../components/Flow.astro";
+import CaseLayout from "../../layouts/CaseLayout.astro";
+import { projects, testimonials } from "../../content";
+
+const item = projects.find((entry) => entry.id === "card-personalization");
+const quote = testimonials.find((t) => t.id === "saiful-islam");
+if (!item) throw new Error("Card Personalization content is missing");
+const sections = [
+  { id: "what", label: "What it is" },
+  { id: "problem", label: "The problem" },
+  { id: "role", label: "My role" },
+  { id: "approach", label: "How I did it" },
+  { id: "learned", label: "What it taught me" },
+];
+---
+
+<CaseLayout
+  title="Card Personalization System · Nieb Hasan Neom"
+  description={item.summary}
+  heading="Card Personalization System"
+  lede="Bringing Kona I's smart-card personalization system from its head office in South Korea to Bangladesh."
+  sections={sections}
+>
+  <dl class="facts" slot="facts">
+    <div><dt>Role</dt><dd>Software Engineer II, Kona Software Lab</dd></div>
+    <div><dt>Built with</dt><dd>Java, Apache Struts</dd></div>
+    <div><dt>Standards</dt><dd>GlobalPlatform, EMV, Visa and Mastercard specifications</dd></div>
+    <div><dt>Status</dt><dd>In commercial use</dd></div>
+  </dl>
+
+  <section id="what">
+    <h2>What it is</h2>
+    <p>
+      A chip card works only after it has been personalized: the cardholder's data and the card's keys are written onto the chip so that terminals and payment networks will accept it. GlobalPlatform defines how applications and keys are managed on the chip, EMV defines the payment application, and Visa and Mastercard add their own rules on top. Instant issuance does all of this on demand, so a customer can leave with a working card.
+    </p>
+    <p class="caption">A general description of card personalization, not of Kona's implementation.</p>
+  </section>
+
+  <section id="problem">
+    <h2>The problem</h2>
+    <p>
+      Kona I, Kona Software Lab's parent company, already ran a card personalization system at its head office in South Korea and wanted to offer the business in Bangladesh. Card personalization is a niche field. The system had never run in Bangladesh, and running it meant first understanding the specifications it is built on.
+    </p>
+  </section>
+
+  <section id="role">
+    <h2>My role</h2>
+    <p>
+      I was chosen from the engineering team for a 14-day training program at Kona I in Seoul. Back in Bangladesh, I set the whole system up in our office and completed an end-to-end card personalization. In 2025 I worked on the Card Personalization with Instant Issuance project.
+    </p>
+  </section>
+
+  <section id="approach">
+    <h2>How I did it</h2>
+    <p>There was no local playbook, so in many places I had to rediscover how the system worked before I could rebuild it.</p>
+    <Flow
+      label="Bringing the system to Bangladesh"
+      steps={[
+        { title: "Study the specifications", text: "GlobalPlatform, EMV, Visa, and Mastercard." },
+        { title: "Learn the running system", text: "Training on Kona I's system in Seoul." },
+        { title: "Set it up in Bangladesh", text: "Install and configure the system and personalization devices." },
+        { title: "Personalize end to end", text: "Complete a card from data to a working chip." },
+      ]}
+    />
+  </section>
+
+  <section id="learned">
+    <h2>What it taught me</h2>
+    <p>
+      Reading specifications, working out how an unfamiliar system really behaved, and connecting the dots until a card came out working felt more like research than routine engineering. It is a large part of why I went on to a PhD.
+    </p>
+    {
+      quote && (
+        <blockquote class="quote">
+          <p>“{quote.quote}”</p>
+          <footer>
+            {quote.name}, {quote.role}, who {quote.relation}
+          </footer>
+        </blockquote>
+      )
+    }
+  </section>
+</CaseLayout>

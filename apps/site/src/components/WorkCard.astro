@@ -1,0 +1,99 @@
+---
+type Props = {
+  href: string;
+  title: string;
+  text: string;
+  kicker: string;
+  tone?: "released" | "accepted" | "progress";
+  visual: "netbench" | "guarded" | "optimizer" | "kona" | "card" | "loadlens";
+};
+
+const { href, title, text, kicker, tone, visual } = Astro.props;
+---
+
+<a class="card" href={href}>
+  <div class:list={["card-vis", { photo: visual === "loadlens" }]} aria-hidden="true">
+    {
+      visual === "netbench" && (
+        <svg viewBox="0 0 240 100">
+          <g fill="#0f5e73">
+            <rect x="8" y="8" width="214" height="9" rx="2" />
+            <rect x="8" y="23" width="199" height="9" rx="2" opacity=".9" />
+            <rect x="8" y="38" width="118" height="9" rx="2" opacity=".8" />
+            <rect x="8" y="53" width="99" height="9" rx="2" opacity=".7" />
+            <rect x="8" y="68" width="83" height="9" rx="2" opacity=".6" />
+            <rect x="8" y="83" width="60" height="9" rx="2" opacity=".5" />
+          </g>
+        </svg>
+      )
+    }
+    {
+      visual === "guarded" && (
+        <svg viewBox="0 0 240 100">
+          <g font-family="ui-monospace, Menlo, monospace" font-size="10">
+            <rect x="8" y="10" width="140" height="20" rx="5" fill="#fff" stroke="#11704a" />
+            <text x="18" y="24" fill="#15191e">size_nm  40 ✓</text>
+            <rect x="8" y="38" width="140" height="20" rx="5" fill="#fff" stroke="#11704a" />
+            <text x="18" y="52" fill="#15191e">zeta_mV  +12 ✓</text>
+            <rect x="8" y="66" width="140" height="20" rx="5" fill="#fff" stroke="#a3322c" stroke-dasharray="3 3" />
+            <text x="18" y="80" fill="#a3322c">speed_g  missing</text>
+            <rect x="160" y="36" width="72" height="24" rx="12" fill="#f7e9e7" />
+            <text x="172" y="52" fill="#a3322c">BLOCKED</text>
+          </g>
+        </svg>
+      )
+    }
+    {
+      visual === "optimizer" && (
+        <svg viewBox="0 0 240 100">
+          <circle cx="120" cy="50" r="32" fill="none" stroke="#0f5e73" stroke-width="1.6" stroke-dasharray="4 4" />
+          <g font-family="ui-monospace, Menlo, monospace" font-size="9.5" fill="#15191e" text-anchor="middle">
+            <text x="120" y="11">observe</text>
+            <text x="186" y="53">reason</text>
+            <text x="120" y="97">act</text>
+            <text x="52" y="53">evaluate</text>
+          </g>
+          <circle cx="152" cy="50" r="5" fill="#93560a" />
+        </svg>
+      )
+    }
+    {
+      visual === "kona" && (
+        <svg viewBox="0 0 240 100">
+          <g font-family="Source Sans 3, system-ui, sans-serif" font-size="11" font-weight="600">
+            <rect x="6" y="36" width="62" height="28" rx="6" fill="#fff" stroke="#b9c4c6" />
+            <text x="18" y="54" fill="#15191e">Trade</text>
+            <rect x="89" y="36" width="62" height="28" rx="6" fill="#e6eff0" stroke="#0f5e73" />
+            <text x="102" y="54" fill="#15191e">Kafka</text>
+            <rect x="172" y="36" width="62" height="28" rx="6" fill="#fff" stroke="#b9c4c6" />
+            <text x="181" y="54" fill="#15191e">Wallet</text>
+          </g>
+          <path d="M68 50h21M151 50h21" stroke="#9fb0b3" stroke-width="2" />
+          <circle cx="120" cy="72" r="4" fill="#0f5e73" />
+        </svg>
+      )
+    }
+    {
+      visual === "card" && (
+        <svg viewBox="0 0 240 100">
+          <rect x="62" y="12" width="116" height="76" rx="9" fill="#fff" stroke="#b9c4c6" />
+          <rect x="78" y="34" width="26" height="20" rx="4" fill="#d9b562" />
+          <path d="M78 41h26M78 47h26M87 34v20M95 34v20" stroke="#a88a3e" stroke-width="0.8" />
+          <rect x="78" y="66" width="72" height="5" rx="2" fill="#c9c6bd" />
+          <rect x="78" y="75" width="44" height="5" rx="2" fill="#c9c6bd" />
+          <g font-family="ui-monospace, Menlo, monospace" font-size="8.5" fill="#0f5e73">
+            <text x="114" y="42">EMV</text>
+            <text x="114" y="53">GlobalPlatform</text>
+          </g>
+        </svg>
+      )
+    }
+    {visual === "loadlens" && <img src="/img/loadlens-overview.jpg" alt="" width="1440" height="900" loading="lazy" decoding="async" />}
+  </div>
+  <div class="card-body">
+    <p class:list={["kicker", tone && `tone-${tone}`]}>{kicker}</p>
+    <h3>{title}</h3>
+    <p>{text}</p>
+    <span class="more">Read the case study →</span>
+  </div>
+</a>

@@ -18,9 +18,9 @@ flowchart LR
 
 ## Public routes
 
-Home carries the overview in the order a reviewer reads it: bio, news, research, publications, experience and education, then skills, honors, and service. Detail pages cover NetBench, guarded orchestration, and the Agentic Data Transfer Optimizer under `/research/`, Kona Token Trade under `/projects/`, and the CV at `/cv/`, whose print stylesheet produces `resume.pdf`. Pages that existed before the October 2026 redesign redirect through `public/_redirects`, and the static-site validator fails the build if a redirect points at a page that does not exist.
+Home is curated: a hero, a "now" row, six work cards, recent news, and selected publications. About holds the story, path, colleague quotes, problem-solving charts, skills, honors, and photos; Publications holds every entry with BibTeX. Case studies live under `/research/` and `/projects/` and share `CaseLayout`, which adds a reading-progress bar and an "On this page" rail. The CV at `/cv/` prints to one page; the downloadable PDF is the owner's résumé, copied in by hand. Retired addresses redirect through `public/_redirects`, and the static-site validator fails the build if a redirect points at a page or file that does not exist.
 
-The site ships no JavaScript. `public/_headers` sets a content security policy that allows only same-origin styles, fonts, and images, and Astro keeps stylesheets external so the policy needs no inline exception. The home page carries Person structured data as JSON-LD, which browsers do not execute.
+Interactive components (`NetBenchExplorer`, `GuardedReplay`, `KafkaCompare`, `PublicationList`, `RatingChart`, `ReadingAids`) render a complete static version at build time; their `<script>` blocks only add interaction. Astro bundles each script into `/_astro/`, and `vite.build.assetsInlineLimit: 0` keeps small ones from being inlined, so the content security policy in `public/_headers` can allow `script-src 'self'` with no inline exception. The explorer's data comes from a build-time endpoint, `src/pages/data/hpn-qa-v5.json.ts`. Rating charts read snapshots in `src/data/`. The home page carries Person structured data as JSON-LD, which browsers do not execute.
 
 ## Trust boundaries
 
@@ -28,4 +28,4 @@ Raw career sources remain outside the repository. Published content is accepted 
 
 ## Failure behavior
 
-Invalid or unapproved records fail content validation. Missing routes, assets, metadata, sitemap entries, redirect targets, or résumé files fail the static-site validator, as do scripts, a social image over 200 KB, and visible text that describes the site's internal review process. Cloudflare Pages can restore a prior deployment or deploy a reverted approved commit if a release fails.
+Invalid or unapproved records fail content validation. Missing routes, assets, metadata, sitemap entries, redirect targets, or résumé files fail the static-site validator, as do inline scripts, more than 30 KB of compressed script on a page, a social image over 200 KB, visible text that describes the site's internal review process, and any figure in visible text that no approved claim contains. Cloudflare Pages can restore a prior deployment or deploy a reverted approved commit if a release fails.

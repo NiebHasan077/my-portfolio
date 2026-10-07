@@ -1,0 +1,20 @@
+[
+  {
+    "id": "saiful-islam",
+    "publish": true,
+    "quote": "One of the most dedicated and detail-oriented professionals I've worked with.",
+    "name": "Md Saiful Islam",
+    "role": "Director of Engineering",
+    "relation": "managed Nieb on the P2P and Card Personalization projects",
+    "claimIds": ["testimonial-saiful-islam"]
+  },
+  {
+    "id": "shahriar-mamun",
+    "publish": true,
+    "quote": "Extremely talented, motivated, active, and composed.",
+    "name": "Shahriar Mamun",
+    "role": "Senior Director, Kona Software Lab",
+    "relation": "worked with Nieb on a client project",
+    "claimIds": ["testimonial-shahriar-mamun"]
+  }
+]
