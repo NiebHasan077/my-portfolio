@@ -646,8 +646,8 @@
   },
   {
     "id": "resume-pdf-owner-version",
-    "statement": "The downloadable résumé is the owner's research résumé with the phone number removed, published at the owner's request.",
-    "evidence": "owner decision, 2026-10-07",
+    "statement": "The downloadable résumé is the owner's research résumé, built from the owner's LaTeX source without the phone line, published at the owner's request.",
+    "evidence": "owner decisions, 2026-10-07: research variant from Job-Resume, renamed Nieb_Hasan_Neom_Resume.pdf, phone removed",
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-10-07",

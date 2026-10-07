@@ -8,7 +8,18 @@
     "status": "accepted",
     "year": 2026,
     "links": [
-      { "label": "Project page", "href": "/research/guarded-orchestration/" }
+      {
+        "label": "Project page",
+        "href": "/research/guarded-orchestration/"
+      },
+      {
+        "label": "Workshop",
+        "href": "https://works-workshop.org/"
+      },
+      {
+        "label": "Code",
+        "href": "https://github.com/arif-zaman/pCorona-Orchestration"
+      }
     ],
     "claimIds": ["publication-works26-accepted", "publication-works26-authors"]
   },
@@ -24,6 +35,10 @@
       {
         "label": "Accepted papers",
         "href": "https://www.escience-conference.org/2026/papers"
+      },
+      {
+        "label": "Conference",
+        "href": "https://www.escience-conference.org/2026/"
       }
     ],
     "claimIds": [
@@ -39,7 +54,12 @@
     "venue": "arXiv preprint 2406.05151",
     "status": "preprint",
     "year": 2024,
-    "links": [{ "label": "arXiv", "href": "https://arxiv.org/abs/2406.05151" }],
+    "links": [
+      {
+        "label": "arXiv",
+        "href": "https://arxiv.org/abs/2406.05151"
+      }
+    ],
     "claimIds": ["publication-credsec-preprint", "publication-credsec-authors"]
   },
   {
@@ -58,7 +78,14 @@
     "year": 2023,
     "note": "From my undergraduate thesis. I designed and evaluated the background-elimination preprocessing step.",
     "links": [
-      { "label": "DOI", "href": "https://doi.org/10.1016/j.eswa.2022.118914" }
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.1016/j.eswa.2022.118914"
+      },
+      {
+        "label": "ScienceDirect",
+        "href": "https://www.sciencedirect.com/science/article/pii/S0957417422019327"
+      }
     ],
     "claimIds": [
       "research-bsl-publication",
@@ -83,7 +110,14 @@
     "status": "published",
     "year": 2019,
     "links": [
-      { "label": "DOI", "href": "https://doi.org/10.18280/isi.240602" }
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.18280/isi.240602"
+      },
+      {
+        "label": "Publisher page",
+        "href": "https://www.iieta.org/journals/isi/paper/10.18280/isi.240602"
+      }
     ],
     "claimIds": [
       "publication-fall-detection-review",

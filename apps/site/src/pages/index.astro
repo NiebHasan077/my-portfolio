@@ -3,6 +3,7 @@ import Authors from "../components/Authors.astro";
 import WorkCard from "../components/WorkCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { linkOf, monthYear, news, profile, publications } from "../content";
+import { refs } from "../content/refs";
 
 const site = Astro.site!;
 const resume = linkOf("resume");
@@ -38,7 +39,7 @@ const jsonLd = {
       <div>
         <h1>{profile.displayName}</h1>
         <p class="lede">I build AI systems for high-performance networking where the model proposes and the system decides.</p>
-        <p class="role">{profile.role}, {profile.affiliationShort} · Kummer Doctoral Fellow</p>
+        <p class="role">{profile.role}, <a href={refs.mst}>{profile.affiliationShort}</a> · <a href={refs.kummer}>Kummer Doctoral Fellow</a></p>
         <div class="actions">
           {resume && <a class="button solid" href={resume.href}>Résumé (PDF)</a>}
           {email && <a class="button" href={email.href}>Email</a>}
@@ -49,8 +50,8 @@ const jsonLd = {
     </section>
 
     <div class="now" aria-label="Now">
-      <div><span class="kicker">Next</span>WORKS26 at SC26 in Chicago, 15 November 2026</div>
-      <div><span class="kicker">Released</span>NetBench v1.1.0, with a DOI on Zenodo</div>
+      <div><span class="kicker">Next</span><a href={refs.works26}>WORKS26</a> at <a href={refs.sc26}>SC26</a> in Chicago, 15 November 2026</div>
+      <div><span class="kicker">Released</span><a href="/research/netbench/">NetBench</a> v1.1.0, with a <a href={refs.netbenchDoi}>DOI on Zenodo</a></div>
       <div><span class="kicker">Seeking</span>{profile.availability.replace(/^Seeking /, "").replace(/^./, (c) => c.toUpperCase())}</div>
     </div>
 

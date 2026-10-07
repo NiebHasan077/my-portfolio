@@ -4,11 +4,12 @@ import Flow from "../../components/Flow.astro";
 import GuardedReplay from "../../components/GuardedReplay.astro";
 import CaseLayout from "../../layouts/CaseLayout.astro";
 import { publications, research } from "../../content";
+import { refs } from "../../content/refs";
 
 const item = research.find((entry) => entry.id === "guarded-orchestration");
 const paper = publications.find((entry) => entry.id === "guarded-orchestration-works26");
 if (!item || !paper) throw new Error("Guarded orchestration content is missing");
-const repo = "https://github.com/arif-zaman/pCorona-Orchestration";
+const repo = refs.pcorona;
 const sections = [
   { id: "problem", label: "The problem" },
   { id: "hard", label: "Why it is hard" },
@@ -32,7 +33,7 @@ const sections = [
     <div><dt>Status</dt><dd class:list={["status", `tone-${item.tone}`]}>{item.status}</dd></div>
     <div><dt>Paper</dt><dd>{paper.title}</dd></div>
     <div><dt>Authors</dt><dd><Authors authors={paper.authors} /></dd></div>
-    <div><dt>Venue</dt><dd>WORKS26, held with SC26 in Chicago on 15 November 2026</dd></div>
+    <div><dt>Venue</dt><dd><a href={refs.works26}>WORKS26</a>, held with <a href={refs.sc26}>SC26</a> in Chicago on 15 November 2026</dd></div>
     <div><dt>Code</dt><dd class="links"><a href={repo}>GitHub ↗</a></dd></div>
   </dl>
 
@@ -56,7 +57,7 @@ const sections = [
   <section id="role">
     <h2>My role</h2>
     <p>
-      I am the first author. I designed the guarded, state-aware workflow and its execution rules, and instantiated it for protein-corona prediction over a backend of trained prediction models, with my co-authors M. R. Gartia and M. Arifuzzaman.
+      I am the first author. I designed the guarded, state-aware workflow and its execution rules, and instantiated it for protein-corona prediction over a backend of trained prediction models, with my co-authors M. R. Gartia and <a href={refs.advisor}>M. Arifuzzaman</a>.
     </p>
   </section>
 

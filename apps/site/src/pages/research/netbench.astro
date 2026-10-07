@@ -4,11 +4,12 @@ import Flow from "../../components/Flow.astro";
 import NetBenchExplorer from "../../components/NetBenchExplorer.astro";
 import CaseLayout from "../../layouts/CaseLayout.astro";
 import { research } from "../../content";
+import { refs } from "../../content/refs";
 
 const item = research.find((entry) => entry.id === "netbench");
 if (!item) throw new Error("NetBench content is missing");
-const repo = "https://github.com/NiebHasan077/NetBench";
-const doi = "https://doi.org/10.5281/zenodo.21892017";
+const repo = refs.netbench;
+const doi = refs.netbenchDoi;
 const sections = [
   { id: "problem", label: "The problem" },
   { id: "hard", label: "Why it is hard" },
@@ -53,7 +54,7 @@ const sections = [
   <section id="role">
     <h2>My role</h2>
     <p>
-      I am the first author of NetBench, with R. M. Swargo and Dr. Md Arifuzzaman. All three of us reviewed every question in the benchmark, and that review removed 9 of the 242.
+      I am the first author of NetBench, with R. M. Swargo and <a href={refs.advisor}>Dr. Md Arifuzzaman</a>. All three of us reviewed every question in the benchmark, and that review removed 9 of the 242.
     </p>
   </section>
 

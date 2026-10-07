@@ -2,6 +2,7 @@
 import KafkaCompare from "../../components/KafkaCompare.astro";
 import CaseLayout from "../../layouts/CaseLayout.astro";
 import { projects } from "../../content";
+import { refs } from "../../content/refs";
 
 const item = projects.find((entry) => entry.id === "kona-token-trade");
 if (!item) throw new Error("Kona Token Trade content is missing");
@@ -18,11 +19,12 @@ const sections = [
   title="Kona Token Trade · Nieb Hasan Neom"
   description={item.summary}
   heading="Kona Token Trade"
-  lede="Backend services for a blockchain-based token-trading platform at Kona Software Lab, from its start as a P2P trading platform."
+  lede="Backend services for a blockchain-based token-trading platform, from its start as a P2P trading platform."
   sections={sections}
 >
   <dl class="facts" slot="facts">
     <div><dt>Role</dt><dd>Graduate Engineer, then Software Engineer II</dd></div>
+    <div><dt>Company</dt><dd><a href={refs.konaSoftwareLab}>Kona Software Lab</a>, Dhaka</dd></div>
     <div><dt>When</dt><dd>2022 – 2025</dd></div>
     <div><dt>Built with</dt><dd>Java 8, Spring Boot 2, Apache Kafka, PostgreSQL, MongoDB, AWS S3, SNS, EC2</dd></div>
   </dl>
@@ -65,7 +67,7 @@ const sections = [
     <ul class="bullets">
       <li>Ran learning sessions on backend development for new joiners, and mentored and onboarded two junior engineers.</li>
       <li>Helped organize the 2023 Kona coding contest, where my team placed first runner-up of 20.</li>
-      <li>Moved on to the <a href="/projects/card-personalization/">Card Personalization System</a>, bringing Kona I's system from Seoul to Bangladesh.</li>
+      <li>Moved on to the <a href="/projects/card-personalization/">Card Personalization System</a>, bringing <a href={refs.konaI}>Kona I</a>'s system from Seoul to Bangladesh.</li>
     </ul>
   </section>
 </CaseLayout>

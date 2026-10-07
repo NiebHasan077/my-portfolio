@@ -14,7 +14,7 @@
     "category": "honor",
     "title": "LeetCode Knight",
     "detail": "peak contest rating 1895",
-    "href": "https://leetcode.com/Nieb_Hasan_077/",
+    "href": "https://leetcode.com/u/Nieb_Hasan_077/",
     "claimIds": ["achievement-leetcode"]
   },
   {
@@ -54,6 +54,7 @@
     "category": "service",
     "title": "Student volunteer, SC26",
     "detail": "Chicago, November 2026",
+    "href": "https://sc26.supercomputing.org/",
     "claimIds": ["service-sc26-volunteer", "event-works26-sc26"]
   },
   {
@@ -61,6 +62,7 @@
     "publish": true,
     "category": "service",
     "title": "Reviewer, Journal of Autonomous Intelligence",
+    "href": "https://jai.front-sci.com/",
     "claimIds": ["service-reviewer-jai"]
   },
   {
@@ -93,6 +95,7 @@
     "category": "certification",
     "title": "Version Control with Git",
     "detail": "Coursera, September 2020",
+    "href": "https://www.coursera.org/verify/P9HXYJD22SJM",
     "claimIds": ["certifications-coursera"]
   },
   {
@@ -101,6 +104,7 @@
     "category": "certification",
     "title": "Neural Networks and Deep Learning",
     "detail": "Coursera, October 2020",
+    "href": "https://www.coursera.org/verify/7TYFPW2ZKCLX",
     "claimIds": ["certifications-coursera"]
   },
   {
@@ -109,6 +113,7 @@
     "category": "certification",
     "title": "Improving Deep Neural Networks",
     "detail": "Coursera, November 2020",
+    "href": "https://www.coursera.org/verify/M8AN8S9KJHMN",
     "claimIds": ["certifications-coursera"]
   },
   {
@@ -117,6 +122,7 @@
     "category": "certification",
     "title": "Structuring Machine Learning Projects",
     "detail": "Coursera, December 2020",
+    "href": "https://www.coursera.org/verify/N29FEHGGHJ2M",
     "claimIds": ["certifications-coursera"]
   }
 ]

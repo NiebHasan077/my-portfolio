@@ -173,6 +173,19 @@ test("rating charts respond to the keyboard", async ({ page }) => {
   await expect(page.locator(".gallery img")).toHaveCount(3);
 });
 
+test("About links the profiles behind each number", async ({ page }) => {
+  await page.goto("/about/");
+  for (const href of [
+    "https://codeforces.com/profile/Nieb_Hasan_077",
+    "https://leetcode.com/u/Nieb_Hasan_077/",
+    "https://www.codechef.com/users/nieb_hasan_077",
+    "https://uhunt.onlinejudge.org/id/907200",
+    "https://www.coursera.org/verify/P9HXYJD22SJM",
+    "https://sites.mst.edu/marifuzzaman/",
+  ])
+    await expect(page.locator(`a[href="${href}"]`).first()).toBeAttached();
+});
+
 test("external links are HTTPS", async ({ page }) => {
   for (const path of pages) {
     await page.goto(path);
