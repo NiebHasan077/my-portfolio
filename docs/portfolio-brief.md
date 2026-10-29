@@ -58,7 +58,7 @@ Show it as a publication with its author list and DOI, noting that it came from 
 - Data-transfer runtime - prototype implemented: a sender and receiver architecture using multiprocessing workers and zero-copy file transfer over TCP.
 - Bounded agentic control - evaluation in progress: Diagnostic and Decision agents reasoning over live telemetry within hard concurrency limits and oscillation controls.
 
-Publish motivation, questions, methodology, controls, limitations, and current status. Do not claim model superiority, completed evaluation, optimizer effectiveness, dataset scale, or performance results without reproducible public-safe evidence and approval.
+Publish motivation, questions, methodology, controls, limitations, and current status, plus the headline results the owner approved on 2026-10-29: 94–98% of the best fixed concurrency setting's throughput objective without prior tuning, averaging up to 84.5 Gbps, on CloudLab and an InfiniBand HPC cluster. Do not claim model superiority or results beyond those without new approval.
 
 ### NetBench
 

@@ -22,7 +22,7 @@ export type Claim = {
 };
 
 export type Link = {
-  kind: "email" | "github" | "linkedin" | "scholar" | "resume";
+  kind: "email" | "github" | "linkedin" | "scholar" | "orcid" | "resume";
   label: string;
   href: string;
   available: boolean;

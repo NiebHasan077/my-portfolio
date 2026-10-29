@@ -28,6 +28,13 @@
     "claimIds": ["contact-scholar"]
   },
   {
+    "kind": "orcid",
+    "label": "ORCID",
+    "href": "https://orcid.org/0000-0002-6765-8873",
+    "available": true,
+    "claimIds": ["contact-orcid"]
+  },
+  {
     "kind": "resume",
     "label": "Résumé (PDF)",
     "href": "/Nieb_Hasan_Neom_Resume.pdf",

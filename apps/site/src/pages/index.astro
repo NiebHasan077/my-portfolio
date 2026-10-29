@@ -10,7 +10,7 @@ const resume = linkOf("resume");
 const email = linkOf("email");
 const scholar = linkOf("scholar");
 const github = linkOf("github");
-const sameAs = (["github", "linkedin", "scholar"] as const).flatMap((kind) => linkOf(kind)?.href ?? []);
+const sameAs = (["github", "linkedin", "scholar", "orcid"] as const).flatMap((kind) => linkOf(kind)?.href ?? []);
 const selected = publications.filter((p) => p.status !== "preprint").slice(0, 3);
 
 const jsonLd = {
@@ -82,9 +82,9 @@ const jsonLd = {
           href="/research/agentic-data-transfer-optimizer/"
           visual="optimizer"
           tone="progress"
-          kicker="In progress"
+          kicker="In progress · first results"
           title="Agentic Data Transfer Optimizer"
-          text="Two agents tune bulk-transfer concurrency from live TCP telemetry, while hard limits keep every action in bounds."
+          text="Two agents tune bulk-transfer concurrency from live telemetry inside hard limits, reaching 94–98% of the best fixed setting without prior tuning."
         />
       </div>
       <p class="group-label">Engineering</p>
@@ -101,7 +101,7 @@ const jsonLd = {
           visual="card"
           kicker="Industry · Seoul to Dhaka"
           title="Card Personalization System"
-          text="Learned Kona I's smart-card personalization system in Seoul and set it up end to end in Bangladesh."
+          text="Learned Kona I's smart-card personalization system in Seoul, then redeployed and configured it in Bangladesh."
         />
         <WorkCard
           href="/projects/loadlens/"

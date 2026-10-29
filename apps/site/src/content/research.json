@@ -60,10 +60,10 @@
     "publish": true,
     "title": "Agentic Data Transfer Optimizer",
     "tagline": "Tuning bulk data transfers from live TCP telemetry, with the agent's actions kept inside hard limits.",
-    "status": "In progress · prototype built, evaluation under way",
+    "status": "In progress · first results in",
     "tone": "progress",
-    "summary": "A Diagnostic agent and a Decision agent read live TCP telemetry, including congestion window, retransmissions, and RTT variance, and adjust transfer concurrency each interval. The system enforces hard limits, bounded changes, and oscillation damping around every recommendation.",
-    "short": "Diagnostic and Decision agents tune transfer concurrency from live TCP telemetry over zero-copy sendfile() workers, inside hard limits with bounded changes and oscillation damping.",
+    "summary": "A Diagnostic agent and a Decision agent read live telemetry, including congestion window, retransmissions, and RTT variance, and adjust transfer concurrency each interval inside hard limits. On CloudLab and an InfiniBand HPC cluster it reached 94–98% of the best fixed setting's throughput without knowing that setting in advance, averaging up to 84.5 Gbps.",
+    "short": "Diagnostic and Decision agents tune transfer concurrency from live telemetry inside hard limits; on CloudLab and an InfiniBand cluster they reached 94–98% of the best fixed setting without prior tuning, up to 84.5 Gbps.",
     "stack": [
       "Python",
       "Zero-copy sendfile()",
@@ -76,7 +76,8 @@
     "links": [],
     "claimIds": [
       "research-data-movement-optimizer",
-      "research-optimizer-implementation"
+      "research-optimizer-implementation",
+      "research-optimizer-results"
     ]
   }
 ]

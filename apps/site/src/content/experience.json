@@ -28,7 +28,7 @@
       "Owned 6 of the 30 Spring Boot microservices behind Kona Token Trade and contributed to 15, across trade, wallet, user, payment, and fee management.",
       "Replaced synchronous REST calls between services with Kafka messaging, so one unavailable downstream service could no longer fail an in-flight transaction.",
       "Added two-factor authentication to buy and sell operations and integrated bank-account and Kona card payment gateways.",
-      "Built the Card Personalization System against GlobalPlatform, Visa, Mastercard, and EMV specifications. It is in commercial use, and I was chosen for a 14-day training program on it at parent company Kona I in Seoul.",
+      "Redeployed parent company Kona I's Card Personalization System and configured profiles for different customers. It is in commercial use, and I was chosen for a 14-day training program at Kona I in Seoul on the system and the GlobalPlatform, Visa, Mastercard, and EMV specifications.",
       "Mentored and onboarded two junior engineers."
     ],
     "href": "/projects/kona-token-trade/",

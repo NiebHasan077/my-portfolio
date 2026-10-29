@@ -24,7 +24,7 @@
     "id": "card-personalization",
     "publish": true,
     "title": "Card Personalization System",
-    "summary": "Brought Kona I's smart-card personalization system from its head office in South Korea to Bangladesh: studied the specifications, learned the running system, set it up in the Bangladesh office, and personalized cards end to end.",
+    "summary": "Redeployed Kona I's smart-card personalization system from its head office in South Korea to Bangladesh: studied the specifications, learned the running system, set it up in the Bangladesh office, configured it for different customers, and personalized cards end to end.",
     "stack": ["Java", "Apache Struts", "EMV", "GlobalPlatform"],
     "href": "/projects/card-personalization/",
     "links": [],

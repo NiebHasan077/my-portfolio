@@ -10,9 +10,9 @@ const sections = [
   { id: "hard", label: "Why it is hard" },
   { id: "role", label: "My role" },
   { id: "approach", label: "The approach" },
+  { id: "results", label: "Results" },
   { id: "decisions", label: "Decisions" },
-  { id: "evaluation", label: "Evaluation plan" },
-  { id: "next", label: "Status" },
+  { id: "evaluation", label: "What comes next" },
 ];
 ---
 
@@ -61,6 +61,21 @@ const sections = [
     />
   </section>
 
+  <section id="results">
+    <h2>Results</h2>
+    <div class="stats">
+      <div class="stat"><b>94–98%</b><span>of the best fixed setting's throughput objective</span></div>
+      <div class="stat"><b>84.5 Gbps</b><span>average throughput at best, over InfiniBand</span></div>
+      <div class="stat"><b>No tuning</b><span>the best setting was never given in advance</span></div>
+    </div>
+    <p>
+      I evaluated the optimizer on CloudLab with 10 Gbps links and on an InfiniBand HPC cluster. Each round, the local Diagnostic and Decision agents tuned concurrency from TCP, host, and throughput telemetry. Across these runs the optimizer reached 94–98% of the throughput objective of the best fixed concurrency setting, and averaged up to 84.5 Gbps.
+    </p>
+    <p>
+      The comparison is deliberately hard. The best fixed setting is only known after trying every option on that path; a static mover gets its throughput only if someone has already done that tuning. The agents were never told the answer and got within a few percent of it on their own.
+    </p>
+  </section>
+
   <section id="decisions">
     <h2>Decisions</h2>
     <ol class="decisions">
@@ -72,18 +87,13 @@ const sections = [
   </section>
 
   <section id="evaluation">
-    <h2>Evaluation plan</h2>
-    <p>The evaluation is designed to stress the agent in the situations a static setting handles worst:</p>
+    <h2>What comes next</h2>
+    <p>The next evaluations stress the agent in the situations a static setting handles worst:</p>
     <ul class="bullets">
       <li>several transfers running at the same time;</li>
       <li>a transfer that joins while another runs at a fixed concurrency;</li>
       <li>congested disk I/O;</li>
       <li>packet loss on the nodes in between.</li>
     </ul>
-  </section>
-
-  <section id="next">
-    <h2>Status</h2>
-    <p>The prototype is built and evaluation is under way. Results will appear here once the controlled comparisons are complete.</p>
   </section>
 </CaseLayout>

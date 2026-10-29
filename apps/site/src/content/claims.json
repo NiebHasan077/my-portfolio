@@ -169,11 +169,11 @@
   },
   {
     "id": "education-mst-fellowship-graduation",
-    "statement": "Nieb Hasan Neom is a Kummer Innovation and Entrepreneurship Doctoral Fellow at Missouri University of Science and Technology with an anticipated graduation date of May 2030.",
-    "evidence": "owner-provided 2026 research and role-targeted CVs; owner implementation approval",
+    "statement": "Nieb Hasan Neom is a Kummer Innovation and Entrepreneurship Doctoral Fellow at Missouri University of Science and Technology with an anticipated graduation date of December 2029.",
+    "evidence": "owner's résumé source, commit 53d51d7 (anticipated graduation 12/2029), 2026-10-25; owner-provided 2026 CVs",
     "publicSafe": true,
     "approved": true,
-    "lastVerified": "2026-09-20"
+    "lastVerified": "2026-10-29"
   },
   {
     "id": "experience-mst-research-lab",
@@ -409,11 +409,11 @@
   },
   {
     "id": "experience-kona-card-personalization",
-    "statement": "Nieb Hasan Neom built the Card Personalization System (Java, Apache Struts), completing a smart-card personalization pipeline against GlobalPlatform, Visa, Mastercard, and EMV specifications that is in commercial use, and was selected for a 14-day training program on the project at parent company Kona I in Seoul, South Korea.",
-    "evidence": "owner-provided September 2026 résumés; owner accepted the renovation plan's content additions on 2026-10-05",
+    "statement": "Nieb Hasan Neom redeployed parent company Kona I's Card Personalization System (Java, Apache Struts) and configured profiles for different customers; the system is in commercial use. He was selected from the engineering team for a 14-day training program at Kona I's headquarters in Seoul, South Korea, on the system and the GlobalPlatform, Visa, Mastercard, and EMV specifications.",
+    "evidence": "owner's résumé source, commit 48309da, which corrected the role from building the system to redeploying and configuring it, 2026-10-25; LinkedIn export",
     "publicSafe": true,
     "approved": true,
-    "lastVerified": "2026-10-05"
+    "lastVerified": "2026-10-29"
   },
   {
     "id": "experience-kona-mentoring",
@@ -438,7 +438,7 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-10-05",
-    "notes": "Implementation only. No effectiveness or performance result is published."
+    "notes": "Implementation details. Results are in research-optimizer-results."
   },
   {
     "id": "project-loadlens",
@@ -504,7 +504,7 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-10-07",
-    "notes": "A plan, not a result."
+    "notes": "Further scenarios beyond the published results; a plan, not a result."
   },
   {
     "id": "experience-kona-p2p-origin",
@@ -540,7 +540,7 @@
   },
   {
     "id": "experience-kona-card-bootstrap",
-    "statement": "Kona I ran its Card Personalization System at its head office in South Korea. To bring the business to Bangladesh, Nieb Hasan Neom studied the card-personalization specifications, learned how the Korean system worked, set the whole system up in the Bangladesh office, and completed an end-to-end card personalization.",
+    "statement": "Kona I ran its Card Personalization System at its head office in South Korea. To bring the business to Bangladesh, Nieb Hasan Neom studied the card-personalization specifications, learned how the Korean system worked, set the whole system up in the Bangladesh office, configured it for different customers, and completed an end-to-end card personalization.",
     "evidence": "owner's own account, 2026-10-07; LinkedIn export; owner academic résumé; owner approved on 2026-10-07",
     "publicSafe": true,
     "approved": true,
@@ -652,5 +652,21 @@
     "approved": true,
     "lastVerified": "2026-10-07",
     "notes": "The owner chose to publish GPA, citation counts, and the Kona caching figure in this file only. Website pages still omit them."
+  },
+  {
+    "id": "contact-orcid",
+    "statement": "Nieb Hasan Neom's ORCID iD is 0000-0002-6765-8873.",
+    "evidence": "https://orcid.org/0000-0002-6765-8873 (public record name: Nieb Hasan Neom); owner résumé header, 2026-10",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "id": "research-optimizer-results",
+    "statement": "On CloudLab with 10 Gbps links and on an InfiniBand HPC cluster, the Agentic Data Transfer Optimizer's local LLM diagnostic and decision agents, tuning transfer concurrency each round from TCP, host, and throughput telemetry, reached 94–98% of the best fixed concurrency setting's throughput objective without knowing that setting in advance, averaging up to 84.5 Gbps.",
+    "evidence": "owner's résumé source, commit 48309da (resume/sections/research.tex), 2026-10-25; owner asked for the results on the site on 2026-10-29",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-10-29"
   }
 ]

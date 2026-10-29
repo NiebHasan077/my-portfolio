@@ -42,7 +42,7 @@ The application domain itself is now covered by the approved `research-guarded-o
 ## Claims intentionally withheld
 
 - Kona Token Trade performance metrics on website pages. The owner chose to keep the caching figure, GPA, and citation counts in the downloadable résumé PDF.
-- Comparative results, model superiority, or optimization effectiveness for the Agentic Data Transfer Optimizer until reproducible public-safe evidence is supplied and approved.
+- Agentic Data Transfer Optimizer results beyond the headline figures the owner approved on 2026-10-29 (94–98% of the best fixed setting, up to 84.5 Gbps, on CloudLab and an InfiniBand cluster).
 - NetBench results. The site publishes the benchmark's scale, design, and questions, which the public repository documents, and adds findings once the paper is public.
 - WORKS26 specifics until the proceedings are public on 15 November 2026: the page shows only a redrawn workflow and an illustrative conversation with changed values and no predictions.
 - Collaborator-side and backend evaluation figures behind the accepted orchestration paper.
