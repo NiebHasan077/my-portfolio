@@ -49,6 +49,15 @@
     "claimIds": ["achievement-intra-kuet"]
   },
   {
+    "id": "icrm-volunteer",
+    "publish": true,
+    "category": "service",
+    "title": "Volunteer, ICRM Distribution Center, Islamic Center of Rolla",
+    "detail": "weekly halal meat distribution and monthly facility cleaning, since September 2025",
+    "href": "https://www.rollamasjid.org/",
+    "claimIds": ["service-icrm-volunteer"]
+  },
+  {
     "id": "sc26-student-volunteer",
     "publish": true,
     "category": "service",

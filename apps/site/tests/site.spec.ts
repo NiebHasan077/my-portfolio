@@ -211,6 +211,9 @@ test("CV offers the résumé and prints to one page", async ({ page }, info) => 
     "PDF output needs desktop Chromium",
   );
   await page.emulateMedia({ media: "print" });
+  // Print only after the web fonts load: the fallback font is wider and would
+  // push the CV onto a second page.
+  await page.evaluate(() => document.fonts.ready);
   await expect(
     page.getByRole("heading", { name: "Nieb Hasan Neom" }),
   ).toBeVisible();

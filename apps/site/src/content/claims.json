@@ -668,5 +668,13 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-10-29"
+  },
+  {
+    "id": "service-icrm-volunteer",
+    "statement": "Since September 2025, Nieb Hasan Neom has volunteered at the ICRM Distribution Center of the Islamic Center of Rolla, Missouri, helping with weekly halal meat distribution to community members and monthly facility cleaning.",
+    "evidence": "owner's résumé source, resume/sections/leadership.tex (commit eacee1f, 2026-10-25); https://www.rollamasjid.org/ lists the ICRM Distribution Center; owner asked for it on the site on 2026-11-01",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-11-01"
   }
 ]

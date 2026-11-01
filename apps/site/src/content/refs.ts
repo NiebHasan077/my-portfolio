@@ -12,6 +12,7 @@ export const refs = {
   kuet: "https://www.kuet.ac.bd/",
   konaSoftwareLab: "https://www.konasl.com/",
   konaI: "https://www.konai.com/",
+  icrm: "https://www.rollamasjid.org/",
 
   // Venues and testbeds
   works26: "https://works-workshop.org/",

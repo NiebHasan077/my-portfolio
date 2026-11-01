@@ -27,7 +27,10 @@ const cvHonors = ["codeforces-expert", "leetcode-knight", "konasl-coding-combat"
 const honors = highlights.filter((item) => item.category === "honor" && cvHonors.includes(item.id));
 const service = highlights.filter((item) => item.category === "service");
 const phrase = (item: { title: string; detail?: string }) => (item.detail ? `${item.title} (${item.detail})` : item.title);
-const cvService = service.filter((item) => item.id !== "sports-leadership" && item.id !== "kuet-math-club");
+// The printed CV keeps to one page: current service only, with shorter labels.
+const cvServiceIds = ["icrm-volunteer", "sc26-student-volunteer", "reviewer-jai"];
+const cvServiceLabel: Record<string, string> = { "icrm-volunteer": "Volunteer, Islamic Center of Rolla" };
+const cvService = service.filter((item) => cvServiceIds.includes(item.id));
 ---
 
 <BaseLayout title={`CV · ${profile.displayName}`} description={`Curriculum vitae of ${profile.displayName}, ${profile.role} at ${profile.affiliation}.`} current="CV">
@@ -163,7 +166,7 @@ const cvService = service.filter((item) => item.id !== "sports-leadership" && it
     <section aria-labelledby="cv-honors">
       <h2 id="cv-honors">Honors and service</h2>
       <p><strong>Honors:</strong> {honors.map(phrase).join("; ")}.</p>
-      <p><strong>Service:</strong> {cvService.map((item) => item.title).join("; ")}.</p>
+      <p><strong>Service:</strong> {cvService.map((item) => cvServiceLabel[item.id] ?? item.title).join("; ")}.</p>
     </section>
   </div>
   </div>
