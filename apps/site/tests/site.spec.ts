@@ -39,6 +39,66 @@ test("home page leads with the name, the idea, and the work", async ({
   await expect(
     page.getByRole("link", { name: "Résumé (PDF)" }).first(),
   ).toHaveAttribute("href", "/Nieb_Hasan_Neom_Resume.pdf");
+  await expect(
+    page
+      .getByRole("region", { name: "Introduction" })
+      .getByRole("link", { name: "LinkedIn", exact: true }),
+  ).toHaveAttribute(
+    "href",
+    "https://www.linkedin.com/in/nieb-hasan-neom-72b604201/",
+  );
+});
+
+test("home figures link to the page behind each number", async ({ page }) => {
+  await page.goto("/");
+  const figures = page.getByRole("list", { name: "At a glance" });
+  for (const [figure, href] of [
+    ["94–98%", "/research/agentic-data-transfer-optimizer/#results"],
+    ["242", "/research/netbench/"],
+    ["6 of 30", "/projects/kona-token-trade/"],
+    ["278", "/about/#citations"],
+  ])
+    await expect(
+      figures.getByRole("link", { name: new RegExp(`^${figure}`) }),
+    ).toHaveAttribute("href", href);
+});
+
+test("the tuning toy lets the agent search and says it is an illustration", async ({
+  page,
+}) => {
+  const path = "/research/agentic-data-transfer-optimizer/";
+  // Without JavaScript the figure still explains where the best setting sits.
+  const html = await (await page.request.get(path)).text();
+  expect(html).toContain("The best number of streams moves with the path");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto(path);
+  const toy = page.locator("[data-toy]");
+  await expect(toy).toContainText("made-up numbers");
+  await expect(toy).toContainText("not the real optimizer");
+  await toy.getByRole("button", { name: "Busy shared link" }).click();
+  await toy.getByRole("button", { name: "Let the agent try" }).click();
+  await expect(toy.locator("[data-readout]")).toContainText(
+    /The agent settled on \d+ streams/,
+  );
+  await expect(toy.locator(".probe.agent").first()).toBeVisible();
+  await toy.getByRole("button", { name: "Nearby, quiet link" }).click();
+  await expect(toy.locator(".probe")).toHaveCount(0);
+});
+
+test("About charts citations per year", async ({ page }) => {
+  await page.goto("/about/");
+  const chart = page.locator("#citations figure");
+  await expect(chart.locator("rect.bar")).toHaveCount(7);
+  await expect(chart.locator("figcaption")).toContainText("278 in total");
+});
+
+test("NetBench shows which model ran in which variant", async ({ page }) => {
+  await page.goto("/research/netbench/");
+  const grid = page.locator(".run-grid");
+  await expect(grid.locator("tbody th.model")).toHaveCount(11);
+  const large = grid.locator("tr", { has: page.getByText("qwen3.5-27b") });
+  await expect(large.locator("td.ran")).toHaveCount(6);
+  await expect(page.locator(".hbars rect.bar")).toHaveCount(6);
 });
 
 test("navigation is visible on every page", async ({ page }) => {

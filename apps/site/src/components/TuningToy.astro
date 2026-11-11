@@ -1,0 +1,225 @@
+---
+import { MAX_STREAMS, MIN_STREAMS, best, conditions, throughput } from "../lib/tuning";
+
+// A toy, drawn at build time: without JavaScript the reader sees all three
+// curves with their best settings. The script hides the curves and turns the
+// figure into a guessing game the visitor can hand to a simple agent.
+const W = 520;
+const H = 280;
+const L = 52;
+const R = 16;
+const T = 16;
+const B = 50;
+const X = (n: number) => L + ((n - MIN_STREAMS) / (MAX_STREAMS - MIN_STREAMS)) * (W - L - R);
+const Y = (v: number) => T + (1 - v) * (H - T - B);
+const ink = { nearby: "#0f5e73", distant: "#93560a", busy: "#a3322c" } as Record<string, string>;
+const curves = conditions.map((condition) => {
+  const points: string[] = [];
+  for (let n = MIN_STREAMS; n <= MAX_STREAMS + 1e-9; n += 0.25) points.push(`${X(n).toFixed(1)},${Y(throughput(condition, n)).toFixed(1)}`);
+  const top = best(condition);
+  return { ...condition, d: `M${points.join(" L")}`, top, color: ink[condition.id] ?? "#15191e" };
+});
+const xTicks = [1, 8, 16, 24, 32];
+const yTicks = [0, 0.25, 0.5, 0.75, 1];
+const geometry = JSON.stringify({ W, H, L, R, T, B });
+const summary = curves.map((c) => `about ${c.top.streams} on a ${c.label.toLowerCase()}`).join(", ");
+---
+
+<figure class="panel toy" data-toy data-illustrative data-geometry={geometry}>
+  <div class="panel-bar">
+    <h3>Tune a transfer yourself</h3>
+    <span class="toy-tag">Illustration · made-up numbers</span>
+  </div>
+  <div class="panel-body">
+    <p class="toy-intro" data-intro hidden>
+      Pick a network, then move the slider to try a number of parallel streams. Each setting you try is one measurement, and you only see what you measure. Then let the agent take over from your setting.
+    </p>
+    <div class="chips" role="group" aria-label="Network condition" data-conditions hidden>
+      {
+        curves.map((c, i) => (
+          <button class="chip" type="button" data-condition={c.id} aria-pressed={i === 0 ? "true" : "false"}>
+            {c.label}
+          </button>
+        ))
+      }
+    </div>
+    <svg class="toy-plot" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Throughput against parallel streams in a toy model. The best number of streams is ${summary}.`}>
+      {
+        yTicks.map((v) => (
+          <g>
+            <line x1={L} x2={W - R} y1={Y(v)} y2={Y(v)} class="grid" />
+            <text x={L - 8} y={Y(v) + 4} text-anchor="end" class="axis">
+              {Math.round(v * 100)}%
+            </text>
+          </g>
+        ))
+      }
+      {
+        xTicks.map((n) => (
+          <text x={X(n)} y={H - B + 18} text-anchor="middle" class="axis">
+            {n}
+          </text>
+        ))
+      }
+      <text x={(L + W - R) / 2} y={H - 8} text-anchor="middle" class="axis-title">parallel streams</text>
+      <text x="14" y={(T + H - B) / 2} text-anchor="middle" class="axis-title" transform={`rotate(-90 14 ${(T + H - B) / 2})`}>throughput, % of link</text>
+      <line class="cursor" data-cursor x1="-10" x2="-10" y1={T} y2={H - B} display="none" />
+      {
+        curves.map((c) => (
+          <g data-curve={c.id}>
+            <path d={c.d} fill="none" stroke={c.color} stroke-width="2.2" />
+            <circle cx={X(c.top.streams)} cy={Y(c.top.value)} r="5" fill={c.color} stroke="#fff" stroke-width="2" />
+            <text x={X(c.top.streams)} y={Y(c.top.value) - 11} text-anchor="middle" class="curve-label" fill={c.color}>
+              {c.short}: best {c.top.streams}
+            </text>
+          </g>
+        ))
+      }
+      <path data-agent-path fill="none" stroke="#0f5e73" stroke-width="1.4" stroke-dasharray="3 3" d="" />
+      <g data-trail></g>
+    </svg>
+    <div class="toy-controls" data-controls hidden>
+      <label for="toy-streams">Parallel streams: <output data-streams for="toy-streams">4</output></label>
+      <input id="toy-streams" type="range" min={MIN_STREAMS} max={MAX_STREAMS} step="1" value="4" data-slider />
+      <div class="controls">
+        <button class="button small solid" type="button" data-agent>Let the agent try</button>
+        <button class="button small" type="button" data-reveal>Show the curve</button>
+      </div>
+    </div>
+    <p class="toy-readout" data-readout aria-live="polite">
+      The best number of streams moves with the path: {summary}. A setting tuned for one path is wrong on the next, which is why the optimizer keeps measuring.
+    </p>
+  </div>
+  <figcaption class="caption">
+    A toy model, not the real optimizer or its measurements. Its agent is a plain bounded search standing in for the two language-model agents described below.
+  </figcaption>
+</figure>
+
+<script>
+  import { MAX_STREAMS, MIN_STREAMS, best, conditions, measure, search } from "../lib/tuning";
+
+  const SVG = "http://www.w3.org/2000/svg";
+  const STEP_MS = 280;
+  const pct = (v: number) => `${Math.round(v * 100)}%`;
+
+  for (const toy of document.querySelectorAll<HTMLElement>("[data-toy]")) {
+    const g = JSON.parse(toy.dataset.geometry ?? "{}") as Record<"W" | "H" | "L" | "R" | "T" | "B", number>;
+    const X = (n: number) => g.L + ((n - MIN_STREAMS) / (MAX_STREAMS - MIN_STREAMS)) * (g.W - g.L - g.R);
+    const Y = (v: number) => g.T + (1 - v) * (g.H - g.T - g.B);
+    const slider = toy.querySelector<HTMLInputElement>("[data-slider]")!;
+    const output = toy.querySelector<HTMLOutputElement>("[data-streams]")!;
+    const readout = toy.querySelector<HTMLElement>("[data-readout]")!;
+    const trail = toy.querySelector<SVGGElement>("[data-trail]")!;
+    const agentPath = toy.querySelector<SVGPathElement>("[data-agent-path]")!;
+    const cursor = toy.querySelector<SVGLineElement>("[data-cursor]")!;
+    const agentButton = toy.querySelector<HTMLButtonElement>("[data-agent]")!;
+    const revealButton = toy.querySelector<HTMLButtonElement>("[data-reveal]")!;
+    const chips = [...toy.querySelectorAll<HTMLButtonElement>("[data-condition]")];
+    const curves = [...toy.querySelectorAll<SVGGElement>("[data-curve]")];
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let condition = conditions[0]!;
+    let tries = 0;
+    let running = 0;
+
+    const showCurve = (visible: boolean) => {
+      for (const curve of curves)
+        if (visible && curve.dataset.curve === condition.id) curve.removeAttribute("display");
+        else curve.setAttribute("display", "none");
+      revealButton.disabled = visible;
+    };
+    const dot = (n: number, reading: number, kind: "visitor" | "agent") => {
+      const circle = document.createElementNS(SVG, "circle");
+      circle.setAttribute("cx", X(n).toFixed(1));
+      circle.setAttribute("cy", Y(reading).toFixed(1));
+      circle.setAttribute("r", "4.5");
+      circle.setAttribute("class", `probe ${kind}`);
+      trail.append(circle);
+    };
+    const point = (n: number) => {
+      cursor.setAttribute("x1", X(n).toFixed(1));
+      cursor.setAttribute("x2", X(n).toFixed(1));
+      cursor.removeAttribute("display");
+      output.value = String(n);
+    };
+    const reset = () => {
+      window.clearTimeout(running);
+      running = 0;
+      trail.replaceChildren();
+      agentPath.setAttribute("d", "");
+      tries = 0;
+      showCurve(false);
+      setBusy(false);
+      measureAt(Number(slider.value), false);
+    };
+    const setBusy = (busy: boolean) => {
+      slider.disabled = busy;
+      agentButton.disabled = busy;
+      for (const chip of chips) chip.disabled = busy;
+      if (busy) revealButton.disabled = true;
+    };
+    function measureAt(n: number, record: boolean) {
+      point(n);
+      const reading = measure(condition, n);
+      if (record) {
+        tries += 1;
+        dot(n, reading, "visitor");
+      }
+      readout.textContent = record
+        ? `${n} ${n === 1 ? "stream" : "streams"}: ${pct(reading)} of the link. Settings tried: ${tries}.`
+        : `${condition.label}. Move the slider to try a setting. ${condition.why}`;
+    }
+
+    const runAgent = () => {
+      const result = search(condition, Number(slider.value));
+      const top = best(condition);
+      const share = result.value / top.value;
+      const finish = () => {
+        running = 0;
+        slider.value = String(result.settled);
+        point(result.settled);
+        showCurve(true);
+        setBusy(false);
+        readout.textContent = `The agent settled on ${result.settled} streams after ${result.probes.length} probing intervals, never moving more than four streams at a time: ${pct(result.value)} of the link, ${pct(share)} of the best setting (${top.streams} streams, found by trying every option).`;
+      };
+      trail.querySelectorAll(".agent").forEach((node) => node.remove());
+      const d: string[] = [];
+      let i = 0;
+      const step = () => {
+        const probe = result.probes[i]!;
+        d.push(`${X(probe.streams).toFixed(1)},${Y(probe.reading).toFixed(1)}`);
+        agentPath.setAttribute("d", `M${d.join(" L")}`);
+        dot(probe.streams, probe.reading, "agent");
+        point(probe.streams);
+        readout.textContent = `Interval ${i + 1}: the agent tries ${probe.streams} streams and measures ${pct(probe.reading)} of the link.`;
+        i += 1;
+        if (i < result.probes.length) running = window.setTimeout(step, STEP_MS);
+        else finish();
+      };
+      if (reduce) {
+        while (i < result.probes.length) step();
+        return;
+      }
+      setBusy(true);
+      step();
+    };
+
+    for (const chip of chips)
+      chip.addEventListener("click", () => {
+        condition = conditions.find((c) => c.id === chip.dataset.condition) ?? condition;
+        for (const other of chips) other.setAttribute("aria-pressed", String(other === chip));
+        reset();
+      });
+    slider.addEventListener("input", () => point(Number(slider.value)));
+    slider.addEventListener("change", () => measureAt(Number(slider.value), true));
+    agentButton.addEventListener("click", runAgent);
+    revealButton.addEventListener("click", () => {
+      showCurve(true);
+      const top = best(condition);
+      readout.textContent = `${condition.label}: the best setting is ${top.streams} streams, at ${pct(top.value)} of the link. ${condition.why}`;
+    });
+
+    for (const hidden of toy.querySelectorAll<HTMLElement>("[data-intro], [data-conditions], [data-controls]")) hidden.hidden = false;
+    reset();
+  }
+</script>

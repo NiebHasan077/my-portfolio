@@ -2,6 +2,8 @@
 import Authors from "../../components/Authors.astro";
 import Flow from "../../components/Flow.astro";
 import NetBenchExplorer from "../../components/NetBenchExplorer.astro";
+import QuestionTypes from "../../components/QuestionTypes.astro";
+import RunGrid from "../../components/RunGrid.astro";
 import CaseLayout from "../../layouts/CaseLayout.astro";
 import { research } from "../../content";
 import { refs } from "../../content/refs";
@@ -77,6 +79,7 @@ const sections = [
     <p>
       HPN-QA has 242 open-ended questions, 233 of them scored, generated from 175 open-access publications. Each answer is graded against a reference on correctness, completeness, clarity, and conciseness. The items fall into 10 categories, deliberately uneven because they follow the literature's own emphasis, and four splits: 200 test, 30 dev, 8 adversarial, and 4 synthesis items that combine two papers.
     </p>
+    <QuestionTypes />
   </section>
 
   <section id="explore">
@@ -101,19 +104,7 @@ const sections = [
     <p>
       Eight open-weight models from 1B to 27B parameters answer every item in up to eight variants, alongside three frontier API models answering closed-book. Two independent LLM judges score every answer, and a two-expert human study validates the primary judge.
     </p>
-    <div class="table-box">
-      <table>
-        <thead><tr><th>Group</th><th>Models or variants</th></tr></thead>
-        <tbody>
-          <tr><td>Small</td><td>llama-3.2-1b, gemma-3-1b, qwen3.5-2b</td></tr>
-          <tr><td>Medium</td><td>llama-3.1-8b, qwen3.5-9b, gemma-3-12b</td></tr>
-          <tr><td>Large</td><td>gemma-3-27b, qwen3.5-27b</td></tr>
-          <tr><td>API baselines</td><td>gpt-4o, gemini-2.5-pro, claude-sonnet-4-6</td></tr>
-          <tr><td>Closed-book variants</td><td>Instruct, LoRA SFT, full SFT, CPT plus SFT, LoRA CPT plus SFT</td></tr>
-          <tr><td>Retrieval variants</td><td>Instruct plus RAG, CPT plus SFT plus RAG, LoRA CPT plus SFT plus RAG</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <RunGrid />
     <p>
       Five research questions frame the study: which adaptation recipe moves networking knowledge, how consistent the effects are across model families and sizes, what retrieval adds compared with changing the weights, how close adapted open models come to frontier APIs and at what inference cost, and how often statistical significance overstates a difference that matters.
     </p>

@@ -193,6 +193,15 @@ a:hover {
   margin-top: 1.25rem;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .muted {
   color: var(--muted);
 }
@@ -657,6 +666,51 @@ figure.figure figcaption,
   margin-bottom: 0.2rem;
 }
 
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: 1.25rem 1.5rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.figures a {
+  display: block;
+  height: 100%;
+  padding-top: 0.6rem;
+  border-top: 2px solid var(--ink);
+  color: inherit;
+  text-decoration: none;
+}
+
+.figures b {
+  display: block;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.figures span {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.figures a:hover b,
+.figures a:focus-visible b {
+  color: var(--accent);
+}
+
+.figures + .now {
+  margin-top: 2rem;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 19.5rem), 1fr));
@@ -957,6 +1011,8 @@ figure.figure figcaption,
 }
 
 .table-box {
+  /* Positioned, so hidden labels inside stay within the scroll box. */
+  position: relative;
   margin-top: 1.25rem;
   overflow-x: auto;
   border: 1px solid var(--rule);
@@ -1673,6 +1729,252 @@ button.nb-cat:hover,
   .charts {
     grid-template-columns: 1.4fr 1fr;
   }
+}
+
+/* Small static charts */
+.result-range svg,
+.citations svg,
+.hbars svg,
+.toy-plot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.result-range .grid,
+.toy-plot .grid {
+  stroke: #e3e1da;
+}
+
+.result-range .axis,
+.citations .axis,
+.toy-plot .axis {
+  fill: var(--muted);
+  font: 400 12px var(--mono);
+}
+
+.result-range .row-label {
+  fill: var(--ink);
+  font: 600 14px var(--sans);
+}
+
+.result-range .row-note {
+  fill: var(--muted);
+  font: 400 12px var(--sans);
+}
+
+.result-range .value,
+.citations .value,
+.hbars .value {
+  fill: var(--ink);
+  font: 600 13px var(--mono);
+}
+
+.result-range .best {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.result-range .marker {
+  fill: var(--ink);
+}
+
+.result-range .range {
+  fill: var(--progress);
+}
+
+.citations .baseline {
+  stroke: var(--rule-strong);
+}
+
+.citations .bar {
+  fill: #5a616c;
+}
+
+.citations .bar.open {
+  fill: #b4b9c0;
+}
+
+.hbars .label {
+  fill: var(--text);
+  font: 400 13px var(--sans);
+}
+
+.hbars .bar {
+  fill: var(--accent);
+}
+
+/* The concurrency toy on the optimizer page */
+.toy-tag {
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  color: var(--muted);
+  font: 500 0.75rem var(--mono);
+}
+
+.toy > figcaption {
+  margin: 0;
+  padding: 0 1.25rem 1.1rem;
+}
+
+.toy-intro {
+  margin-bottom: 0.9rem;
+  font-size: 0.9375rem;
+}
+
+.toy .chips {
+  margin-bottom: 0.75rem;
+}
+
+.toy-plot {
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.toy-plot .axis-title {
+  fill: var(--muted);
+  font: 400 12px var(--sans);
+}
+
+.toy-plot .curve-label {
+  font: 600 12px var(--sans);
+}
+
+.toy-plot .cursor {
+  stroke: var(--rule-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.toy-plot .probe.visitor {
+  fill: #fff;
+  stroke: var(--ink);
+  stroke-width: 1.6;
+}
+
+.toy-plot .probe.agent {
+  fill: var(--accent);
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+
+.toy-controls {
+  margin-top: 1rem;
+}
+
+.toy-controls label {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.toy-controls output {
+  font-family: var(--mono);
+}
+
+.toy-controls input[type="range"] {
+  width: 100%;
+  min-height: 2.75rem;
+  accent-color: var(--accent);
+}
+
+.toy-controls .controls {
+  margin-top: 0.25rem;
+}
+
+.toy-readout {
+  min-height: 4.5em;
+  margin-top: 0.9rem;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* On phones these drawings shrink to about half size, so their text grows. */
+@media (max-width: 40rem) {
+  .result-range .axis,
+  .citations .axis,
+  .toy-plot .axis,
+  .toy-plot .axis-title,
+  .toy-plot .curve-label,
+  .result-range .row-note,
+  .hbars .value,
+  .hbars .label {
+    font-size: 17px;
+  }
+
+  .result-range .row-label,
+  .result-range .value,
+  .citations .value {
+    font-size: 19px;
+  }
+}
+
+/* NetBench: which model ran in which variant */
+.run-grid.figure .table-box th,
+.run-grid.figure .table-box td {
+  padding: 0.45rem 0.4rem;
+}
+
+.run-grid .table-box th:first-child {
+  padding-left: 0.8rem;
+}
+
+.run-grid th.model-col,
+.run-grid th.model {
+  white-space: nowrap;
+}
+
+.run-grid th.model {
+  background: var(--surface);
+  color: var(--ink);
+  font: 400 0.8rem var(--mono);
+}
+
+.run-grid th.group,
+.run-grid th.variant {
+  text-align: center;
+}
+
+.run-grid th.variant {
+  min-width: 3.6rem;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  vertical-align: bottom;
+}
+
+.run-grid th.retrieval,
+.run-grid td.retrieval {
+  background: var(--tint);
+}
+
+.run-grid .group-row th {
+  padding-top: 0.75rem;
+  padding-bottom: 0.3rem;
+  background: var(--surface);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.run-grid td.cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.run-grid td.cell span[aria-hidden] {
+  display: inline-block;
+  width: 0.95rem;
+  height: 0.95rem;
+  border: 1px dashed var(--rule-strong);
+  border-radius: 3px;
+}
+
+.run-grid td.cell.ran span[aria-hidden] {
+  border: 0;
+  background: var(--accent);
 }
 
 /* Publications */

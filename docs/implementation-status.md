@@ -4,7 +4,8 @@
 
 - Static Astro portfolio, enhanced on 2026-10-07: a curated home page (hero, now row, six work cards, recent news, selected publications), About (story, path, colleague quotes, problem-solving charts, teaching, skills, honors and certificates, photos), Publications (filters and BibTeX), six case studies (NetBench, guarded orchestration, the Agentic Data Transfer Optimizer, Kona Token Trade, Card Personalization, LoadLens), the CV, and a 404. Retired addresses redirect through `public/_redirects`.
 - Menu: Work · Publications · About · CV, visible at every width. One light theme with self-hosted Source Serif 4 and Source Sans 3.
-- Interactive pieces, each with a complete static fallback: the NetBench question explorer (HPN-QA served from `/data/hpn-qa-v5.json`), the guarded-orchestration replay, the Kafka before-and-after animation, publication filters and copy-to-clipboard citations, Codeforces and LeetCode rating charts, and a reading-progress bar with an "On this page" rail.
+- Interactive pieces, each with a complete static fallback: the NetBench question explorer (HPN-QA served from `/data/hpn-qa-v5.json`), the guarded-orchestration replay, the Kafka before-and-after animation, the concurrency-tuning toy on the optimizer page (a labelled illustration with made-up numbers, model in `src/lib/tuning.ts`), publication filters and copy-to-clipboard citations, Codeforces and LeetCode rating charts, and a reading-progress bar with an "On this page" rail.
+- Static charts added on 2026-11-10: a four-figure strip on the home page, mini-charts on the optimizer and Kona cards, the optimizer's result range, NetBench question types and its model-by-variant run grid (`src/data/netbench-runs.json`), and citations per year on About (`src/data/scholar.json`).
 - Scripts are bundled modules under `/_astro/`; the content security policy in `public/_headers` allows scripts and data requests from the site's own origin only, and forbids inline scripts and styles. The validator caps compressed script at 30 KB per page.
 - Every figure shown on a page must appear in an approved claim; the static validator fails the build otherwise. Dataset samples, illustrations, SVG drawings, and citation blocks are exempt.
 - Typed public content for identity, news, three research records, three projects, five publications with author lists, the NetBench software release, experience, education, five skill groups, honors, certificates, service, and two testimonials, plus snapshots of Codeforces and LeetCode history in `apps/site/src/data/`.
@@ -41,7 +42,7 @@ The application domain itself is now covered by the approved `research-guarded-o
 
 ## Claims intentionally withheld
 
-- Kona Token Trade performance metrics on website pages. The owner chose to keep the caching figure, GPA, and citation counts in the downloadable résumé PDF.
+- Kona Token Trade performance metrics and GPA on website pages. The owner chose to keep the caching figure and GPA in the downloadable résumé PDF only; citation counts appear on About since 2026-11-10.
 - Agentic Data Transfer Optimizer results beyond the headline figures the owner approved on 2026-10-29 (94–98% of the best fixed setting, up to 84.5 Gbps, on CloudLab and an InfiniBand cluster).
 - NetBench results. The site publishes the benchmark's scale, design, and questions, which the public repository documents, and adds findings once the paper is public.
 - WORKS26 specifics until the proceedings are public on 15 November 2026: the page shows only a redrawn workflow and an illustrative conversation with changed values and no predictions.

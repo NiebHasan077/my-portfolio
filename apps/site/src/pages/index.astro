@@ -4,12 +4,14 @@ import WorkCard from "../components/WorkCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { linkOf, monthYear, news, profile, publications } from "../content";
 import { refs } from "../content/refs";
+import scholarData from "../data/scholar.json";
 
 const site = Astro.site!;
 const resume = linkOf("resume");
 const email = linkOf("email");
 const scholar = linkOf("scholar");
 const github = linkOf("github");
+const linkedin = linkOf("linkedin");
 const sameAs = (["github", "linkedin", "scholar", "orcid"] as const).flatMap((kind) => linkOf(kind)?.href ?? []);
 const selected = publications.filter((p) => p.status !== "preprint").slice(0, 3);
 
@@ -45,9 +47,25 @@ const jsonLd = {
           {email && <a class="button" href={email.href}>Email</a>}
           {scholar && <a class="button" href={scholar.href} rel="me noreferrer">Google Scholar</a>}
           {github && <a class="button" href={github.href} rel="me noreferrer">GitHub</a>}
+          {linkedin && <a class="button" href={linkedin.href} rel="me noreferrer">LinkedIn</a>}
         </div>
       </div>
     </section>
+
+    <ul class="figures" aria-label="At a glance">
+      <li>
+        <a href="/research/agentic-data-transfer-optimizer/#results"><b>94–98%</b><span>of the best fixed setting's throughput, with no prior tuning</span></a>
+      </li>
+      <li>
+        <a href="/research/netbench/"><b>242</b><span>questions from 175 papers in the NetBench benchmark</span></a>
+      </li>
+      <li>
+        <a href="/projects/kona-token-trade/"><b>6 of 30</b><span>microservices I owned on the Kona Token Trade platform</span></a>
+      </li>
+      <li>
+        <a href="/about/#citations"><b>{scholarData.total}</b><span>citations on Google Scholar</span></a>
+      </li>
+    </ul>
 
     <div class="now" aria-label="Now">
       <div><span class="kicker">Next</span><a href={refs.works26}>WORKS26</a> at <a href={refs.sc26}>SC26</a> in Chicago, 15 November 2026</div>

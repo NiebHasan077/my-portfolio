@@ -1,0 +1,39 @@
+---
+import data from "../data/hpn-qa-v5.json";
+
+// Question types in HPN-QA, counted from the released items at build time and
+// drawn to scale.
+const counts = Object.entries(
+  (data as Array<{ t: string }>).reduce<Record<string, number>>((all, item) => {
+    all[item.t] = (all[item.t] ?? 0) + 1;
+    return all;
+  }, {}),
+).sort((a, b) => b[1] - a[1]);
+const max = counts[0]![1];
+const W = 560;
+const row = 26;
+const L = 118;
+const R = 40;
+const H = counts.length * row + 6;
+const width = (n: number) => (n / max) * (W - L - R);
+const label = (word: string) => word[0]!.toUpperCase() + word.slice(1);
+---
+
+<figure class="figure hbars" data-dataset>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`HPN-QA questions by type: ${counts.map(([t, n]) => `${t} ${n}`).join(", ")}.`}>
+    {
+      counts.map(([type, n], i) => (
+        <g>
+          <text x={L - 10} y={i * row + 18} text-anchor="end" class="label">
+            {label(type)}
+          </text>
+          <rect x={L} y={i * row + 5} width={width(n)} height={row - 10} rx="3" class="bar" />
+          <text x={L + width(n) + 6} y={i * row + 18} class="value">
+            {n}
+          </text>
+        </g>
+      ))
+    }
+  </svg>
+  <figcaption>Questions by type. Most ask the model to reason about a mechanism or explain a concept; few are pure calculation.</figcaption>
+</figure>

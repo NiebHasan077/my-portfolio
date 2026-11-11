@@ -1,5 +1,6 @@
 ---
 import Flow from "../../components/Flow.astro";
+import TuningToy from "../../components/TuningToy.astro";
 import CaseLayout from "../../layouts/CaseLayout.astro";
 import { research } from "../../content";
 
@@ -8,12 +9,19 @@ if (!item) throw new Error("Agentic Data Transfer Optimizer content is missing")
 const sections = [
   { id: "problem", label: "The problem" },
   { id: "hard", label: "Why it is hard" },
+  { id: "try", label: "Try it" },
   { id: "role", label: "My role" },
   { id: "approach", label: "The approach" },
   { id: "results", label: "Results" },
   { id: "decisions", label: "Decisions" },
   { id: "evaluation", label: "What comes next" },
 ];
+
+// Results as a range plot: where the agent landed against the best fixed setting.
+const RW = 560;
+const RH = 136;
+const RX = (pct: number) => 24 + ((pct - 85) / 15) * (RW - 48);
+const rangeTicks = [85, 90, 95, 100];
 ---
 
 <CaseLayout title="Agentic Data Transfer Optimizer · Nieb Hasan Neom" description={item.tagline} heading={item.title} lede={item.tagline} sections={sections}>
@@ -37,6 +45,12 @@ const sections = [
       <li>An agent that changes concurrency too far or too often can do more damage than a fixed setting.</li>
       <li>The model should run close to the transfer, on modest hardware, without depending on an outside service.</li>
     </ul>
+  </section>
+
+  <section id="try">
+    <h2>Try it</h2>
+    <p>The toy below shows the problem in miniature: the best number of streams depends on the path, and the only way to find it is to measure.</p>
+    <TuningToy />
   </section>
 
   <section id="role">
@@ -63,8 +77,28 @@ const sections = [
 
   <section id="results">
     <h2>Results</h2>
+    <figure class="figure result-range">
+      <svg viewBox={`0 0 ${RW} ${RH}`} role="img" aria-label="The optimizer reached 94 to 98 percent of the best fixed concurrency setting's throughput objective. The best fixed setting, 100 percent, is known only after trying every option.">
+        {rangeTicks.map((t) => (
+          <g>
+            {t < 100 && <line x1={RX(t)} x2={RX(t)} y1="14" y2={RH - 30} class="grid" />}
+            <text x={RX(t)} y={RH - 12} text-anchor="middle" class="axis">{t}%</text>
+          </g>
+        ))}
+        <text x={RX(85)} y="34" class="row-label">Best fixed setting</text>
+        <text x={RX(85)} y="54" class="row-note">found by trying every option first</text>
+        <line x1={RX(100)} x2={RX(100)} y1="14" y2={RH - 30} class="best" />
+        <circle cx={RX(100)} cy="38" r="6" class="marker" />
+        <text x={RX(100) - 12} y="43" text-anchor="end" class="value">100%</text>
+        <text x={RX(85)} y="84" class="row-label">Agentic optimizer</text>
+        <text x={RX(85)} y="104" class="row-note">never told the best setting</text>
+        <rect x={RX(94)} y="72" width={RX(98) - RX(94)} height="20" rx="10" class="range" />
+        <text x={RX(94) - 8} y="87" text-anchor="end" class="value">94%</text>
+        <text x={RX(98) + 8} y="87" class="value">98%</text>
+      </svg>
+      <figcaption>Share of the best fixed setting's throughput objective, across runs on CloudLab and an InfiniBand HPC cluster. The axis does not start at zero.</figcaption>
+    </figure>
     <div class="stats">
-      <div class="stat"><b>94–98%</b><span>of the best fixed setting's throughput objective</span></div>
       <div class="stat"><b>84.5 Gbps</b><span>average throughput at best, over InfiniBand</span></div>
       <div class="stat"><b>No tuning</b><span>the best setting was never given in advance</span></div>
     </div>

@@ -651,7 +651,7 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-10-07",
-    "notes": "The owner chose to publish GPA, citation counts, and the Kona caching figure in this file only. Website pages still omit them."
+    "notes": "The owner chose to publish GPA, citation counts, and the Kona caching figure in this file. Website pages omit GPA and the Kona caching figure; since 2026-11-10 the About page shows Google Scholar citations at the owner's request (claim scholar-citations)."
   },
   {
     "id": "contact-orcid",
@@ -676,5 +676,23 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-11-01"
+  },
+  {
+    "id": "scholar-citations",
+    "statement": "Google Scholar lists 278 citations for Nieb Hasan Neom as of 10 November 2026: 6 in 2020, 6 in 2021, 13 in 2022, 42 in 2023, 91 in 2024, 80 in 2025, and 32 in 2026 to that date. 223 of them cite the Bangla sign-language paper in Expert Systems with Applications.",
+    "evidence": "https://scholar.google.com/citations?user=DzIu5CsAAAAJ, read in the owner's browser on 2026-11-10 (citations-per-year chart and paper list); owner asked for a citations-by-year chart on the About page on 2026-11-10",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-11-10",
+    "notes": "The yearly bars add to 270; Scholar counts 8 more citations that carry no year. Refresh src/data/scholar.json and this statement together."
+  },
+  {
+    "id": "project-netbench-run-matrix",
+    "statement": "In the NetBench release, llama-3.2-1b, gemma-3-1b, qwen3.5-2b, llama-3.1-8b, qwen3.5-9b, and gemma-3-12b answer the benchmark in all eight variants. gemma-3-27b and qwen3.5-27b skip the two variants that start from continued pre-training of the base model (CPT plus SFT, and CPT plus SFT plus RAG), because base continued pre-training is disabled for the large models by design. gpt-4o, gemini-2.5-pro, and claude-sonnet-4-6 answer closed-book only.",
+    "evidence": "https://github.com/NiebHasan077/NetBench docs/STUDY_DESIGN.md (variant taxonomy) and the judged outputs under NetBench-LLM/outputs/by_model, read 2026-11-10; owner chose the model-by-variant grid on 2026-11-10",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-11-10",
+    "notes": "Which runs exist, not what they scored. Findings wait for the paper."
   }
 ]

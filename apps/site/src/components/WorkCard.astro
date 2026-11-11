@@ -55,30 +55,30 @@ const { href, title, text, kicker, tone, visual } = Astro.props;
     {
       visual === "optimizer" && (
         <svg viewBox="0 0 240 100">
-          <circle cx="120" cy="50" r="32" fill="none" stroke="#0f5e73" stroke-width="1.6" stroke-dasharray="4 4" />
-          <g font-family="ui-monospace, Menlo, monospace" font-size="9.5" fill="#15191e" text-anchor="middle">
-            <text x="120" y="11">observe</text>
-            <text x="186" y="53">reason</text>
-            <text x="120" y="97">act</text>
-            <text x="52" y="53">evaluate</text>
+          <g font-family="ui-monospace, Menlo, monospace" font-size="9">
+            <text x="12" y="16" fill="#5a616c">best fixed setting</text>
+            <rect x="12" y="22" width="216" height="14" rx="3" fill="#c9c6bd" />
+            <text x="12" y="54" fill="#15191e">agent, no prior tuning</text>
+            <text x="222" y="54" fill="#93560a" font-weight="600" text-anchor="end">94–98%</text>
+            <rect x="12" y="60" width="203" height="14" rx="3" fill="#93560a" />
+            <rect x="215" y="60" width="8.6" height="14" fill="#93560a" opacity="0.4" />
+            <path d="M228 18v60" stroke="#15191e" stroke-width="1.2" stroke-dasharray="3 2" />
+            <text x="12" y="93" fill="#5a616c">share of the best throughput objective</text>
           </g>
-          <circle cx="152" cy="50" r="5" fill="#93560a" />
         </svg>
       )
     }
     {
       visual === "kona" && (
         <svg viewBox="0 0 240 100">
-          <g font-family="Source Sans 3, system-ui, sans-serif" font-size="11" font-weight="600">
-            <rect x="6" y="36" width="62" height="28" rx="6" fill="#fff" stroke="#b9c4c6" />
-            <text x="18" y="54" fill="#15191e">Trade</text>
-            <rect x="89" y="36" width="62" height="28" rx="6" fill="#e6eff0" stroke="#0f5e73" />
-            <text x="102" y="54" fill="#15191e">Kafka</text>
-            <rect x="172" y="36" width="62" height="28" rx="6" fill="#fff" stroke="#b9c4c6" />
-            <text x="181" y="54" fill="#15191e">Wallet</text>
+          <g font-family="ui-monospace, Menlo, monospace" font-size="9">
+            <text x="12" y="14" fill="#5a616c">30 Spring Boot microservices</text>
+            {Array.from({ length: 30 }, (_, i) => (
+              <circle cx={30 + (i % 10) * 20} cy={30 + Math.floor(i / 10) * 20} r="6.5" fill={i < 6 ? "#0f5e73" : "#fff"} stroke={i < 6 ? "#0f5e73" : "#9fb0b3"} stroke-width="1.2" />
+            ))}
+            <circle cx="16" cy="90" r="4.5" fill="#0f5e73" />
+            <text x="26" y="93" fill="#15191e">6 owned, moved onto Kafka</text>
           </g>
-          <path d="M68 50h21M151 50h21" stroke="#9fb0b3" stroke-width="2" />
-          <circle cx="120" cy="72" r="4" fill="#0f5e73" />
         </svg>
       )
     }

@@ -1,0 +1,51 @@
+---
+import runs from "../data/netbench-runs.json";
+
+// Which model answered the benchmark in which variant. A filled cell is a run
+// in the release; this shows coverage only, never scores.
+const closed = runs.variants.filter((v) => !v.retrieval);
+const open = runs.variants.filter((v) => v.retrieval);
+---
+
+<figure class="figure run-grid">
+  <div class="table-box">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col" rowspan="2" class="model-col">Model</th>
+          <th scope="colgroup" colspan={closed.length} class="group">Closed-book</th>
+          <th scope="colgroup" colspan={open.length} class="group retrieval">With retrieval (RAG)</th>
+        </tr>
+        <tr>
+          {runs.variants.map((v) => <th scope="col" class:list={["variant", { retrieval: v.retrieval }]}>{v.label}</th>)}
+        </tr>
+      </thead>
+      {
+        runs.groups.map((group) => (
+          <tbody>
+            <tr class="group-row">
+              <th scope="rowgroup" colspan={runs.variants.length + 1}>{group.label}</th>
+            </tr>
+            {group.models.map((model) => (
+              <tr>
+                <th scope="row" class="model">{model.name}</th>
+                {runs.variants.map((v) => {
+                  const ran = model.runs.includes(v.id);
+                  return (
+                    <td class:list={["cell", { ran, retrieval: v.retrieval }]}>
+                      <span aria-hidden="true" />
+                      <span class="sr-only">{ran ? "run" : "not run"}</span>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        ))
+      }
+    </table>
+  </div>
+  <figcaption>
+    Each filled cell is a model that answered every item in that variant. The two 27B models skip the variants that begin with continued pre-training of the base model, and the API models answer closed-book only.
+  </figcaption>
+</figure>

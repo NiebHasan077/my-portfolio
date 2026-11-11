@@ -1,0 +1,65 @@
+{
+  "claimId": "project-netbench-run-matrix",
+  "source": "https://github.com/NiebHasan077/NetBench docs/STUDY_DESIGN.md and NetBench-LLM/outputs/by_model, read 2026-11-10",
+  "variants": [
+    { "id": "P1", "label": "Instruct", "retrieval": false },
+    { "id": "P2", "label": "LoRA SFT", "retrieval": false },
+    { "id": "P3", "label": "Full SFT", "retrieval": false },
+    { "id": "P4", "label": "CPT + SFT", "retrieval": false },
+    { "id": "P5", "label": "LoRA CPT + SFT", "retrieval": false },
+    { "id": "P6", "label": "Instruct", "retrieval": true },
+    { "id": "P7", "label": "CPT + SFT", "retrieval": true },
+    { "id": "P8", "label": "LoRA CPT + SFT", "retrieval": true }
+  ],
+  "groups": [
+    {
+      "label": "Small",
+      "models": [
+        {
+          "name": "llama-3.2-1b",
+          "runs": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8"]
+        },
+        {
+          "name": "gemma-3-1b",
+          "runs": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8"]
+        },
+        {
+          "name": "qwen3.5-2b",
+          "runs": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8"]
+        }
+      ]
+    },
+    {
+      "label": "Medium",
+      "models": [
+        {
+          "name": "llama-3.1-8b",
+          "runs": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8"]
+        },
+        {
+          "name": "qwen3.5-9b",
+          "runs": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8"]
+        },
+        {
+          "name": "gemma-3-12b",
+          "runs": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8"]
+        }
+      ]
+    },
+    {
+      "label": "Large",
+      "models": [
+        { "name": "gemma-3-27b", "runs": ["P1", "P2", "P3", "P5", "P6", "P8"] },
+        { "name": "qwen3.5-27b", "runs": ["P1", "P2", "P3", "P5", "P6", "P8"] }
+      ]
+    },
+    {
+      "label": "API baselines",
+      "models": [
+        { "name": "gpt-4o", "runs": ["P1"] },
+        { "name": "gemini-2.5-pro", "runs": ["P1"] },
+        { "name": "claude-sonnet-4-6", "runs": ["P1"] }
+      ]
+    }
+  ]
+}
