@@ -18,15 +18,20 @@ const selected = publications.filter((p) => p.status !== "preprint").slice(0, 3)
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  dateModified: "2026-10-07",
+  dateModified: "2026-11-10",
   mainEntity: {
     "@type": "Person",
     name: profile.displayName,
+    // The author-list form and the short form, so search engines tie papers and mentions to this person.
+    alternateName: ["N. H. Neom", "Nieb Neom"],
+    description: profile.description,
     url: new URL("/", site).href,
     image: profile.photo ? new URL(profile.photo, site).href : undefined,
     jobTitle: profile.role,
-    affiliation: { "@type": "CollegeOrUniversity", name: profile.affiliation },
-    alumniOf: { "@type": "CollegeOrUniversity", name: "Khulna University of Engineering & Technology" },
+    affiliation: { "@type": "CollegeOrUniversity", name: profile.affiliation, url: refs.mst },
+    alumniOf: { "@type": "CollegeOrUniversity", name: "Khulna University of Engineering & Technology", url: refs.kuet },
+    // City only, matching the public location on the site (claim identity-location).
+    address: { "@type": "PostalAddress", addressLocality: "Rolla", addressRegion: "MO", addressCountry: "US" },
     email: email?.href,
     sameAs,
     knowsAbout: ["High-performance networking", "Distributed systems", "Agentic AI systems", "Large language models"],
