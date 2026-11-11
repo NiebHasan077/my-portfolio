@@ -52,6 +52,7 @@ const external = (href: string) => href.startsWith("https://");
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={`${profile.displayName}, ${profile.role}, ${profile.affiliationShort}`} />
     <meta name="twitter:card" content="summary_large_image" />
+    {home && <meta name="google-site-verification" content="ojImpWFLRqOTh2HHWlxZAmNMD6xs3k1HnXbPWT2TmoE" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{title}</title>

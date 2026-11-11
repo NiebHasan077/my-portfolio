@@ -180,7 +180,8 @@ for (const file of htmlFiles) {
       `${file} loads ${scriptBytes} bytes of compressed script; the budget is ${scriptBudget}`,
     );
 
-  if (file === "404.html") continue;
+  // Google Search Console's ownership file holds a hex token, not figures.
+  if (file === "404.html" || /^google[0-9a-f]+\.html$/.test(file)) continue;
   const visible = html
     .replace(/<head>[\s\S]*?<\/head>/, " ")
     .replace(/<script[\s\S]*?<\/script>/g, " ")
