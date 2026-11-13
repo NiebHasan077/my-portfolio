@@ -331,6 +331,10 @@ main {
   margin-bottom: 1.25rem;
 }
 
+.section > h2.after-figure {
+  margin-top: 3rem;
+}
+
 .section-head a {
   font-weight: 600;
 }

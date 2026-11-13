@@ -56,7 +56,7 @@ test("home figures link to the page behind each number", async ({ page }) => {
     ["94–98%", "/research/agentic-data-transfer-optimizer/#results"],
     ["242", "/research/netbench/"],
     ["6 of 30", "/projects/kona-token-trade/"],
-    ["278", "/about/#citations"],
+    ["278", "/publications/#citations"],
   ])
     await expect(
       figures.getByRole("link", { name: new RegExp(`^${figure}`) }),
@@ -85,9 +85,9 @@ test("the tuning toy lets the agent search and says it is an illustration", asyn
   await expect(toy.locator(".probe")).toHaveCount(0);
 });
 
-test("About charts citations per year", async ({ page }) => {
-  await page.goto("/about/");
-  const chart = page.locator("#citations figure");
+test("Publications charts citations per year", async ({ page }) => {
+  await page.goto("/publications/");
+  const chart = page.locator("figure.citations");
   await expect(chart.locator("rect.bar")).toHaveCount(7);
   await expect(chart.locator("figcaption")).toContainText("278 in total");
 });

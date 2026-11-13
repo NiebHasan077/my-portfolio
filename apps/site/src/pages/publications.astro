@@ -1,4 +1,5 @@
 ---
+import CitationChart from "../components/CitationChart.astro";
 import PublicationList from "../components/PublicationList.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { linkOf, profile } from "../content";
@@ -14,6 +15,9 @@ const scholar = linkOf("scholar");
       {scholar && <p class="links"><a href={scholar.href} rel="me noreferrer">Google Scholar profile ↗</a></p>}
     </header>
     <div class="prose section">
+      <h2 id="citations">Citations</h2>
+      <CitationChart />
+      <h2 id="papers" class="after-figure">Papers and software</h2>
       <PublicationList />
     </div>
   </div>

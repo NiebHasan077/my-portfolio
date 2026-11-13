@@ -651,7 +651,7 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-10-07",
-    "notes": "The owner chose to publish GPA, citation counts, and the Kona caching figure in this file. Website pages omit GPA and the Kona caching figure; since 2026-11-10 the About page shows Google Scholar citations at the owner's request (claim scholar-citations)."
+    "notes": "The owner chose to publish GPA, citation counts, and the Kona caching figure in this file. Website pages omit GPA and the Kona caching figure; since 2026-11-10 the site shows Google Scholar citations at the owner's request (claim scholar-citations), on the Publications page since 2026-11-13."
   },
   {
     "id": "contact-orcid",
@@ -680,7 +680,7 @@
   {
     "id": "scholar-citations",
     "statement": "Google Scholar lists 278 citations for Nieb Hasan Neom as of 10 November 2026: 6 in 2020, 6 in 2021, 13 in 2022, 42 in 2023, 91 in 2024, 80 in 2025, and 32 in 2026 to that date. 223 of them cite the Bangla sign-language paper in Expert Systems with Applications.",
-    "evidence": "https://scholar.google.com/citations?user=DzIu5CsAAAAJ, read in the owner's browser on 2026-11-10 (citations-per-year chart and paper list); owner asked for a citations-by-year chart on the About page on 2026-11-10",
+    "evidence": "https://scholar.google.com/citations?user=DzIu5CsAAAAJ, read in the owner's browser on 2026-11-10 (citations-per-year chart and paper list); owner asked for a citations-by-year chart on the About page on 2026-11-10 and moved it to the Publications page on 2026-11-13",
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-11-10",

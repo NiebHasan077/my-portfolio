@@ -1,5 +1,4 @@
 ---
-import CitationChart from "../components/CitationChart.astro";
 import RatingChart from "../components/RatingChart.astro";
 import codeforces from "../data/codeforces.json";
 import leetcode from "../data/leetcode.json";
@@ -13,7 +12,6 @@ const certifications = highlights.filter((item) => item.category === "certificat
 const sections = [
   { id: "story", label: "Story" },
   { id: "path", label: "Path" },
-  { id: "citations", label: "Citations" },
   { id: "colleagues", label: "What colleagues say" },
   { id: "problem-solving", label: "Problem solving" },
   { id: "community", label: "Teaching and community" },
@@ -83,11 +81,6 @@ const sections = [
               </div>
             </li>
           </ol>
-        </section>
-
-        <section id="citations">
-          <h2>Citations</h2>
-          <CitationChart />
         </section>
 
         <section id="colleagues">
