@@ -85,6 +85,27 @@ test("the tuning toy lets the agent search and says it is an illustration", asyn
   await expect(toy.locator(".probe")).toHaveCount(0);
 });
 
+test("the optimizer page opens with its one-slide summary", async ({
+  page,
+}) => {
+  await page.goto("/research/agentic-data-transfer-optimizer/");
+  const slide = page.locator(".summary-slide");
+  await expect(slide.locator("img")).toHaveAttribute(
+    "alt",
+    /An Autopilot for the World's Data/,
+  );
+  await expect(
+    slide.locator("a", { has: page.locator("img") }),
+  ).toHaveAttribute("href", "/img/optimizer-summary-2400.webp");
+  await expect(slide.locator("figcaption")).toContainText(
+    "capacity of the network link",
+  );
+  const size = await slide
+    .locator("img")
+    .evaluate((img: HTMLImageElement) => img.naturalWidth);
+  expect(size).toBeGreaterThan(0);
+});
+
 test("Publications charts citations per year", async ({ page }) => {
   await page.goto("/publications/");
   const chart = page.locator("figure.citations");

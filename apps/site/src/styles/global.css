@@ -1735,6 +1735,24 @@ button.nb-cat:hover,
   }
 }
 
+/* A slide shown as a picture at the top of a case study */
+.summary-slide {
+  margin: 0 0 2.5rem;
+}
+
+.summary-slide > a {
+  display: block;
+}
+
+.summary-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: #fff;
+}
+
 /* Small static charts */
 .result-range svg,
 .citations svg,

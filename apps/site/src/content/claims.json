@@ -694,5 +694,14 @@
     "approved": true,
     "lastVerified": "2026-11-10",
     "notes": "Which runs exist, not what they scored. Findings wait for the paper."
+  },
+  {
+    "id": "research-optimizer-summary-slide",
+    "statement": "In Nieb Hasan Neom's one-slide summary of the Agentic Data Transfer Optimizer, a concurrency setting fixed once by hand reaches 50–60% of the network link's capacity and the AI agents about 90%; 24 of 24 runs reached the best setting, taking about 1 minute on average starting from zero. The slide's 7 days versus about 4 days of waiting is an example transfer scaled from those speeds, not a measurement.",
+    "evidence": "owner's slide 'An Autopilot for the World's Data' (3MT-slide-for-Canvas.pptx, modified 2026-10-18); owner confirmed on 2026-11-13 that the percentages, 24 of 24, and about 1 minute are measured, that top speed means link capacity, and that the days are illustrative",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-11-13",
+    "notes": "Link capacity is a different baseline from research-optimizer-results (94–98% of the best fixed setting); the caption on the page says so."
   }
 ]
