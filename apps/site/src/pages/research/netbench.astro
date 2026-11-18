@@ -3,7 +3,7 @@ import Authors from "../../components/Authors.astro";
 import Flow from "../../components/Flow.astro";
 import NetBenchExplorer from "../../components/NetBenchExplorer.astro";
 import QuestionTypes from "../../components/QuestionTypes.astro";
-import RunGrid from "../../components/RunGrid.astro";
+import ScoreGrid from "../../components/ScoreGrid.astro";
 import CaseLayout from "../../layouts/CaseLayout.astro";
 import { research } from "../../content";
 import { refs } from "../../content/refs";
@@ -104,14 +104,14 @@ const sections = [
     <p>
       Eight open-weight models from 1B to 27B parameters answer every item in up to eight variants, alongside three frontier API models answering closed-book. Two independent LLM judges score every answer, and a two-expert human study validates the primary judge.
     </p>
-    <RunGrid />
+    <ScoreGrid />
     <p>
       Five research questions frame the study: which adaptation recipe moves networking knowledge, how consistent the effects are across model families and sizes, what retrieval adds compared with changing the weights, how close adapted open models come to frontier APIs and at what inference cost, and how often statistical significance overstates a difference that matters.
     </p>
     <p>
       <code>make reproduce</code> regenerates every CSV, table, and figure behind the paper from the committed judged outputs, and fails if anything comes back different. It runs on every push.
     </p>
-    <p class="note">The findings are in the paper, which is in preparation. They will appear here once it is public.</p>
+    <p class="note">The paper is under review. The table shows its headline scores; the analysis behind them will appear here once it is published.</p>
   </section>
 
   <section id="next">

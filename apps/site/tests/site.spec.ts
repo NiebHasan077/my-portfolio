@@ -113,12 +113,17 @@ test("Publications charts citations per year", async ({ page }) => {
   await expect(chart.locator("figcaption")).toContainText("278 in total");
 });
 
-test("NetBench shows which model ran in which variant", async ({ page }) => {
+test("NetBench shows each model's mean score in each variant", async ({
+  page,
+}) => {
   await page.goto("/research/netbench/");
-  const grid = page.locator(".run-grid");
+  const grid = page.locator(".score-grid");
   await expect(grid.locator("tbody th.model")).toHaveCount(11);
   const large = grid.locator("tr", { has: page.getByText("qwen3.5-27b") });
-  await expect(large.locator("td.ran")).toHaveCount(6);
+  await expect(large.locator("td.cell:not(.none)")).toHaveCount(6);
+  await expect(large.locator("td.best")).toContainText("4.53");
+  await expect(grid.locator("td.best")).toHaveCount(8);
+  await expect(grid.locator("figcaption")).toContainText("under review");
   await expect(page.locator(".hbars rect.bar")).toHaveCount(6);
 });
 

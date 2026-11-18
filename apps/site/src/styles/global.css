@@ -1934,45 +1934,44 @@ button.nb-cat:hover,
   }
 }
 
-/* NetBench: which model ran in which variant */
-.run-grid.figure .table-box th,
-.run-grid.figure .table-box td {
+/* NetBench: mean score of every model in every variant */
+.score-grid.figure .table-box th,
+.score-grid.figure .table-box td {
   padding: 0.45rem 0.4rem;
 }
 
-.run-grid .table-box th:first-child {
+.score-grid .table-box th:first-child {
   padding-left: 0.8rem;
 }
 
-.run-grid th.model-col,
-.run-grid th.model {
+.score-grid th.model-col,
+.score-grid th.model {
   white-space: nowrap;
 }
 
-.run-grid th.model {
+.score-grid th.model {
   background: var(--surface);
   color: var(--ink);
   font: 400 0.8rem var(--mono);
 }
 
-.run-grid th.group,
-.run-grid th.variant {
+.score-grid th.group,
+.score-grid th.variant {
   text-align: center;
 }
 
-.run-grid th.variant {
+.score-grid th.variant {
   min-width: 3.6rem;
   font-size: 0.75rem;
   line-height: 1.25;
   vertical-align: bottom;
 }
 
-.run-grid th.retrieval,
-.run-grid td.retrieval {
+.score-grid th.retrieval {
   background: var(--tint);
 }
 
-.run-grid .group-row th {
+.score-grid .group-row th {
   padding-top: 0.75rem;
   padding-bottom: 0.3rem;
   background: var(--surface);
@@ -1981,22 +1980,62 @@ button.nb-cat:hover,
   text-transform: uppercase;
 }
 
-.run-grid td.cell {
+.score-grid td.cell {
+  border: 1px solid var(--surface);
+  color: var(--ink);
+  font: 400 0.8rem var(--mono);
+  font-variant-numeric: tabular-nums;
   text-align: center;
   vertical-align: middle;
 }
 
-.run-grid td.cell span[aria-hidden] {
-  display: inline-block;
-  width: 0.95rem;
-  height: 0.95rem;
-  border: 1px dashed var(--rule-strong);
-  border-radius: 3px;
+.score-grid td.none {
+  background: var(--surface);
+  color: var(--faint);
 }
 
-.run-grid td.cell.ran span[aria-hidden] {
-  border: 0;
-  background: var(--accent);
+/* Ten steps from 2.25 to 4.75; text color chosen for at least 4.5:1 contrast. */
+.score-grid td.s0 {
+  background: #eef4f5;
+}
+.score-grid td.s1 {
+  background: #d2e2e5;
+}
+.score-grid td.s2 {
+  background: #b6d0d5;
+}
+.score-grid td.s3 {
+  background: #99bec5;
+}
+.score-grid td.s4 {
+  background: #7dacb5;
+}
+.score-grid td.s5 {
+  background: #6498a3;
+}
+.score-grid td.s6 {
+  background: #457a86;
+  color: #fff;
+}
+.score-grid td.s7 {
+  background: #376e7a;
+  color: #fff;
+}
+.score-grid td.s8 {
+  background: #205866;
+  color: #fff;
+}
+.score-grid td.s9 {
+  background: #0a4352;
+  color: #fff;
+}
+
+/* A dark ring with a white one inside shows on light and dark cells alike. */
+.score-grid td.best {
+  box-shadow:
+    inset 0 0 0 2px var(--ink),
+    inset 0 0 0 4px #fff;
+  font-weight: 700;
 }
 
 /* Publications */

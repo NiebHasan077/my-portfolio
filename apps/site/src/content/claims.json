@@ -291,15 +291,15 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-10-05",
-    "notes": "Scale and method only. No NetBench result is published until the paper is public."
+    "notes": "Scale and method. Since 2026-11-18 the mean scores are published too (claim project-netbench-scores); other findings wait for the paper."
   },
   {
     "id": "project-netbench-paper-status",
-    "statement": "A paper describing the NetBench study is in preparation.",
-    "evidence": "https://github.com/NiebHasan077/NetBench README, Citation section",
+    "statement": "A paper describing the NetBench study, NetBench: Evaluating Open-Weight Language Models for Big Data Movement, is under review.",
+    "evidence": "owner confirmed on 2026-11-18 that the paper (NetBench___MLBD.pdf, created 2026-10-25) is under review; earlier, https://github.com/NiebHasan077/NetBench README, Citation section",
     "publicSafe": true,
     "approved": true,
-    "lastVerified": "2026-10-05"
+    "lastVerified": "2026-11-18"
   },
   {
     "id": "publication-works26-authors",
@@ -642,7 +642,7 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-10-07",
-    "notes": "Design only. Findings wait for the paper."
+    "notes": "Design only. The mean scores are in project-netbench-scores; other findings wait for the paper."
   },
   {
     "id": "resume-pdf-owner-version",
@@ -693,7 +693,7 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-11-10",
-    "notes": "Which runs exist, not what they scored. Findings wait for the paper."
+    "notes": "Which runs exist. Their mean scores are in project-netbench-scores."
   },
   {
     "id": "research-optimizer-summary-slide",
@@ -703,5 +703,14 @@
     "approved": true,
     "lastVerified": "2026-11-13",
     "notes": "Link capacity is a different baseline from research-optimizer-results (94–98% of the best fixed setting); the caption on the page says so."
+  },
+  {
+    "id": "project-netbench-scores",
+    "statement": "In the NetBench paper under review (Fig. 3), the mean HPN-QA score over the 233 scored questions, on a 1–5 scale graded by GPT-5.1, for variants P1 to P8 (instruct, LoRA SFT, full SFT, CPT plus SFT, LoRA CPT plus SFT, instruct plus RAG, CPT plus SFT plus RAG, LoRA CPT plus SFT plus RAG) is: llama-3.2-1b 2.40, 2.73, 2.68, 2.77, 2.82, 2.93, 3.01, 3.12; gemma-3-1b 2.40, 2.62, 2.63, 2.52, 2.74, 3.02, 2.84, 2.91; qwen3.5-2b 2.63, 3.24, 3.32, 3.45, 3.35, 3.88, 3.90, 4.00; llama-3.1-8b 3.30, 3.55, 3.42, 3.56, 3.55, 3.96, 4.09, 4.11; qwen3.5-9b 3.71, 3.72, 3.71, 3.82, 3.81, 4.36, 4.32, 4.27; gemma-3-12b 3.61, 3.49, 3.52, 3.54, 3.54, 4.30, 4.10, 4.14; gemma-3-27b 3.80, 3.64, 3.50, not run, 3.71, 4.43, not run, 4.14; qwen3.5-27b 4.14, 4.03, 3.99, not run, 4.09, 4.53, not run, 4.47. The closed-book API baselines score 4.22 (gpt-4o), 4.36 (gemini-2.5-pro), and 4.40 (claude-sonnet-4-6). The 95% source-paper cluster-bootstrap intervals have half-widths of 0.07–0.13 points.",
+    "evidence": "NetBench paper under review (NetBench___MLBD.pdf, created 2026-10-25), Fig. 3; all 63 values match overall_formula in analysis/outputs/summary_by_variant.csv of https://github.com/NiebHasan077/NetBench, checked 2026-11-18; owner asked to publish the table on 2026-11-18 and cleared it with the co-authors or took responsibility for it",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-11-18",
+    "notes": "Mean scores only. Paired differences, significance tests, and the rest of the paper's findings wait for publication."
   }
 ]

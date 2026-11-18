@@ -1,0 +1,135 @@
+{
+  "claimIds": ["project-netbench-scores", "project-netbench-run-matrix"],
+  "source": "NetBench paper (under review), Fig. 3; matches overall_formula in analysis/outputs/summary_by_variant.csv of https://github.com/NiebHasan077/NetBench, checked 2026-11-18",
+  "judge": "GPT-5.1",
+  "variants": [
+    { "id": "P1", "label": "Instruct", "retrieval": false },
+    { "id": "P2", "label": "LoRA SFT", "retrieval": false },
+    { "id": "P3", "label": "Full SFT", "retrieval": false },
+    { "id": "P4", "label": "CPT + SFT", "retrieval": false },
+    { "id": "P5", "label": "LoRA CPT + SFT", "retrieval": false },
+    { "id": "P6", "label": "Instruct", "retrieval": true },
+    { "id": "P7", "label": "CPT + SFT", "retrieval": true },
+    { "id": "P8", "label": "LoRA CPT + SFT", "retrieval": true }
+  ],
+  "groups": [
+    {
+      "label": "Small",
+      "models": [
+        {
+          "name": "llama-3.2-1b",
+          "scores": [
+            "2.40",
+            "2.73",
+            "2.68",
+            "2.77",
+            "2.82",
+            "2.93",
+            "3.01",
+            "3.12"
+          ]
+        },
+        {
+          "name": "gemma-3-1b",
+          "scores": [
+            "2.40",
+            "2.62",
+            "2.63",
+            "2.52",
+            "2.74",
+            "3.02",
+            "2.84",
+            "2.91"
+          ]
+        },
+        {
+          "name": "qwen3.5-2b",
+          "scores": [
+            "2.63",
+            "3.24",
+            "3.32",
+            "3.45",
+            "3.35",
+            "3.88",
+            "3.90",
+            "4.00"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Medium",
+      "models": [
+        {
+          "name": "llama-3.1-8b",
+          "scores": [
+            "3.30",
+            "3.55",
+            "3.42",
+            "3.56",
+            "3.55",
+            "3.96",
+            "4.09",
+            "4.11"
+          ]
+        },
+        {
+          "name": "qwen3.5-9b",
+          "scores": [
+            "3.71",
+            "3.72",
+            "3.71",
+            "3.82",
+            "3.81",
+            "4.36",
+            "4.32",
+            "4.27"
+          ]
+        },
+        {
+          "name": "gemma-3-12b",
+          "scores": [
+            "3.61",
+            "3.49",
+            "3.52",
+            "3.54",
+            "3.54",
+            "4.30",
+            "4.10",
+            "4.14"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Large",
+      "models": [
+        {
+          "name": "gemma-3-27b",
+          "scores": ["3.80", "3.64", "3.50", null, "3.71", "4.43", null, "4.14"]
+        },
+        {
+          "name": "qwen3.5-27b",
+          "scores": ["4.14", "4.03", "3.99", null, "4.09", "4.53", null, "4.47"]
+        }
+      ]
+    },
+    {
+      "label": "API baselines",
+      "models": [
+        {
+          "name": "gpt-4o",
+          "scores": ["4.22", null, null, null, null, null, null, null]
+        },
+        {
+          "name": "gemini-2.5-pro",
+          "scores": ["4.36", null, null, null, null, null, null, null]
+        },
+        {
+          "name": "claude-sonnet-4-6",
+          "scores": ["4.40", null, null, null, null, null, null, null]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+---
+import data from "../data/netbench-scores.json";
+
+// Mean HPN-QA score of every model in every variant, as in Fig. 3 of the
+// NetBench paper. Shading steps by 0.25 points from 2.25 up, so the darkest
+// cells are the best; a dash is a run the study did not make.
+const closed = data.variants.filter((v) => !v.retrieval);
+const open = data.variants.filter((v) => v.retrieval);
+const shade = (score: string) => Math.min(9, Math.max(0, Math.floor((Number(score) - 2.25) / 0.25)));
+const isApi = (group: { label: string }) => group.label === "API baselines";
+---
+
+<figure class="figure score-grid">
+  <div class="table-box">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col" rowspan="2" class="model-col">Model</th>
+          <th scope="colgroup" colspan={closed.length} class="group">Closed-book</th>
+          <th scope="colgroup" colspan={open.length} class="group retrieval">With retrieval (RAG)</th>
+        </tr>
+        <tr>
+          {data.variants.map((v) => <th scope="col" class:list={["variant", { retrieval: v.retrieval }]}>{v.label}</th>)}
+        </tr>
+      </thead>
+      {
+        data.groups.map((group) => (
+          <tbody>
+            <tr class="group-row">
+              <th scope="rowgroup" colspan={data.variants.length + 1}>{group.label}</th>
+            </tr>
+            {group.models.map((model) => {
+              const scored = model.scores.filter((s): s is string => s !== null).map(Number);
+              const top = Math.max(...scored);
+              return (
+                <tr>
+                  <th scope="row" class="model">{model.name}</th>
+                  {model.scores.map((score) =>
+                    score === null ? (
+                      <td class="cell none">
+                        <span aria-hidden="true">–</span>
+                        <span class="sr-only">not run</span>
+                      </td>
+                    ) : (
+                      <td class:list={["cell", `s${shade(score)}`, { best: !isApi(group) && Number(score) === top }]}>
+                        {score}
+                        {!isApi(group) && Number(score) === top && <span class="sr-only"> (best for this model)</span>}
+                      </td>
+                    ),
+                  )}
+                </tr>
+              );
+            })}
+          </tbody>
+        ))
+      }
+    </table>
+  </div>
+  <figcaption>
+    Mean score on a 1–5 scale over the 233 scored questions, graded by {data.judge}, from our paper under review. Darker cells score higher, an outline marks each model's best variant, and a dash marks a run the study did not make: the 27B models skip continued pre-training of the base model, and the API models answer closed-book only. The 95% intervals are 0.07–0.13 points either side.
+  </figcaption>
+</figure>

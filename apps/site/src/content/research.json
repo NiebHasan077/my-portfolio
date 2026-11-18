@@ -4,7 +4,7 @@
     "publish": true,
     "title": "NetBench: domain adaptation for networking LLMs",
     "tagline": "What does domain adaptation teach a language model about high-performance networking?",
-    "status": "Released v1.1.0 · paper in preparation",
+    "status": "Released v1.1.0 · paper under review",
     "tone": "released",
     "summary": "A 242-question benchmark built from 175 open-access papers, and a controlled study of 8 open-weight models (1B–27B) under fine-tuning, continued pre-training, and retrieval. Two LLM judges score every answer, a two-expert human study validates the primary judge, and one command regenerates every reported number.",
     "short": "Benchmark and controlled study of LLM domain adaptation for high-performance networking: 242 questions from 175 papers, 8 open-weight models (1B–27B) under fine-tuning, continued pre-training, and retrieval, two LLM judges validated by a human study, and one-command reproduction of every number.",
