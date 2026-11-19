@@ -169,11 +169,11 @@
   },
   {
     "id": "education-mst-fellowship-graduation",
-    "statement": "Nieb Hasan Neom is a Kummer Innovation and Entrepreneurship Doctoral Fellow at Missouri University of Science and Technology with an anticipated graduation date of December 2029.",
-    "evidence": "owner's résumé source, commit 53d51d7 (anticipated graduation 12/2029), 2026-10-25; owner-provided 2026 CVs",
+    "statement": "Nieb Hasan Neom is a Kummer Innovation and Entrepreneurship Doctoral Fellow at Missouri University of Science and Technology with an anticipated graduation date of August 2029.",
+    "evidence": "owner decision on 2026-11-19: four years from the August 2025 program start; earlier, owner's résumé source, commit 53d51d7 (anticipated graduation 12/2029), 2026-10-25",
     "publicSafe": true,
     "approved": true,
-    "lastVerified": "2026-10-29"
+    "lastVerified": "2026-11-19"
   },
   {
     "id": "experience-mst-research-lab",
