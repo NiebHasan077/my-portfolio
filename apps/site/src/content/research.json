@@ -37,7 +37,7 @@
     "publish": true,
     "title": "Guarded orchestration for scientific models",
     "tagline": "Letting scientists run trained prediction models through natural language without the model guessing missing inputs.",
-    "status": "Accepted · WORKS26 at SC26",
+    "status": "Presented · WORKS26 at SC26",
     "tone": "accepted",
     "summary": "Extends LLM function calling with explicit workflow state. Inputs accumulate across turns, arguments are checked against typed schemas, and nothing runs until the required state is complete. Corrections, what-if questions, and resets are explicit state transitions.",
     "short": "State-aware layer over LLM function calling that accumulates inputs across turns, checks arguments against typed schemas, and blocks execution until the required state is complete; instantiated for protein-corona prediction.",
@@ -52,7 +52,8 @@
     "claimIds": [
       "research-guarded-orchestration",
       "research-guarded-orchestration-domain",
-      "publication-works26-accepted"
+      "publication-works26-accepted",
+      "publication-works26-presented"
     ]
   },
   {

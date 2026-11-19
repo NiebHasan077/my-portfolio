@@ -10,7 +10,7 @@
 - Scripts are bundled modules under `/_astro/`; the content security policy in `public/_headers` allows scripts and data requests from the site's own origin only, and forbids inline scripts and styles. The validator caps compressed script at 30 KB per page.
 - Every figure shown on a page must appear in an approved claim; the static validator fails the build otherwise. Dataset samples, illustrations, SVG drawings, and citation blocks are exempt.
 - Typed public content for identity, news, three research records, three projects, five publications with author lists, the NetBench software release, experience, education, five skill groups, honors, certificates, service, and two testimonials, plus snapshots of Codeforces and LeetCode history in `apps/site/src/data/`.
-- Research-track identity published from the ledger: Kummer Innovation and Entrepreneurship Doctoral Fellow, the Computer Systems & Networking Lab and advisor, an anticipated May 2030 graduation, and the accepted WORKS26 and IEEE eScience 2026 papers.
+- Research-track identity published from the ledger: Kummer Innovation and Entrepreneurship Doctoral Fellow, the Computer Systems & Networking Lab and advisor, an anticipated May 2030 graduation, and the WORKS26 and IEEE eScience 2026 papers, both accepted and presented (eScience in Naples on 2 October 2026, WORKS26 in Chicago on 15 November 2026).
 - Claims-ledger validation that fails closed when a published record references an unapproved or non-public-safe claim.
 - Web CV that prints to one page, and the owner's research résumé as the downloadable PDF (`/Nieb_Hasan_Neom_Resume.pdf`, phone number removed; `/resume.pdf` redirects to it).
 - CI for formatting, type/content checks, tests, build validation, browser checks, Lighthouse, dependency review, and weekly report-only audits.
@@ -46,7 +46,7 @@ The application domain itself is now covered by the approved `research-guarded-o
 - Kona Token Trade performance metrics and GPA on website pages. The owner chose to keep the caching figure and GPA in the downloadable résumé PDF only; citation counts appear on Publications since 2026-11-13 (on About from 2026-11-10).
 - Agentic Data Transfer Optimizer results beyond the headline figures the owner approved on 2026-10-29 (94–98% of the best fixed setting, up to 84.5 Gbps, on CloudLab and an InfiniBand cluster).
 - NetBench findings beyond the mean scores. Since 2026-11-18 the site shows the paper's mean-score table (paper under review); paired differences, significance tests, and the rest of the analysis wait until the paper is published.
-- WORKS26 specifics until the proceedings are public on 15 November 2026: the page shows only a redrawn workflow and an illustrative conversation with changed values and no predictions.
+- WORKS26 specifics until the proceedings are public (not yet online on 2026-11-19, after the paper was presented on 15 November): the page shows only a redrawn workflow and an illustrative conversation with changed values and no predictions.
 - Collaborator-side and backend evaluation figures behind the accepted orchestration paper.
 - Private addresses, phone numbers, test scores, and any unapproved extracurricular detail.
 

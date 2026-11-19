@@ -7,21 +7,26 @@
     "venue": "21st Workshop on Workflows in Support of Large-Scale Science (WORKS26), held with SC26",
     "status": "accepted",
     "year": 2026,
+    "presented": "Chicago, 15 November 2026",
     "links": [
       {
         "label": "Project page",
         "href": "/research/guarded-orchestration/"
       },
       {
-        "label": "Workshop",
-        "href": "https://works-workshop.org/"
+        "label": "Workshop program",
+        "href": "https://works-workshop.org/#program"
       },
       {
         "label": "Code",
         "href": "https://github.com/arif-zaman/pCorona-Orchestration"
       }
     ],
-    "claimIds": ["publication-works26-accepted", "publication-works26-authors"]
+    "claimIds": [
+      "publication-works26-accepted",
+      "publication-works26-authors",
+      "publication-works26-presented"
+    ]
   },
   {
     "id": "segmented-retrieval-escience",
@@ -31,19 +36,21 @@
     "venue": "22nd IEEE International Conference on e-Science (eScience 2026), short paper",
     "status": "accepted",
     "year": 2026,
+    "presented": "Naples, 2 October 2026",
     "links": [
       {
         "label": "Accepted papers",
         "href": "https://www.escience-conference.org/2026/papers"
       },
       {
-        "label": "Conference",
-        "href": "https://www.escience-conference.org/2026/"
+        "label": "Timetable",
+        "href": "https://www.escience-conference.org/2026/timetable"
       }
     ],
     "claimIds": [
       "publication-escience-accepted",
-      "publication-escience-authors"
+      "publication-escience-authors",
+      "publication-escience-presented"
     ]
   },
   {

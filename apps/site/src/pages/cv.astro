@@ -141,7 +141,7 @@ const cvService = service.filter((item) => cvServiceIds.includes(item.id));
                 {index < item.authors.length - 1 ? ", " : ". "}
               </>
             ))}
-            <span class="pub-title">{item.title}.</span> <span class="venue">{item.venue}, {item.year} ({statusLabel[item.status]}).</span>
+            <span class="pub-title">{item.title}.</span> <span class="venue">{item.venue}, {item.year} ({statusLabel[item.status]}{item.presented ? ", presented" : ""}).</span>
           </p>
         ))
       }

@@ -78,7 +78,7 @@ const entries = [
     kind: kinds[p.id] ?? "journal",
     title: p.title,
     authors: p.authors,
-    venue: `${p.venue}, ${p.year} · ${statusLabel[p.status]}`,
+    venue: `${p.venue}, ${p.year} · ${statusLabel[p.status]}${p.presented ? ` · Presented in ${p.presented}` : ""}`,
     note: p.note,
     links: p.links,
     bib: bibtex[p.id] ?? "",

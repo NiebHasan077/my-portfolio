@@ -92,6 +92,8 @@ export type Publication = {
   venue: string;
   status: "published" | "accepted" | "preprint";
   year: number;
+  /** Where and when the paper was presented, e.g. "Chicago, 15 November 2026". */
+  presented?: string;
   note?: string;
   links: LabeledLink[];
   claimIds: string[];

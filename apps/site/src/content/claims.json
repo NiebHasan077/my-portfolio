@@ -308,7 +308,7 @@
     "publicSafe": true,
     "approved": true,
     "lastVerified": "2026-10-05",
-    "notes": "No public listing yet. Replace the evidence with the proceedings page when it is live."
+    "notes": "The WORKS 2026 program lists the paper with these authors. Add the proceedings page as evidence when it is live."
   },
   {
     "id": "event-works26-sc26",
@@ -712,5 +712,21 @@
     "approved": true,
     "lastVerified": "2026-11-18",
     "notes": "Mean scores only. Paired differences, significance tests, and the rest of the paper's findings wait for publication."
+  },
+  {
+    "id": "publication-works26-presented",
+    "statement": "Nieb Hasan Neom presented Guarded, State-Aware Orchestration for Schema-Constrained Scientific Model Execution at WORKS26, held with SC26 in Chicago, on 15 November 2026.",
+    "evidence": "owner statement on 2026-11-19; the WORKS 2026 program at https://works-workshop.org/#program lists the paper (Neom, Gartia, Arifuzzaman), read 2026-11-19",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-11-19"
+  },
+  {
+    "id": "publication-escience-presented",
+    "statement": "Nieb Hasan Neom presented Self-Tuning Segmented Retrieval of Large-Scale Genomic Data in the short-paper track of IEEE eScience 2026 in Naples on 2 October 2026.",
+    "evidence": "owner statement on 2026-11-19; https://www.escience-conference.org/2026/timetable lists the paper in the Friday 2 October short track, read 2026-11-19",
+    "publicSafe": true,
+    "approved": true,
+    "lastVerified": "2026-11-19"
   }
 ]
